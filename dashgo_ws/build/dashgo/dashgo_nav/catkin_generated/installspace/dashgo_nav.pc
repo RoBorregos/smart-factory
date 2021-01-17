@@ -1,0 +1,8 @@
+prefix=/home/aurotb/Desktop/dashgo_ws/install
+
+Name: dashgo_nav
+Description: Description of dashgo_nav
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

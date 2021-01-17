@@ -1,0 +1,8 @@
+prefix=/home/aurotb/Desktop/dashgo_ws/install
+
+Name: dashgo_bringup
+Description: Description of dashgo_bringup
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

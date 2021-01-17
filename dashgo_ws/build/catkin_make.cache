@@ -1,0 +1,2 @@
+dashgo/dashgo_bringup:dashgo/dashgo_description:dashgo/dashgo_nav
+-DCATKIN_DEVEL_PREFIX=/home/aurotb/Desktop/dashgo_ws/devel -DCMAKE_INSTALL_PREFIX=/home/aurotb/Desktop/dashgo_ws/install -G Unix Makefiles

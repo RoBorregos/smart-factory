@@ -1,0 +1,8 @@
+prefix=/home/aurotb/Desktop/dashgo_ws/devel
+
+Name: dashgo_description
+Description: Description of dashgo_description
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
