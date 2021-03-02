@@ -1,4 +1,4 @@
-prefix=/home/aurotb/Desktop/dashgo_ws/install
+prefix=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/install
 
 Name: dashgo_nav
 Description: Description of dashgo_nav

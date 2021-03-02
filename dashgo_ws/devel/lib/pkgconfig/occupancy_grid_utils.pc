@@ -1,0 +1,8 @@
+prefix=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/devel
+
+Name: occupancy_grid_utils
+Description: Description of occupancy_grid_utils
+Version: 0.0.7
+Cflags: -I/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/devel/include -I/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/src/tools/occupancy_grid_utils/include
+Libs: -L${prefix}/lib -lgrid_utils
+Requires: nav_msgs geometry_msgs sensor_msgs laser_geometry roscpp rospy tf tf2_bullet message_runtime

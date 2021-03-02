@@ -10,7 +10,7 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/3.5.1/CompilerIdC/a.out"
+The C compiler identification is GNU, found in "/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/3.5.1/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: /usr/bin/c++ 
@@ -23,33 +23,33 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/3.5.1/CompilerIdCXX/a.out"
+The CXX compiler identification is GNU, found in "/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/3.5.1/CompilerIdCXX/a.out"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_16014/fast"
-/usr/bin/make -f CMakeFiles/cmTC_16014.dir/build.make CMakeFiles/cmTC_16014.dir/build
-make[1]: Entering directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_16014.dir/testCCompiler.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_16014.dir/testCCompiler.c.o   -c /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_16014
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_16014.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_16014.dir/testCCompiler.c.o  -o cmTC_16014 -rdynamic 
-make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_1cd0b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_1cd0b.dir/build.make CMakeFiles/cmTC_1cd0b.dir/build
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1cd0b.dir/testCCompiler.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_1cd0b.dir/testCCompiler.c.o   -c /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_1cd0b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1cd0b.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_1cd0b.dir/testCCompiler.c.o  -o cmTC_1cd0b -rdynamic 
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e946a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_e946a.dir/build.make CMakeFiles/cmTC_e946a.dir/build
-make[1]: Entering directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_e946a.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_e946a.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_e946a
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e946a.dir/link.txt --verbose=1
-/usr/bin/cc      -v CMakeFiles/cmTC_e946a.dir/CMakeCCompilerABI.c.o  -o cmTC_e946a -rdynamic  
+Run Build Command:"/usr/bin/make" "cmTC_a8537/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a8537.dir/build.make CMakeFiles/cmTC_a8537.dir/build
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a8537.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_a8537.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_a8537
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a8537.dir/link.txt --verbose=1
+/usr/bin/cc      -v CMakeFiles/cmTC_a8537.dir/CMakeCCompilerABI.c.o  -o cmTC_a8537 -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -59,23 +59,23 @@ Thread model: posix
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_e946a' '-rdynamic' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cccIKFJF.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_e946a /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_e946a.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
-make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a8537' '-rdynamic' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZcvxB0.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_a8537 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_a8537.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_e946a/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_e946a.dir/build.make CMakeFiles/cmTC_e946a.dir/build]
-  ignore line: [make[1]: Entering directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_e946a.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc     -o CMakeFiles/cmTC_e946a.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_e946a]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e946a.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_e946a.dir/CMakeCCompilerABI.c.o  -o cmTC_e946a -rdynamic  ]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_a8537/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_a8537.dir/build.make CMakeFiles/cmTC_a8537.dir/build]
+  ignore line: [make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_a8537.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc     -o CMakeFiles/cmTC_a8537.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_a8537]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a8537.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_a8537.dir/CMakeCCompilerABI.c.o  -o cmTC_a8537 -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -85,13 +85,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_e946a' '-rdynamic' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cccIKFJF.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_e946a /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_e946a.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a8537' '-rdynamic' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZcvxB0.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_a8537 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_a8537.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/cccIKFJF.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccZcvxB0.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -109,7 +109,7 @@ Parsed C implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_e946a] ==> ignore
+    arg [cmTC_a8537] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -121,7 +121,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTC_e946a.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_a8537.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -153,17 +153,17 @@ Parsed C implicit link information from above output:
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_da604/fast"
-/usr/bin/make -f CMakeFiles/cmTC_da604.dir/build.make CMakeFiles/cmTC_da604.dir/build
-make[1]: Entering directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_da604.dir/feature_tests.c.o
-/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_da604.dir/feature_tests.c.o   -c /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_da604
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_da604.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_da604.dir/feature_tests.c.o  -o cmTC_da604 -rdynamic 
-make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_c954b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c954b.dir/build.make CMakeFiles/cmTC_c954b.dir/build
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c954b.dir/feature_tests.c.o
+/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_c954b.dir/feature_tests.c.o   -c /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_c954b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c954b.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_c954b.dir/feature_tests.c.o  -o cmTC_c954b -rdynamic 
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -173,17 +173,17 @@ make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMak
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_22be4/fast"
-/usr/bin/make -f CMakeFiles/cmTC_22be4.dir/build.make CMakeFiles/cmTC_22be4.dir/build
-make[1]: Entering directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_22be4.dir/feature_tests.c.o
-/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_22be4.dir/feature_tests.c.o   -c /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_22be4
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_22be4.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_22be4.dir/feature_tests.c.o  -o cmTC_22be4 -rdynamic 
-make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_cc675/fast"
+/usr/bin/make -f CMakeFiles/cmTC_cc675.dir/build.make CMakeFiles/cmTC_cc675.dir/build
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_cc675.dir/feature_tests.c.o
+/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_cc675.dir/feature_tests.c.o   -c /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_cc675
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cc675.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_cc675.dir/feature_tests.c.o  -o cmTC_cc675 -rdynamic 
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -193,17 +193,17 @@ make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMak
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_62670/fast"
-/usr/bin/make -f CMakeFiles/cmTC_62670.dir/build.make CMakeFiles/cmTC_62670.dir/build
-make[1]: Entering directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_62670.dir/feature_tests.c.o
-/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_62670.dir/feature_tests.c.o   -c /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_62670
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_62670.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_62670.dir/feature_tests.c.o  -o cmTC_62670 -rdynamic 
-make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_4a6c3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4a6c3.dir/build.make CMakeFiles/cmTC_4a6c3.dir/build
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_4a6c3.dir/feature_tests.c.o
+/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_4a6c3.dir/feature_tests.c.o   -c /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_4a6c3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4a6c3.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_4a6c3.dir/feature_tests.c.o  -o cmTC_4a6c3 -rdynamic 
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -211,30 +211,30 @@ make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMak
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
 Determining if the CXX compiler works passed with the following output:
-Change Dir: /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_5c13c/fast"
-/usr/bin/make -f CMakeFiles/cmTC_5c13c.dir/build.make CMakeFiles/cmTC_5c13c.dir/build
-make[1]: Entering directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_5c13c.dir/testCXXCompiler.cxx.o
-/usr/bin/c++      -o CMakeFiles/cmTC_5c13c.dir/testCXXCompiler.cxx.o -c /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_5c13c
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5c13c.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_5c13c.dir/testCXXCompiler.cxx.o  -o cmTC_5c13c -rdynamic 
-make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_82181/fast"
+/usr/bin/make -f CMakeFiles/cmTC_82181.dir/build.make CMakeFiles/cmTC_82181.dir/build
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_82181.dir/testCXXCompiler.cxx.o
+/usr/bin/c++      -o CMakeFiles/cmTC_82181.dir/testCXXCompiler.cxx.o -c /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_82181
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_82181.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_82181.dir/testCXXCompiler.cxx.o  -o cmTC_82181 -rdynamic 
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_73e32/fast"
-/usr/bin/make -f CMakeFiles/cmTC_73e32.dir/build.make CMakeFiles/cmTC_73e32.dir/build
-make[1]: Entering directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_73e32.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++      -o CMakeFiles/cmTC_73e32.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.5/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_73e32
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_73e32.dir/link.txt --verbose=1
-/usr/bin/c++       -v CMakeFiles/cmTC_73e32.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_73e32 -rdynamic  
+Run Build Command:"/usr/bin/make" "cmTC_1f9f3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_1f9f3.dir/build.make CMakeFiles/cmTC_1f9f3.dir/build
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_1f9f3.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++      -o CMakeFiles/cmTC_1f9f3.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.5/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_1f9f3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1f9f3.dir/link.txt --verbose=1
+/usr/bin/c++       -v CMakeFiles/cmTC_1f9f3.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_1f9f3 -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -244,23 +244,23 @@ Thread model: posix
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_73e32' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccaKzRMR.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_73e32 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_73e32.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
-make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_1f9f3' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cc4ARsxi.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_1f9f3 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_1f9f3.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_73e32/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_73e32.dir/build.make CMakeFiles/cmTC_73e32.dir/build]
-  ignore line: [make[1]: Entering directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_73e32.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++      -o CMakeFiles/cmTC_73e32.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.5/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_73e32]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_73e32.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_73e32.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_73e32 -rdynamic  ]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_1f9f3/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_1f9f3.dir/build.make CMakeFiles/cmTC_1f9f3.dir/build]
+  ignore line: [make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_1f9f3.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++      -o CMakeFiles/cmTC_1f9f3.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.5/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_1f9f3]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1f9f3.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_1f9f3.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_1f9f3 -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -270,13 +270,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_73e32' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccaKzRMR.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_73e32 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_73e32.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_1f9f3' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cc4ARsxi.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_1f9f3 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_1f9f3.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccaKzRMR.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cc4ARsxi.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -294,7 +294,7 @@ Parsed CXX implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_73e32] ==> ignore
+    arg [cmTC_1f9f3] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -306,7 +306,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTC_73e32.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_1f9f3.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -336,17 +336,17 @@ Parsed CXX implicit link information from above output:
 
 
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
-Change Dir: /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_fec1d/fast"
-/usr/bin/make -f CMakeFiles/cmTC_fec1d.dir/build.make CMakeFiles/cmTC_fec1d.dir/build
-make[1]: Entering directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_fec1d.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++14 -o CMakeFiles/cmTC_fec1d.dir/feature_tests.cxx.o -c /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_fec1d
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fec1d.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_fec1d.dir/feature_tests.cxx.o  -o cmTC_fec1d -rdynamic 
-make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_3e085/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3e085.dir/build.make CMakeFiles/cmTC_3e085.dir/build
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_3e085.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++14 -o CMakeFiles/cmTC_3e085.dir/feature_tests.cxx.o -c /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_3e085
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3e085.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_3e085.dir/feature_tests.cxx.o  -o cmTC_3e085 -rdynamic 
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -409,17 +409,17 @@ make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMak
 
 
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
-Change Dir: /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_82790/fast"
-/usr/bin/make -f CMakeFiles/cmTC_82790.dir/build.make CMakeFiles/cmTC_82790.dir/build
-make[1]: Entering directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_82790.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++11 -o CMakeFiles/cmTC_82790.dir/feature_tests.cxx.o -c /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_82790
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_82790.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_82790.dir/feature_tests.cxx.o  -o cmTC_82790 -rdynamic 
-make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_dc6a9/fast"
+/usr/bin/make -f CMakeFiles/cmTC_dc6a9.dir/build.make CMakeFiles/cmTC_dc6a9.dir/build
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_dc6a9.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++11 -o CMakeFiles/cmTC_dc6a9.dir/feature_tests.cxx.o -c /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_dc6a9
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dc6a9.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_dc6a9.dir/feature_tests.cxx.o  -o cmTC_dc6a9 -rdynamic 
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -482,17 +482,17 @@ make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMak
 
 
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
-Change Dir: /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_23d7e/fast"
-/usr/bin/make -f CMakeFiles/cmTC_23d7e.dir/build.make CMakeFiles/cmTC_23d7e.dir/build
-make[1]: Entering directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_23d7e.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++98 -o CMakeFiles/cmTC_23d7e.dir/feature_tests.cxx.o -c /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_23d7e
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_23d7e.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_23d7e.dir/feature_tests.cxx.o  -o cmTC_23d7e -rdynamic 
-make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_943e0/fast"
+/usr/bin/make -f CMakeFiles/cmTC_943e0.dir/build.make CMakeFiles/cmTC_943e0.dir/build
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_943e0.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++98 -o CMakeFiles/cmTC_943e0.dir/feature_tests.cxx.o -c /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_943e0
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_943e0.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_943e0.dir/feature_tests.cxx.o  -o cmTC_943e0 -rdynamic 
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -553,30 +553,162 @@ make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMak
     Feature record: CXX_FEATURE:0cxx_variadic_macros
     Feature record: CXX_FEATURE:0cxx_variadic_templates
 Determining if the include file pthread.h exists passed with the following output:
-Change Dir: /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_cd23a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_cd23a.dir/build.make CMakeFiles/cmTC_cd23a.dir/build
-make[1]: Entering directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_cd23a.dir/CheckIncludeFile.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_cd23a.dir/CheckIncludeFile.c.o   -c /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
-Linking C executable cmTC_cd23a
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cd23a.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_cd23a.dir/CheckIncludeFile.c.o  -o cmTC_cd23a -rdynamic 
-make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_40d85/fast"
+/usr/bin/make -f CMakeFiles/cmTC_40d85.dir/build.make CMakeFiles/cmTC_40d85.dir/build
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_40d85.dir/CheckIncludeFile.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_40d85.dir/CheckIncludeFile.c.o   -c /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_40d85
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_40d85.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_40d85.dir/CheckIncludeFile.c.o  -o cmTC_40d85 -rdynamic 
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
 
 
 Determining if the function pthread_create exists in the pthread passed with the following output:
-Change Dir: /home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_bcc9f/fast"
-/usr/bin/make -f CMakeFiles/cmTC_bcc9f.dir/build.make CMakeFiles/cmTC_bcc9f.dir/build
-make[1]: Entering directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_bcc9f.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_bcc9f.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
-Linking C executable cmTC_bcc9f
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bcc9f.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_bcc9f.dir/CheckFunctionExists.c.o  -o cmTC_bcc9f -rdynamic -lpthread 
-make[1]: Leaving directory '/home/aurotb/Desktop/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_1acbe/fast"
+/usr/bin/make -f CMakeFiles/cmTC_1acbe.dir/build.make CMakeFiles/cmTC_1acbe.dir/build
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1acbe.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_1acbe.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_1acbe
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1acbe.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_1acbe.dir/CheckFunctionExists.c.o  -o cmTC_1acbe -rdynamic -lpthread 
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
 
 
+The target system is: Linux - 4.15.0-128-generic - x86_64
+The host system is: Linux - 4.15.0-128-generic - x86_64
+Determining if the include file FL/Fl.H exists passed with the following output:
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_aef28/fast"
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_aef28.dir/build.make CMakeFiles/cmTC_aef28.dir/build
+make[2]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_aef28.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++      -o CMakeFiles/cmTC_aef28.dir/CheckIncludeFile.cxx.o -c /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_aef28
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_aef28.dir/link.txt --verbose=1
+/usr/bin/c++         CMakeFiles/cmTC_aef28.dir/CheckIncludeFile.cxx.o  -o cmTC_aef28 -rdynamic 
+make[2]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file pgm.h exists passed with the following output:
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_ea515/fast"
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_ea515.dir/build.make CMakeFiles/cmTC_ea515.dir/build
+make[2]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_ea515.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++      -o CMakeFiles/cmTC_ea515.dir/CheckIncludeFile.cxx.o -c /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_ea515
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ea515.dir/link.txt --verbose=1
+/usr/bin/c++         CMakeFiles/cmTC_ea515.dir/CheckIncludeFile.cxx.o  -o cmTC_ea515 -rdynamic 
+make[2]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function XOpenDisplay exists in the /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so passed with the following output:
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_38f28/fast"
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_38f28.dir/build.make CMakeFiles/cmTC_38f28.dir/build
+make[2]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_38f28.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTC_38f28.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_38f28
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_38f28.dir/link.txt --verbose=1
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=XOpenDisplay    CMakeFiles/cmTC_38f28.dir/CheckFunctionExists.c.o  -o cmTC_38f28 -rdynamic /usr/lib/x86_64-linux-gnu/libX11.so /usr/lib/x86_64-linux-gnu/libXext.so 
+make[2]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function gethostbyname exists passed with the following output:
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c7f06/fast"
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_c7f06.dir/build.make CMakeFiles/cmTC_c7f06.dir/build
+make[2]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c7f06.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTC_c7f06.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_c7f06
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c7f06.dir/link.txt --verbose=1
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=gethostbyname    CMakeFiles/cmTC_c7f06.dir/CheckFunctionExists.c.o  -o cmTC_c7f06 -rdynamic 
+make[2]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function connect exists passed with the following output:
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7a79c/fast"
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_7a79c.dir/build.make CMakeFiles/cmTC_7a79c.dir/build
+make[2]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7a79c.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTC_7a79c.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_7a79c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7a79c.dir/link.txt --verbose=1
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=connect    CMakeFiles/cmTC_7a79c.dir/CheckFunctionExists.c.o  -o cmTC_7a79c -rdynamic 
+make[2]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function remove exists passed with the following output:
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_048cf/fast"
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_048cf.dir/build.make CMakeFiles/cmTC_048cf.dir/build
+make[2]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_048cf.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTC_048cf.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_048cf
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_048cf.dir/link.txt --verbose=1
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=remove    CMakeFiles/cmTC_048cf.dir/CheckFunctionExists.c.o  -o cmTC_048cf -rdynamic 
+make[2]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function shmat exists passed with the following output:
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_6bfcc/fast"
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_6bfcc.dir/build.make CMakeFiles/cmTC_6bfcc.dir/build
+make[2]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6bfcc.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTC_6bfcc.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_6bfcc
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6bfcc.dir/link.txt --verbose=1
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=shmat    CMakeFiles/cmTC_6bfcc.dir/CheckFunctionExists.c.o  -o cmTC_6bfcc -rdynamic 
+make[2]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function IceConnectionNumber exists in the ICE passed with the following output:
+Change Dir: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3ae29/fast"
+make[1]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_3ae29.dir/build.make CMakeFiles/cmTC_3ae29.dir/build
+make[2]: Entering directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_3ae29.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=IceConnectionNumber   -o CMakeFiles/cmTC_3ae29.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_3ae29
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3ae29.dir/link.txt --verbose=1
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=IceConnectionNumber    CMakeFiles/cmTC_3ae29.dir/CheckFunctionExists.c.o  -o cmTC_3ae29 -rdynamic -lICE 
+make[2]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory '/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/CMakeFiles/CMakeTmp'
+
+
+The target system is: Linux - 4.15.0-128-generic - x86_64
+The host system is: Linux - 4.15.0-128-generic - x86_64

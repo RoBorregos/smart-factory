@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "dashgo_description"
-PROJECT_SPACE_DIR = "/home/aurotb/Desktop/dashgo_ws/install"
+PROJECT_SPACE_DIR = "/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/install"
 PROJECT_VERSION = "0.0.0"

@@ -1,4 +1,4 @@
-prefix=/home/aurotb/Desktop/dashgo_ws/devel
+prefix=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/devel
 
 Name: dashgo_description
 Description: Description of dashgo_description

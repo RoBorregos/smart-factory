@@ -1,8 +1,8 @@
-# Install script for directory: /home/aurotb/Desktop/dashgo_ws/src/dashgo/dashgo_description
+# Install script for directory: /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/src/dashgo/dashgo_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/aurotb/Desktop/dashgo_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,17 +33,17 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/aurotb/Desktop/dashgo_ws/build/dashgo/dashgo_description/catkin_generated/installspace/dashgo_description.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/dashgo/dashgo_description/catkin_generated/installspace/dashgo_description.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/dashgo_description/cmake" TYPE FILE FILES
-    "/home/aurotb/Desktop/dashgo_ws/build/dashgo/dashgo_description/catkin_generated/installspace/dashgo_descriptionConfig.cmake"
-    "/home/aurotb/Desktop/dashgo_ws/build/dashgo/dashgo_description/catkin_generated/installspace/dashgo_descriptionConfig-version.cmake"
+    "/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/dashgo/dashgo_description/catkin_generated/installspace/dashgo_descriptionConfig.cmake"
+    "/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/dashgo/dashgo_description/catkin_generated/installspace/dashgo_descriptionConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/dashgo_description" TYPE FILE FILES "/home/aurotb/Desktop/dashgo_ws/src/dashgo/dashgo_description/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/dashgo_description" TYPE FILE FILES "/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/src/dashgo/dashgo_description/package.xml")
 endif()
 

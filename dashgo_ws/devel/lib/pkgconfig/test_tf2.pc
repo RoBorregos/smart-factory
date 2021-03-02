@@ -1,0 +1,8 @@
+prefix=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/devel
+
+Name: test_tf2
+Description: Description of test_tf2
+Version: 0.5.20
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

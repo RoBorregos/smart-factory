@@ -1,0 +1,8 @@
+prefix=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/devel
+
+Name: tf2_ros
+Description: Description of tf2_ros
+Version: 0.5.20
+Cflags: -I/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/src/tools/geometry2/tf2_ros/include
+Libs: -L${prefix}/lib -ltf2_ros
+Requires: actionlib actionlib_msgs geometry_msgs message_filters roscpp rosgraph tf2 tf2_msgs tf2_py

@@ -1,4 +1,4 @@
-prefix=/home/aurotb/Desktop/dashgo_ws/devel
+prefix=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/devel
 
 Name: dashgo_bringup
 Description: Description of dashgo_bringup
