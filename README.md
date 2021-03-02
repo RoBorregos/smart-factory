@@ -73,7 +73,7 @@ Use `Ctrl + C` to exit the logs and turn all nodes and application down.
 
 | Name                    | Email                                                               | Github                                                       | Role      |
 | ----------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------ | --------- |
-| Aurora Tijerina Berzosa | [auro.tj@gmail.com](mailto:auro.tj@gmail.com)                       | [@AuroTB](https://github.com/aurotb)                         | PM & navigation |
+| Aurora Tijerina | [auro.tj@gmail.com](mailto:auro.tj@gmail.com)                       | [@AuroTB](https://github.com/aurotb)                         | PM & navigation |
 | Iqui Balam  | [iquibalamhm@gmail.com](mailto:iquibalamhm@gmail.com) | [@IquiBalamHM ](https://github.com/IquiBalamHM ) | Computer vision |
 | Paul Vazquez | [pev@live.com.mx](mailto:pev@live.com.mx) | [@paulvazbad](https://github.com/paulvazbad) | Robot sinchronization and system coordination |
 | Miguel Elizondo | [pev@live.com.mx](mailto:pev@live.com.mx) | [@Miguelelizondov](https://github.com/Miguelelizondov) | Cobot arm control |
