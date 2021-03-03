@@ -64,7 +64,7 @@ $ roslaunch src/navigation/launch/nav_simul.launch
 For mock odometry movement also launch __move_base__ node:
 
 ```bash
-$ roslaunch src/navigation/launch/nav_simul.launch 
+$ roslaunch src/navigation/launch/move_base.launch 
 ```
 
 Use `Ctrl + C` to exit the logs and turn all nodes and application down.
