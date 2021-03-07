@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/multiple_robots.rviz"/>
+  <node name="map_server" pkg="map_server" type="map_server" output="screen"
+        args="$(find config_files)/occupancy_grids/TMR_2019.yaml"/>
+  <include file="src/navigation/launch/nav.launch">
+  <arg name="ns" value="robot_0" />
+  </include>
+
+  <!-- <include file="src/navigation/launch/nav_simul.launch">
+  <arg name="robot_id" value="robot_1" />
+  </include> -->
+</launch>

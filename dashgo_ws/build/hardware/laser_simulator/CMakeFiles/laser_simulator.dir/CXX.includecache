@@ -123,6 +123,8 @@ occupancy_grid_utils/ray_tracer.h
 /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/src/hardware/laser_simulator/src/occupancy_grid_utils/ray_tracer.h
 random_numbers/random_numbers.h
 /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/src/hardware/laser_simulator/src/random_numbers/random_numbers.h
+ros/ros.h
+/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/src/hardware/laser_simulator/src/ros/ros.h
 
 /home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/src/tools/geometry2/tf2/include/tf2/LinearMath/Quaternion.h
 Vector3.h

@@ -8,7 +8,7 @@
   <node name="mobile_base" pkg="mobile_base_simulator" type="mobile_base_simulator.py" output="screen"/>
   <node name="map_server" pkg="map_server" type="map_server" output="screen"
         args="$(find config_files)/occupancy_grids/TMR_2019.yaml"/>
-  <node name="loc_amcl" pkg="amcl" type="amcl" output="screen" args="scan:=/scan">
+  <node name="loc_amcl" pkg="amcl" type="amcl" output="screen" args="scan:=scan">
     <param name="odom_alpha1" value="0.6"/>
     <param name="odom_alpha2" value="0.6"/>
     <param name="odom_alpha3" value="0.6"/>

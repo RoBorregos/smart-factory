@@ -1,0 +1,31 @@
+<launch>
+    <arg name="ns" default=""/>
+    <group ns="$(arg ns)">
+        <include file="$(find robot_description_robert)/launch/display.launch" />
+        <node name="laser_simulator" pkg="laser_simulator" type="laser_simulator" output="screen">
+            <param name="noise" value="0.05"/>
+            <param name="ns" value="$(arg ns)"/>
+        </node>
+        <node name="mobile_base" pkg="mobile_base_simulator" type="mobile_base_simulator.py" output="screen">
+            <param name="ns" type="str" value="$(arg ns)"/>
+        </node>
+        <node name="loc_amcl" pkg="amcl" type="amcl" output="screen" args="scan:=$(arg ns)/$(arg ns)/scan">
+        <param name="odom_alpha1" value="0.6"/>
+        <param name="odom_alpha2" value="0.6"/>
+        <param name="odom_alpha3" value="0.6"/>
+        <param name="odom_alpha4" value="0.6"/>
+        <param name="odom_alpha5" value="0.6"/>
+        <param name="recovery_alpha_slow" value="0.001"/>
+        <param name="recovery_alpha_fast" value="0.1"/>
+        <param name="initial_pose_x" value="0.0"/>
+        <param name="initial_pose_y" value="0.0"/>
+        <param name="initial_pose_a" value="0.0"/>
+        <param name="update_min_a" value="0.3"/>
+        <param name="laser_min_range" value="0.3"/>
+        <param name="odom_model_type" value="omni"/>
+        <param name="base_frame_id" value="$(arg ns)/base_link" />
+        <param name="odom_frame_id" value="$(arg ns)/odom" />
+        <param name="use_map_topic" value="true" />
+        </node>
+    </group>
+</launch>
