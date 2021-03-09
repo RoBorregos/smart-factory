@@ -302,9 +302,6 @@ DOXYGEN_EXECUTABLE:FILEPATH=DOXYGEN_EXECUTABLE-NOTFOUND
 EIGEN3_INCLUDE_DIR:PATH=/usr/include/eigen3
 
 //Path to a file.
-EIGEN_INCLUDE_DIR:PATH=/usr/include/eigen3
-
-//Path to a file.
 EIGEN_INCLUDE_DIRS:PATH=/usr/include/eigen3
 
 //Path to a program.
@@ -1068,9 +1065,6 @@ gtest_force_shared_crt:BOOL=OFF
 //Dependencies for the target
 gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
 
-//Dependencies for the target
-image_loader_LIB_DEPENDS:STATIC=general;SDL;general;SDL_image;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;
-
 //The directory containing a CMake configuration file for laser_geometry.
 laser_geometry_DIR:PATH=/opt/ros/kinetic/share/laser_geometry/cmake
 
@@ -1122,14 +1116,8 @@ move_base_LIB_DEPENDS:STATIC=general;base_local_planner;general;trajectory_plann
 //Value Computed by CMake
 move_base_SOURCE_DIR:STATIC=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/src/navigation/navigation/move_base
 
-//Value Computed by CMake
-move_base_msgs_BINARY_DIR:STATIC=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/navigation/navigation/move_base_msgs
-
 //The directory containing a CMake configuration file for move_base_msgs.
-move_base_msgs_DIR:PATH=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/devel/share/move_base_msgs/cmake
-
-//Value Computed by CMake
-move_base_msgs_SOURCE_DIR:STATIC=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/src/navigation/navigation/move_base_msgs
+move_base_msgs_DIR:PATH=/opt/ros/kinetic/share/move_base_msgs/cmake
 
 //Value Computed by CMake
 move_slow_and_clear_BINARY_DIR:STATIC=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/build/navigation/navigation/move_slow_and_clear
@@ -1665,12 +1653,8 @@ CMAKE_UNAME:INTERNAL=/bin/uname
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: EIGEN3_INCLUDE_DIR
 EIGEN3_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: EIGEN_INCLUDE_DIR
-EIGEN_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //Details about finding Bullet
 FIND_PACKAGE_MESSAGE_DETAILS_Bullet:INTERNAL=[/usr/lib/x86_64-linux-gnu/libBulletDynamics.so][/usr/lib/x86_64-linux-gnu/libBulletCollision.so][/usr/lib/x86_64-linux-gnu/libLinearMath.so][/usr/lib/x86_64-linux-gnu/libBulletSoftBody.so][/usr/include/bullet][v()]
-//Details about finding Eigen
-FIND_PACKAGE_MESSAGE_DETAILS_Eigen:INTERNAL=[/usr/include/eigen3][v()]
 //Details about finding Eigen3
 FIND_PACKAGE_MESSAGE_DETAILS_Eigen3:INTERNAL=[/usr/include/eigen3][TRUE][v(2.91.0)]
 //Details about finding FLTK
@@ -1773,40 +1757,6 @@ GTEST_MAIN_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 NAVFN_HAVE_FLTK:INTERNAL=1
 //Have include pgm.h
 NAVFN_HAVE_NETPBM:INTERNAL=1
-NEW_YAMLCPP_CFLAGS:INTERNAL=
-NEW_YAMLCPP_CFLAGS_I:INTERNAL=
-NEW_YAMLCPP_CFLAGS_OTHER:INTERNAL=
-NEW_YAMLCPP_FOUND:INTERNAL=1
-NEW_YAMLCPP_INCLUDEDIR:INTERNAL=/usr/include
-NEW_YAMLCPP_INCLUDE_DIRS:INTERNAL=
-NEW_YAMLCPP_LDFLAGS:INTERNAL=-lyaml-cpp
-NEW_YAMLCPP_LDFLAGS_OTHER:INTERNAL=
-NEW_YAMLCPP_LIBDIR:INTERNAL=
-NEW_YAMLCPP_LIBRARIES:INTERNAL=yaml-cpp
-NEW_YAMLCPP_LIBRARY_DIRS:INTERNAL=
-NEW_YAMLCPP_LIBS:INTERNAL=
-NEW_YAMLCPP_LIBS_L:INTERNAL=
-NEW_YAMLCPP_LIBS_OTHER:INTERNAL=
-NEW_YAMLCPP_LIBS_PATHS:INTERNAL=
-NEW_YAMLCPP_PREFIX:INTERNAL=/usr
-NEW_YAMLCPP_STATIC_CFLAGS:INTERNAL=
-NEW_YAMLCPP_STATIC_CFLAGS_I:INTERNAL=
-NEW_YAMLCPP_STATIC_CFLAGS_OTHER:INTERNAL=
-NEW_YAMLCPP_STATIC_INCLUDE_DIRS:INTERNAL=
-NEW_YAMLCPP_STATIC_LDFLAGS:INTERNAL=-lyaml-cpp
-NEW_YAMLCPP_STATIC_LDFLAGS_OTHER:INTERNAL=
-NEW_YAMLCPP_STATIC_LIBDIR:INTERNAL=
-NEW_YAMLCPP_STATIC_LIBRARIES:INTERNAL=yaml-cpp
-NEW_YAMLCPP_STATIC_LIBRARY_DIRS:INTERNAL=
-NEW_YAMLCPP_STATIC_LIBS:INTERNAL=
-NEW_YAMLCPP_STATIC_LIBS_L:INTERNAL=
-NEW_YAMLCPP_STATIC_LIBS_OTHER:INTERNAL=
-NEW_YAMLCPP_STATIC_LIBS_PATHS:INTERNAL=
-NEW_YAMLCPP_VERSION:INTERNAL=0.5.2
-NEW_YAMLCPP_yaml-cpp_INCLUDEDIR:INTERNAL=
-NEW_YAMLCPP_yaml-cpp_LIBDIR:INTERNAL=
-NEW_YAMLCPP_yaml-cpp_PREFIX:INTERNAL=
-NEW_YAMLCPP_yaml-cpp_VERSION:INTERNAL=
 //ADVANCED property for variable: OPENGL_INCLUDE_DIR
 OPENGL_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_gl_LIBRARY
@@ -2027,7 +1977,7 @@ PYTHON_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 SDL_IMAGE_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: SDL_IMAGE_LIBRARY
 SDL_IMAGE_LIBRARY-ADVANCED:INTERNAL=1
-SDL_LIBRARY_TEMP:INTERNAL=/usr/lib/x86_64-linux-gnu/libSDLmain.a;/usr/lib/x86_64-linux-gnu/libSDL.so;-lpthread;-lpthread
+SDL_LIBRARY_TEMP:INTERNAL=/usr/lib/x86_64-linux-gnu/libSDLmain.a;/usr/lib/x86_64-linux-gnu/libSDL.so;-lpthread
 //ADVANCED property for variable: X11_ICE_INCLUDE_PATH
 X11_ICE_INCLUDE_PATH-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_ICE_LIB
@@ -2203,7 +2153,6 @@ _Boost_NAMESPACE_LAST:INTERNAL=boost
 //Last used Boost_USE_MULTITHREADED value.
 _Boost_USE_MULTITHREADED_LAST:INTERNAL=TRUE
 __pkg_config_checked_BFL:INTERNAL=1
-__pkg_config_checked_NEW_YAMLCPP:INTERNAL=1
 __pkg_config_checked_PC_EIGEN:INTERNAL=1
 __pkg_config_checked_PC_FLANN:INTERNAL=1
 __pkg_config_checked_PC_OPENNI:INTERNAL=1
@@ -2244,5 +2193,5 @@ bullet_bullet_INCLUDEDIR:INTERNAL=
 bullet_bullet_LIBDIR:INTERNAL=
 bullet_bullet_PREFIX:INTERNAL=
 bullet_bullet_VERSION:INTERNAL=
-prefix_result:INTERNAL=
+prefix_result:INTERNAL=/usr/lib
 

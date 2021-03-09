@@ -90,6 +90,14 @@ navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o
  /opt/ros/kinetic/include/geometry_msgs/Vector3.h
  /opt/ros/kinetic/include/geometry_msgs/Vector3Stamped.h
  /opt/ros/kinetic/include/map_msgs/OccupancyGridUpdate.h
+ /opt/ros/kinetic/include/move_base_msgs/MoveBaseAction.h
+ /opt/ros/kinetic/include/move_base_msgs/MoveBaseActionFeedback.h
+ /opt/ros/kinetic/include/move_base_msgs/MoveBaseActionGoal.h
+ /opt/ros/kinetic/include/move_base_msgs/MoveBaseActionResult.h
+ /opt/ros/kinetic/include/move_base_msgs/MoveBaseFeedback.h
+ /opt/ros/kinetic/include/move_base_msgs/MoveBaseGoal.h
+ /opt/ros/kinetic/include/move_base_msgs/MoveBaseResult.h
+ /opt/ros/kinetic/include/move_base_msgs/RecoveryStatus.h
  /opt/ros/kinetic/include/nav_msgs/GetPlan.h
  /opt/ros/kinetic/include/nav_msgs/GetPlanRequest.h
  /opt/ros/kinetic/include/nav_msgs/GetPlanResponse.h

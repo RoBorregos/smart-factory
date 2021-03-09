@@ -89,6 +89,14 @@ navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /o
 navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/kinetic/include/geometry_msgs/Vector3.h
 navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/kinetic/include/geometry_msgs/Vector3Stamped.h
 navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/kinetic/include/map_msgs/OccupancyGridUpdate.h
+navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/kinetic/include/move_base_msgs/MoveBaseAction.h
+navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/kinetic/include/move_base_msgs/MoveBaseActionFeedback.h
+navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/kinetic/include/move_base_msgs/MoveBaseActionGoal.h
+navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/kinetic/include/move_base_msgs/MoveBaseActionResult.h
+navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/kinetic/include/move_base_msgs/MoveBaseFeedback.h
+navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/kinetic/include/move_base_msgs/MoveBaseGoal.h
+navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/kinetic/include/move_base_msgs/MoveBaseResult.h
+navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/kinetic/include/move_base_msgs/RecoveryStatus.h
 navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/kinetic/include/nav_msgs/GetPlan.h
 navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/kinetic/include/nav_msgs/GetPlanRequest.h
 navigation/navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/kinetic/include/nav_msgs/GetPlanResponse.h

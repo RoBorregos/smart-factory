@@ -12,11 +12,6 @@ def callback_cmd_vel(msg):
 
 def main():
     print "INITIALIZING MOBILE BASE ..."
-    ns = ""
-    # if rospy.has_param('/ns'):
-    ns = rospy.get_param("/robot_0/mobile_base/ns") + "/"
-    #    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-    #    print(ns)
     rospy.init_node("mobile_base")
     rospy.Subscriber("/cmd_vel", Twist, callback_cmd_vel, queue_size=1)
     fs = 30
@@ -37,8 +32,8 @@ def main():
         
         quat = tf.transformations.quaternion_from_euler(0, 0, robot_t)
         current_time = rospy.Time.now()
-        br.sendTransform((robot_x, robot_y, 0), quat, current_time, ns + "base_link", ns + "odom")
-        print("TRANSFORM SENT " + ns + " base_link")
+        br.sendTransform((robot_x, robot_y, 0), quat, current_time, "base_link", "odom")
+        # print("TRANSFORM SENT base_link")
         
         loop.sleep()
 

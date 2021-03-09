@@ -1,7 +1,7 @@
 
 <launch>
-  <arg name="robot_namespace" default=""/>
-  <group ns="$(arg robot_namespace)">
+  <arg name="ns" default="/"/>
+  <group ns="$(arg ns)">
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
       <rosparam file="$(find config_files)/move_base_params/costmap_common_params.yaml" command="load" ns="global_costmap" />
       <rosparam file="$(find config_files)/move_base_params/costmap_common_params.yaml" command="load" ns="local_costmap" />   
@@ -13,10 +13,10 @@
       <rosparam file="$(find config_files)/move_base_params/navfn_global_planner_params.yaml" command="load" />
 
       <param name="global_costmap/global_frame" value="map"/>
-      <param name="global_costmap/robot_base_frame" value="$(arg robot_namespace)/base_link"/>
-      <param name="local_costmap/global_frame" value="$(arg robot_namespace)/odom"/>
-      <param name="local_costmap/robot_base_frame" value="$(arg robot_namespace)/base_link"/>
-      <param name="DWAPlannerROS/global_frame_id" value="$(arg robot_namespace)/odom"/>
+      <param name="global_costmap/robot_base_frame" value="$(arg ns)/base_link"/>
+      <param name="local_costmap/global_frame" value="$(arg ns)/odom"/>
+      <param name="local_costmap/robot_base_frame" value="$(arg ns)/base_link"/>
+      <param name="DWAPlannerROS/global_frame_id" value="$(arg ns)/odom"/>
     </node>
   </group>
 </launch>
