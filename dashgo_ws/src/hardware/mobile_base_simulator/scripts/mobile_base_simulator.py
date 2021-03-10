@@ -14,6 +14,12 @@ def main():
     print "INITIALIZING MOBILE BASE ..."
     rospy.init_node("mobile_base")
     rospy.Subscriber("/cmd_vel", Twist, callback_cmd_vel, queue_size=1)
+
+    full_param_name = rospy.search_param('ns')
+    ns = ""
+    if rospy.get_param(full_param_name):
+        ns = rospy.get_param(full_param_name) + "/"
+
     fs = 30
     loop = rospy.Rate(fs)
     br = tf.TransformBroadcaster()
@@ -32,8 +38,8 @@ def main():
         
         quat = tf.transformations.quaternion_from_euler(0, 0, robot_t)
         current_time = rospy.Time.now()
-        br.sendTransform((robot_x, robot_y, 0), quat, current_time, "base_link", "odom")
-        # print("TRANSFORM SENT base_link")
+        br.sendTransform((robot_x, robot_y, 0), quat, current_time, ns + "base_link", ns + "odom")
+        # print("TRANSFORM SENT " + ns + "base_link")
         
         loop.sleep()
 

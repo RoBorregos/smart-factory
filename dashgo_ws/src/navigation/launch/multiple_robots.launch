@@ -5,11 +5,22 @@
         args="$(find config_files)/occupancy_grids/TMR_2019.yaml">
         <param name="frame_id" value="/map"/>
   </node>
-  <include file="src/navigation/launch/nav.launch">
-    <arg name="ns" value="robot_0" />
-  </include>
 
-  <!-- <include file="src/navigation/launch/nav_simul.launch">
-  <arg name="robot_id" value="robot_1" />
-  </include> -->
+  <group ns="robot_0">
+    <include file="src/navigation/launch/nav.launch">
+      <arg name="ns" value="robot_0" />
+    </include>
+    <include file="src/navigation/launch/move_base.launch">
+      <arg name="ns" value="robot_0" />
+    </include>
+  </group>
+
+  <group ns="robot_1">
+    <include file="src/navigation/launch/nav.launch">
+      <arg name="ns" value="robot_1" />
+    </include>
+    <include file="src/navigation/launch/move_base.launch">
+      <arg name="ns" value="robot_1" />
+    </include>
+  </group>
 </launch>
