@@ -1,8 +1,0 @@
-prefix=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/install
-
-Name: goal_provider
-Description: Description of goal_provider
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

@@ -1,8 +1,0 @@
-prefix=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/install
-
-Name: robot_description_robert
-Description: Description of robot_description_robert
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

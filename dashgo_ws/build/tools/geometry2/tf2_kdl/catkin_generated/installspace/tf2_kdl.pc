@@ -1,8 +1,0 @@
-prefix=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/install
-
-Name: tf2_kdl
-Description: Description of tf2_kdl
-Version: 0.5.20
-Cflags: -I${prefix}/include -I/usr/include/eigen3 -I/opt/ros/kinetic/share/orocos_kdl/../../include
-Libs: -L${prefix}/lib /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
-Requires: 

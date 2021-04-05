@@ -1,8 +1,0 @@
-prefix=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/install
-
-Name: config_files
-Description: Description of config_files
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

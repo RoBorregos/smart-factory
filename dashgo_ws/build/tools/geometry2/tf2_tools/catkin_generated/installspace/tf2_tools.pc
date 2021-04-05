@@ -1,8 +1,0 @@
-prefix=/home/aurotb/Desktop/EAIBotSmartFactory/dashgo_ws/install
-
-Name: tf2_tools
-Description: Description of tf2_tools
-Version: 0.5.20
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: tf2 tf2_msgs tf2_ros
