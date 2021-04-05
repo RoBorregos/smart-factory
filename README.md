@@ -32,7 +32,7 @@ Once you have installed the required third-party software, you can follow this s
    SSH:
 
    ```bash
-   $ git clone --recurse-submodules https://github.com/RoBorregos/EAIBotSmartFactory.git
+   $ git clone --recurse-submodules https://github.com/RoBorregos/smart-factory.git
    ```
 
 2. Enter __/dashgo_ws__ and install all dependencies using rosdep:

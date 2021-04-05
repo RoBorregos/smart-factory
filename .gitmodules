@@ -1,0 +1,12 @@
+[submodule "dashgo_ws/src/dashgo"]
+	path = dashgo_ws/src/dashgo
+	url = https://github.com/EAIBOT/dashgo.git
+	branch = indigo-devel
+[submodule "dashgo_ws/src/tools/geometry2"]
+	path = dashgo_ws/src/tools/geometry2
+	url = https://github.com/ros/geometry2.git
+	branch = indigo-devel
+[submodule "dashgo_ws/src/navigation/navigation"]
+	path = dashgo_ws/src/navigation/navigation
+	url = https://github.com/ros-planning/navigation.git
+	branch = kinetic-devel

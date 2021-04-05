@@ -56,16 +56,4 @@
     <parent link="base_link"/>
     <child link="laser_link"/>
   </joint>
-  <link name="laser">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry> <box size="0.1 0.04 0.2"/></geometry>
-      <material name="lidar"><color rgba="255 0 0 1"/></material>
-    </visual>
-  </link>
-  <joint name="lidar_joint" type="fixed">
-    <origin xyz="0 0 0" rpy="0 0 3.14159"/>
-    <parent link="laser_link"/>
-    <child link="laser"/>
-  </joint>
 </robot>

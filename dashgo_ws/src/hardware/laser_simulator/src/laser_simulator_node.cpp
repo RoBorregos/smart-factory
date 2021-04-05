@@ -7,6 +7,7 @@
 #include "tf/transform_listener.h"
 #include "occupancy_grid_utils/ray_tracer.h"
 #include "random_numbers/random_numbers.h"
+#include "ros/ros.h"
 
 int main(int argc, char** argv)
 {
@@ -19,14 +20,23 @@ int main(int argc, char** argv)
     if(ros::param::has("~noise"))
         ros::param::get("~noise", noise);
 
+    std::string ns = "";
+    if(ros::param::has("~ns"))
+        ros::param::get("~ns", ns);
+        ns += "/";
+    std::cout <<"NS: "<<ns<<std::endl;
+
     nav_msgs::GetMap srvGetMap;
+
+    std::cout << "Getting static map..." << std::endl;
     ros::service::waitForService("/static_map");
+    std::cout << "Static map obtained" << std::endl;
     ros::ServiceClient srvCltGetMap = n.serviceClient<nav_msgs::GetMap>("/static_map");
     srvCltGetMap.call(srvGetMap);
     nav_msgs::OccupancyGrid map = srvGetMap.response.map;
 
     sensor_msgs::LaserScan scanInfo;
-    scanInfo.header.frame_id = "laser_link";
+    scanInfo.header.frame_id = ns + "laser_link";
     scanInfo.angle_min = -2;
     scanInfo.angle_max = 2;
     scanInfo.angle_increment = 0.007;
@@ -54,7 +64,7 @@ int main(int argc, char** argv)
         tf::Quaternion q;
         try
         {
-            listener.lookupTransform("map", "laser_link", ros::Time(0), transform);
+            listener.lookupTransform("/map", ns + "laser_link", ros::Time(0), transform);
             sensorPose.position.x = transform.getOrigin().x();
             sensorPose.position.y = transform.getOrigin().y();
             q = transform.getRotation();
@@ -64,7 +74,7 @@ int main(int argc, char** argv)
             sensorPose.orientation.w = q.w();
         }
         catch(...){
-            //std::cout << "LaserSimulator.-> Cannot get transform from base_link to map" << std::endl;
+            std::cout << "LaserSimulator.-> Cannot get transform from "<<ns<<"laser_link to map" << std::endl;
         }
         
         simulatedScan = *occupancy_grid_utils::simulateRangeScan(map, sensorPose, scanInfo);

@@ -1,0 +1,43 @@
+<launch>
+    <arg name="ns" default=""/>
+    <arg name="initial_pose_x" default="0.0"/>
+    <arg name="initial_pose_y" default="0.0"/>
+    <remap from="map" to="/map"/>
+
+    <!-- <include file="$(find robot_description_robert)/launch/display.launch">
+        <arg name="ns" value="$(arg ns)"/>
+    </include> -->
+
+    
+    <node pkg="tf" type="static_transform_publisher" name="lidar_tf_publisher" args="0.19 0.01 0.20 0 0 0 1 $(arg ns)/base_link $(arg ns)/laser_link 100" />
+
+    <node name="laser_simulator" pkg="laser_simulator" type="laser_simulator" output="screen">
+        <remap from="/scan" to="/$(arg ns)/scan"/>
+        <param name="noise" value="0.05"/>
+        <param name="ns" type="str" value="$(arg ns)"/>
+    </node>
+    <node name="mobile_base" pkg="mobile_base_simulator" type="mobile_base_simulator.py" output="screen">
+        <remap from="/cmd_vel" to="/$(arg ns)/cmd_vel"/>
+        <param name="ns" type="str" value="$(arg ns)"/>
+    </node>
+    <node name="loc_amcl" pkg="amcl" type="amcl" output="screen" args="scan:=/$(arg ns)/scan">
+        <param name="odom_alpha1" value="0.6"/>
+        <param name="odom_alpha2" value="0.6"/>
+        <param name="odom_alpha3" value="0.6"/>
+        <param name="odom_alpha4" value="0.6"/>
+        <param name="odom_alpha5" value="0.6"/>
+        <param name="recovery_alpha_slow" value="0.001"/>
+        <param name="recovery_alpha_fast" value="0.1"/>
+        <param name="initial_pose_x" value="$(arg initial_pose_x)"/>
+        <param name="initial_pose_y" value="$(arg initial_pose_y)"/>
+        <param name="initial_pose_a" value="0.0"/>
+        <param name="update_min_a" value="0.3"/>
+        <param name="laser_min_range" value="0.3"/>
+        <param name="odom_model_type" value="omni"/>
+        <param name="use_map_topic" value="true" />
+        <param name="global_frame_id" value="/map" />
+        <param name="base_frame_id" value="$(arg ns)/base_link" />
+        <param name="odom_frame_id" value="$(arg ns)/odom" />
+
+    </node>
+</launch>

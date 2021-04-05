@@ -1,0 +1,12 @@
+### ROS ###
+/dashgo_ws/devel/
+/dashgo_ws/devel_isolated/
+/dashgo_ws/logs/
+/dashgo_ws/build/
+/dashgo_ws/build_isolated/
+/dashgo_ws/bin/
+/dashgo_ws/install/
+/dashgo_ws/.catkin_tools/
+/dashgo_ws/.catkin_workspace
+/dashgo_ws/src/ExternalPackages/
+/dashgo_ws/src/.rosinstall.bak
