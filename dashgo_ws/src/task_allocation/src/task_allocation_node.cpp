@@ -2,6 +2,13 @@
 #include <ros/console.h>
 #include "task_allocation/FactoryTask.h"
 #include <string>
+#include <iostream>
+
+enum ActionTypes : short{
+    GO_TO_ACTION,
+    DUMMY
+};
+
 
 class TaskAllocator
 {
@@ -13,6 +20,7 @@ public:
     void console_input_tasks();
 
 private:
+
     // ROS
     ros::NodeHandle *node_handle;
     ros::Publisher task_auction_pub;
@@ -43,7 +51,7 @@ TaskAllocator::~TaskAllocator()
 
 void TaskAllocator::console_input_tasks()
 {
-    int userInputActionType;
+    short userInputActionType;
 
     while (ros::ok)
     {
@@ -51,11 +59,18 @@ void TaskAllocator::console_input_tasks()
         task_allocation::FactoryTask new_factory_task;
         std::cout << "Please input the actionType of the task (number): ";
         std::cin >> userInputActionType;
+        ROS_DEBUG("Number of actions registered %lu",sizeof(ActionTypes)/sizeof(GO_TO_ACTION));
+        if(userInputActionType<static_cast<short>(GO_TO_ACTION) || userInputActionType>=sizeof(ActionTypes)/sizeof(GO_TO_ACTION))
+            continue;
+        new_factory_task.actionType = userInputActionType;        
+        publish_new_task(new_factory_task);
     }
 }
 
 void TaskAllocator::publish_new_task(task_allocation::FactoryTask new_task)
 {
+    ROS_DEBUG("Publishing new task...");
+    task_auction_pub.publish(new_task);
 }
 
 std::string TaskAllocator::PUBLISHER_TOPIC_NAME = "TaskAuction";
@@ -68,6 +83,7 @@ int main(int argc, char **argv)
         ros::console::notifyLoggerLevelsChanged();
     }
 
-    TaskAllocator TaskAllocator(argc, argv);
+    TaskAllocator taskAllocator(argc, argv);
+    taskAllocator.console_input_tasks();
     return 0;
 }
