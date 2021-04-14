@@ -1,5 +1,6 @@
 #include "ros/ros.h"
 #include <ros/console.h>
+#include "std_msgs/Float32.h"
 
 #include <string>
 #include <iostream>
@@ -12,6 +13,12 @@ enum ActionTypes : short
 {
     GO_TO_ACTION,
     DUMMY
+};
+
+struct Bid
+{
+    float robotID;
+    float cost;
 };
 
 // make_unique not available in C++11
@@ -29,21 +36,27 @@ public:
     void publish_new_task(task_allocation::FactoryTask new_task);
     void console_input_tasks();
     void demo_task();
+    static void received_bid(const std_msgs::Float32::ConstPtr &msg);
 
 private:
     // ROS
     std::unique_ptr<ros::NodeHandle> node_handle;
     ros::Publisher task_auction_pub;
-    ros::Subscriber task_bids_sus;
+    ros::Subscriber task_bids_subs;
 
     // Bidder information
     int top_bidder;
     int top_bidder_cost;
+    static std::vector<Bid> bids_queue;
     bool ASK_CONSOLE_INPUT;
 
     // Constants
     static std::string NODE_NAME;
     static std::string PUBLISHER_TOPIC_NAME;
+    static std::string SUBSCRIBER_TOPIC_NAME;
+
+    // Methods
+    void wait_for_bids(int time_out);
 };
 
 TaskAllocator::TaskAllocator(int argc, char **argv)
@@ -52,6 +65,7 @@ TaskAllocator::TaskAllocator(int argc, char **argv)
     ros::init(argc, argv, NODE_NAME);
     node_handle = make_unique<ros::NodeHandle>();
     task_auction_pub = node_handle->advertise<task_allocation::FactoryTask>(PUBLISHER_TOPIC_NAME, 1000);
+    task_bids_subs = node_handle->subscribe(SUBSCRIBER_TOPIC_NAME, 1000, this->received_bid);
     ROS_DEBUG("Initialized TaskAllocator");
     ASK_CONSOLE_INPUT = true;
 }
@@ -116,8 +130,29 @@ void TaskAllocator::publish_new_task(task_allocation::FactoryTask new_task)
     task_auction_pub.publish(new_task);
 }
 
+void TaskAllocator::received_bid(const std_msgs::Float32::ConstPtr &msg)
+{
+    Bid new_bid;
+    new_bid.robotID = 0;
+    new_bid.cost = msg->data;
+    bids_queue.push_back(new_bid);
+}
+
+void TaskAllocator::wait_for_bids(int timeout)
+{
+    ros::Time begin = ros::Time::now();
+    ros::Time wait_time(timeout);
+    while (ros::ok() && begin < wait_time)
+    {
+        ros::spinOnce();
+    }
+    // Process bids
+}
+
 std::string TaskAllocator::PUBLISHER_TOPIC_NAME = "TaskAuction";
+std::string TaskAllocator::SUBSCRIBER_TOPIC_NAME = "TaskBids";
 std::string TaskAllocator::NODE_NAME = "TaskAllocatorNode";
+std::vector<Bid> TaskAllocator::bids_queue = std::vector<Bid>();
 
 int main(int argc, char **argv)
 {
@@ -129,11 +164,11 @@ int main(int argc, char **argv)
     TaskAllocator taskAllocator(argc, argv);
     if (argc == 2)
     {
-        std::cout << argc << " " << argv[1]<< std::endl;
+        std::cout << argc << " " << argv[1] << std::endl;
         // Check if flag equals user input
         if ((std::string)argv[1] == "y")
         {
-            std::cout <<"yes receive user input"<< std::endl;
+            std::cout << "yes receive user input" << std::endl;
             taskAllocator.console_input_tasks();
         }
     }
