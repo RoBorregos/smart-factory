@@ -1,2 +1,2 @@
-string actionType
+int16 actionType
 string[] params
