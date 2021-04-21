@@ -16,10 +16,10 @@ def movebase_client():
     #MOdify this to not be hardcoded
     '''
     IDEAS:
-        - Wrapper around each robot_n/move_base/ to calculate distance to point and determine cost
+        TODO: Wrapper around each robot_n/move_base/ to calculate distance to point and determine cost
         - In multirobotlaunch lauch a node for each robot that simulates this behaviour and serves as an interface between the action client and 
-        the central production planner.
-
+        the central production planner. DONE
+        TODO: Modify this script to listen to TaskAuction, contact the cost calculation service and publish to TaskBid
     '''
     client = actionlib.SimpleActionClient('/move_base', MoveBaseAction)
     client.wait_for_server()
