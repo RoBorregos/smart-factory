@@ -20,4 +20,8 @@
     <param name="local_costmap/robot_base_frame" value="$(arg ns)/base_link"/>
     <param name="DWAPlannerROS/global_frame_id" value="$(arg ns)/odom"/>
   </node>
+  
+  <node pkg="goal_provider" type="robot_goal_provider.py" respawn="false" name="robot_goal_provider" output="screen">
+    <remap from="/move_base" to="/$(arg ns)/move_base"/>
+  </node>
 </launch>

@@ -165,6 +165,7 @@ include_directories(
 catkin_install_python(PROGRAMS
   scripts/goalSaver.py
   scripts/goalProvider.py
+  scripts/robot_goal_provider.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
