@@ -51,7 +51,7 @@ find_package(catkin REQUIRED COMPONENTS
   add_message_files(
     FILES
     FactoryTask.msg
-#   Message2.msg
+    TaskBid.msg
  )
 
 ## Generate services in the 'srv' folder

@@ -21,7 +21,7 @@
     <param name="DWAPlannerROS/global_frame_id" value="$(arg ns)/odom"/>
   </node>
   
-  <node pkg="goal_provider" type="robot_goal_provider.py" respawn="false" name="robot_goal_provider" output="screen">
+  <node pkg="goal_provider" type="robot_goal_provider.py" respawn="false" name="robot_goal_provider" output="screen" args="$(arg ns)">
     <remap from="/move_base" to="/$(arg ns)/move_base"/>
   </node>
 </launch>

@@ -3,6 +3,7 @@ import rospy
 import actionlib
 from geometry_msgs.msg import Pose, Point, Quaternion
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+import sys
 
 # goal = MoveBaseGoal()
 # goal.target_pose.pose = Pose(Point(1.5, -4.85, 0), Quaternion(0.0, 0.0, 0.6, 0.77))
@@ -12,7 +13,7 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 
 
 
-def movebase_client():
+def movebase_client(robot_id):
     #MOdify this to not be hardcoded
     '''
     IDEAS:
@@ -40,7 +41,9 @@ def movebase_client():
 if __name__ == '__main__':
     try:
         rospy.init_node('robot_goal_provider')
-        result = movebase_client()
+        print ('Number of arguments:', len(sys.argv), 'arguments.')
+        print ('Argument List:', str(sys.argv))
+        result = movebase_client(sys.argv[1])
         if result:
             rospy.loginfo("Goal execution done!")
     except rospy.ROSInterruptException:

@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "task_allocation/FactoryTask.h"
+#include "task_allocation/TaskBid.h"
 
 enum ActionTypes : short
 {
@@ -17,7 +18,7 @@ enum ActionTypes : short
 
 struct Bid
 {
-    float robotID;
+    float robot_name;
     float cost;
 };
 
@@ -133,7 +134,7 @@ void TaskAllocator::publish_new_task(task_allocation::FactoryTask new_task)
 void TaskAllocator::received_bid(const std_msgs::Float32::ConstPtr &msg)
 {
     Bid new_bid;
-    new_bid.robotID = 0;
+    new_bid.robot_name = 0;
     new_bid.cost = msg->data;
     bids_queue.push_back(new_bid);
 }
