@@ -3,6 +3,7 @@ import rospy
 import actionlib
 from geometry_msgs.msg import Pose, Point, Quaternion
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+from task_allocation.msg import TaskBid
 import sys
 
 # goal = MoveBaseGoal()
@@ -25,6 +26,8 @@ def movebase_client(robot_id):
     client = actionlib.SimpleActionClient('/move_base', MoveBaseAction)
     client.wait_for_server()
 
+
+    # If we won the bid then generate the goal for move_base    
     goal = MoveBaseGoal()
     goal.target_pose.header.frame_id = "/map"
     goal.target_pose.header.stamp = rospy.Time.now()
