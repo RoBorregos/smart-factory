@@ -127,8 +127,14 @@ void TaskAllocator::console_input_tasks()
 
 void TaskAllocator::publish_new_task(task_allocation::FactoryTask new_task)
 {
-    ROS_DEBUG("Publishing new task...");
-    task_auction_pub.publish(new_task);
+    // TODO: DEBUG THIS
+    if (ros::ok())
+    {
+        ROS_DEBUG("Publishing new task...");
+        ROS_DEBUG(task_auction_pub.getTopic());
+        task_auction_pub.publish(new_task);
+        ros::spinOnce();
+    }
 }
 
 void TaskAllocator::received_bid(const std_msgs::Float32::ConstPtr &msg)
