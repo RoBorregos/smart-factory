@@ -17,25 +17,35 @@ def movebase_client():
     '''
     IDEAS:
         - Wrapper around each robot_n/move_base/ to calculate distance to point and determine cost
-        - In multirobotlaunch lauch a node for each robot that simulates this behaviour and serves as an interface between the action client and 
+        - In multirobotlaunch lauch a node for each robot that simulates this behaviour and serves as an interface between the action client0 and 
         the central production planner.
 
     '''
-    client = actionlib.SimpleActionClient('/robot_0/move_base', MoveBaseAction)
-    client.wait_for_server()
+    client0 = actionlib.SimpleActionClient('/robot_0/move_base', MoveBaseAction)
+    client0.wait_for_server()
+
+    client1 = actionlib.SimpleActionClient('/robot_1/move_base', MoveBaseAction)
+    client1.wait_for_server()
 
     goal = MoveBaseGoal()
     goal.target_pose.header.frame_id = "/map"
     goal.target_pose.header.stamp = rospy.Time.now()
     goal.target_pose.pose = Pose(Point(3.35762906956, -0.224057200965, 0), Quaternion(0.0, 0.0, -0.698491025714, 0.715618814032))
+    client0.send_goal(goal)
+    print("Goal to robot 2 sent")
 
-    client.send_goal(goal)
-    wait = client.wait_for_result()
+    goal.target_pose.header.frame_id = "/map"
+    goal.target_pose.header.stamp = rospy.Time.now()
+    goal.target_pose.pose = Pose(Point(-2.202149, -0.519232, 0), Quaternion(0.0, 0.0, -0.773031, 0.634368))
+    client1.send_goal(goal)
+    print("Goal to robot 1 sent")
+
+    wait = client0.wait_for_result()
     if not wait:
         rospy.logerr("Action server not available!")
         rospy.signal_shutdown("Action server not available!")
     else:
-        return client.get_result()
+        return client0.get_result()
 
 if __name__ == '__main__':
     try:
