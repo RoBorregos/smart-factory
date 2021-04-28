@@ -18,7 +18,7 @@ enum ActionTypes : short
 
 struct Bid
 {
-    float robot_name;
+    std::string robot_name;
     float cost;
 };
 
@@ -34,10 +34,11 @@ class TaskAllocator
 
 public:
     TaskAllocator(int argc, char **argv);
+    ~TaskAllocator();
     void publish_new_task(task_allocation::FactoryTask new_task);
     void console_input_tasks();
     void demo_task();
-    static void received_bid(const std_msgs::Float32::ConstPtr &msg);
+    static void received_bid(const task_allocation::TaskBid &msg);
 
 private:
     // ROS
@@ -65,10 +66,13 @@ TaskAllocator::TaskAllocator(int argc, char **argv)
 
     ros::init(argc, argv, NODE_NAME);
     node_handle = make_unique<ros::NodeHandle>();
-    task_auction_pub = node_handle->advertise<task_allocation::FactoryTask>(PUBLISHER_TOPIC_NAME, 1000);
-    task_bids_subs = node_handle->subscribe(SUBSCRIBER_TOPIC_NAME, 1000, this->received_bid);
+    task_auction_pub = node_handle->advertise<task_allocation::FactoryTask>(PUBLISHER_TOPIC_NAME, 100, true);
+    task_bids_subs = node_handle->subscribe(SUBSCRIBER_TOPIC_NAME, 100, this->received_bid);
     ROS_DEBUG("Initialized TaskAllocator");
     ASK_CONSOLE_INPUT = true;
+}
+
+TaskAllocator::~TaskAllocator(){
 }
 
 void ::TaskAllocator::demo_task()
@@ -86,6 +90,7 @@ void ::TaskAllocator::demo_task()
     // PointX,PointY,PointZ, QuaternionX, QuaternionY, QuaternionZ, QuaternionW
     new_factory_task.params.push_back(target_position);
     publish_new_task(new_factory_task);
+    wait_for_bids(10);
 }
 
 void TaskAllocator::console_input_tasks()
@@ -130,30 +135,35 @@ void TaskAllocator::publish_new_task(task_allocation::FactoryTask new_task)
     // TODO: DEBUG THIS
     if (ros::ok())
     {
-        ROS_DEBUG("Publishing new task...");
-        ROS_DEBUG(task_auction_pub.getTopic());
+        
+        std::cout<<task_auction_pub.getTopic()<<std::endl;
+        std::cout<<"Is Latched? "<<task_auction_pub.isLatched()<<std::endl;
+        std::cout<<"NUm of susbcribers "<<task_auction_pub.getNumSubscribers()<<std::endl;
         task_auction_pub.publish(new_task);
         ros::spinOnce();
+        ROS_DEBUG("Published new task...");
     }
 }
 
-void TaskAllocator::received_bid(const std_msgs::Float32::ConstPtr &msg)
+void TaskAllocator::received_bid(const task_allocation::TaskBid &msg)
 {
     Bid new_bid;
-    new_bid.robot_name = 0;
-    new_bid.cost = msg->data;
+    new_bid.robot_name = msg.robot_name;
+    new_bid.cost = msg.bid;
     bids_queue.push_back(new_bid);
 }
 
 void TaskAllocator::wait_for_bids(int timeout)
 {
     ros::Time begin = ros::Time::now();
-    ros::Time wait_time(timeout);
-    while (ros::ok() && begin < wait_time)
+    ros::Duration wait_time(timeout);
+    while (ros::ok() && ros::Time::now() < begin + wait_time)
     {
         ros::spinOnce();
     }
     // Process bids
+
+    ROS_DEBUG("Waiting period ended will process bids now");
 }
 
 std::string TaskAllocator::PUBLISHER_TOPIC_NAME = "TaskAuction";
@@ -183,6 +193,5 @@ int main(int argc, char **argv)
     {
         taskAllocator.demo_task();
     }
-
-    return 0;
+    ros::spin();
 }
