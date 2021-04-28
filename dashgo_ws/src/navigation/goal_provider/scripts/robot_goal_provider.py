@@ -30,7 +30,7 @@ def movebase_client(factory_task_msg):
     # Calculate cost
     cost = random.randint(1,100)
     # Place bid
-    pub = rospy.Publisher('TaskBids', TaskBid, queue_size=10)
+    pub = rospy.Publisher('TaskBids', TaskBid, queue_size=10, latch=True)
     task_bid = TaskBid()
     task_bid.robot_name = robot_name
     task_bid.bid = cost

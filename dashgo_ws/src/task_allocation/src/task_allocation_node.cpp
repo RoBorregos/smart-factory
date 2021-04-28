@@ -38,7 +38,9 @@ public:
     void publish_new_task(task_allocation::FactoryTask new_task);
     void console_input_tasks();
     void demo_task();
+    
     static void received_bid(const task_allocation::TaskBid &msg);
+    static bool compareTwoBids(Bid t1, Bid t2);
 
 private:
     // ROS
@@ -59,6 +61,7 @@ private:
 
     // Methods
     void wait_for_bids(int time_out);
+    static void process_bids();
 };
 
 TaskAllocator::TaskAllocator(int argc, char **argv)
@@ -90,7 +93,7 @@ void ::TaskAllocator::demo_task()
     // PointX,PointY,PointZ, QuaternionX, QuaternionY, QuaternionZ, QuaternionW
     new_factory_task.params.push_back(target_position);
     publish_new_task(new_factory_task);
-    wait_for_bids(10);
+    wait_for_bids(5);
 }
 
 void TaskAllocator::console_input_tasks()
@@ -150,7 +153,21 @@ void TaskAllocator::received_bid(const task_allocation::TaskBid &msg)
     Bid new_bid;
     new_bid.robot_name = msg.robot_name;
     new_bid.cost = msg.bid;
+    ROS_DEBUG("Received bid, adding it to vector...");
     bids_queue.push_back(new_bid);
+}
+
+bool TaskAllocator::compareTwoBids(Bid t1, Bid t2){
+    return(t1.cost < t2.cost);
+}
+
+void TaskAllocator::process_bids(){
+    ROS_DEBUG("Total number of bids received %lu", bids_queue.size());
+    std::sort(bids_queue.begin(),bids_queue.end(), compareTwoBids);
+    if(bids_queue.size()>0){
+        Bid winner_bid = bids_queue[0];
+        ROS_DEBUG("Won the bid: %s with a cost of: %f", winner_bid.robot_name.c_str(),winner_bid.cost);
+    }
 }
 
 void TaskAllocator::wait_for_bids(int timeout)
@@ -162,8 +179,8 @@ void TaskAllocator::wait_for_bids(int timeout)
         ros::spinOnce();
     }
     // Process bids
-
     ROS_DEBUG("Waiting period ended will process bids now");
+    process_bids();
 }
 
 std::string TaskAllocator::PUBLISHER_TOPIC_NAME = "TaskAuction";
@@ -193,5 +210,5 @@ int main(int argc, char **argv)
     {
         taskAllocator.demo_task();
     }
-    ros::spin();
+    //ros::spin();
 }
