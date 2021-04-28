@@ -36,6 +36,8 @@ def movebase_client(factory_task_msg):
     task_bid.bid = cost
     pub.publish(task_bid)
     print("Published bid: ", str(task_bid.bid))
+
+    # MAYBE TASKALLOCATOR SHOULD DO THIS
     # If we won the bid then generate the goal for move_base 
     wonAuction = False              
     if(wonAuction):

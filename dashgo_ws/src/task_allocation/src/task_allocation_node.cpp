@@ -1,6 +1,8 @@
 #include "ros/ros.h"
 #include <ros/console.h>
 #include "std_msgs/Float32.h"
+#include <actionlib/client/simple_action_client.h>
+#include <actionlib/client/terminal_state.h>
 
 #include <string>
 #include <iostream>
@@ -62,6 +64,7 @@ private:
     // Methods
     void wait_for_bids(int time_out);
     static void process_bids();
+    static void notify_winner(Bid winner);
 };
 
 TaskAllocator::TaskAllocator(int argc, char **argv)
@@ -167,7 +170,28 @@ void TaskAllocator::process_bids(){
     if(bids_queue.size()>0){
         Bid winner_bid = bids_queue[0];
         ROS_DEBUG("Won the bid: %s with a cost of: %f", winner_bid.robot_name.c_str(),winner_bid.cost);
+        notify_winner(winner_bid);
     }
+}
+
+void TaskAllocator::notify_winner(Bid winner_bid){
+    /*
+    client = actionlib.SimpleActionClient('/move_base', MoveBaseAction)
+        client.wait_for_server()
+        goal = MoveBaseGoal()
+        goal.target_pose.header.frame_id = "/map"
+        goal.target_pose.header.stamp = rospy.Time.now()
+        goal.target_pose.pose = Pose(Point(3.35762906956, -0.224057200965, 0), Quaternion(0.0, 0.0, -0.698491025714, 0.715618814032))
+
+        client.send_goal(goal)
+        wait = client.wait_for_result()
+        if not wait:
+            rospy.logerr("Action server not available!")
+            rospy.signal_shutdown("Action server not available!")
+        else:
+            return client.get_result()
+    */
+
 }
 
 void TaskAllocator::wait_for_bids(int timeout)
@@ -210,5 +234,5 @@ int main(int argc, char **argv)
     {
         taskAllocator.demo_task();
     }
-    //ros::spin();
+
 }
