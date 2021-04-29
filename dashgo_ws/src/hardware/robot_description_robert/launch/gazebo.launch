@@ -1,6 +1,12 @@
 <launch>
   <include
     file="$(find gazebo_ros)/launch/empty_world.launch" />
+  <arg
+    name="gui"
+    default="False" />
+  <param
+    name="use_gui"
+    value="$(arg gui)" />
   <node
     name="tf_footprint_base"
     pkg="tf"
@@ -10,11 +16,20 @@
     name="spawn_model"
     pkg="gazebo_ros"
     type="spawn_model"
-    args="-file $(find robot_description)/urdf/robot_description.urdf -urdf -model robot_description"
+    args="-file $(find robot_description_robert)/urdf/robot_description.urdf -urdf -model robot_description -x 0 -y 0 -z 0.2"
     output="screen" />
-  <node
+  <!-- <node
     name="fake_joint_calibration"
     pkg="rostopic"
     type="rostopic"
     args="pub /calibrated std_msgs/Bool true" />
+  <node
+    name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher" />
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher">
+  </node> -->
 </launch>
