@@ -69,3 +69,10 @@ if __name__ == '__main__':
         rospy.spin()
     except rospy.ROSInterruptException:
         rospy.loginfo("Navigation test finished.")
+
+'''
+TODO: http://wiki.ros.org/actionlib
+Define go_to action format and package where it should belong to
+Implement action server in robot_goal_provider(python)
+Implement action client in tas_allocation(c++)
+'''
