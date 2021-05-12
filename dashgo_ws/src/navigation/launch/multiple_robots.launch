@@ -5,7 +5,7 @@
 
   <!-- Map server initialization, outside namespaces -->
   <node name="map_server" pkg="map_server" type="map_server" output="screen"
-        args="$(find config_files)/occupancy_grids/TMR_2019.yaml">
+        args="$(find contextualizer)/maps/factory.yaml">
         <param name="frame_id" value="/map"/>
   </node>
 
