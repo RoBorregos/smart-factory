@@ -17,8 +17,8 @@ Valid states:
     SUCCEEDED
     ABORTED
 Valid Actions:
-    - transport_to
-    - cancel
+    - [#] -> process number
+    - -1 -> cancel
 """
 
 class Dashgo(object):
@@ -41,23 +41,52 @@ class Dashgo(object):
     
     def execute_cb(self, goal):
         # Possible actions:
-        # - transport_to
-        # - cancel
+        # - [#] -> process number
+        # - -1 -> cancel
 
         action = goal.process_step
 
-        if action in []:
-            pose = goal.pose
+        if action in range(len(self.factory_context["process_steps"])):
+            beginning = self.factory_context["process_steps"][action][0]
+            end = self.factory_context["process_steps"][action][1]
+            
+            raw_pose = self.factory_context["static_robots"][beginning]["output"]
+            point = Point()
+            point.x = raw_pose[0]
+            point.y = raw_pose[1]
+            point.z = 0.0
+            pose = MoveBaseGoal()
+            pose.target_pose.header.frame_id = "map"
+            pose.target_pose.header.stamp = rospy.Time.now()
+            pose.target_pose.pose = Pose(point, Quaternion(raw_pose[2], raw_pose[3], raw_pose[4], raw_pose[5]))
             actionResult = self.send_goal(pose)
             if not actionResult:
                 rospy.loginfo("The robot failed to reach the destination")
                 self._result.result = False
                 self._as.set_aborted()
                 return
-            print("Robot reached destination!")
-            self._result = True
-            self._as.set_succeeded()
-        elif action == "cancel":
+            print("Robot " + self._action_name + " reached beginning!")
+            # TODO: retrieve input
+            raw_pose = self.factory_context["static_robots"][end]["output"]
+            point = Point()
+            point.x = raw_pose[0]
+            point.y = raw_pose[1]
+            point.z = 0.0
+            pose = MoveBaseGoal()
+            pose.target_pose.header.frame_id = "map"
+            pose.target_pose.header.stamp = rospy.Time.now()
+            pose.target_pose.pose = Pose(point, Quaternion(raw_pose[2], raw_pose[3], raw_pose[4], raw_pose[5]))
+            actionResult = self.send_goal(pose)
+            if not actionResult:
+                rospy.loginfo("The robot failed to reach the destination")
+                self._result.result = False
+                self._as.set_aborted()
+                return
+            print("Robot " + self._action_name + " reached end!")
+
+            self._result.result = True
+            self._as.set_succeeded(self._result)
+        elif action == -1:
             # TODO: Cancel actions and reset robot actuators
             rospy.loginfo("Executing teleop action")
             currentAction = moveBase()

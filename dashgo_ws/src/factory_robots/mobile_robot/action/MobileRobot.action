@@ -1,5 +1,5 @@
 #goal definition
-string process_step
+uint16 process_step
 ---
 #result definition
 string result
