@@ -9,30 +9,57 @@
         <param name="frame_id" value="/map"/>
   </node>
 
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!-- TODO: Add Factory Task Manager bringup nodes -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+
+
+
   <!-- TODO: add robot display (change frames of URDF) -->
 
-  <!-- Definition of robots, havind for each robot namespace:
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--
+    Definition of mobile robots, having for each robot namespace:
     - Nav launcher (laser and mobile base simul, amcl)
     - Move base (path (local & global) planner, costmaps)
    -->
-  <group ns="robot_0">
-
+   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <group ns="dashgo_0">
     <include file="src/navigation/launch/nav.launch">
-      <arg name="ns" value="robot_0" />
+      <arg name="ns" value="dashgo_0" />
     </include>
     <include file="src/navigation/launch/move_base.launch">
-      <arg name="ns" value="robot_0" />
+      <arg name="ns" value="dashgo_0" />
     </include>
   </group>
 
-  <group ns="robot_1">
+  <group ns="dashgo_1">
     <include file="src/navigation/launch/nav.launch">
-      <arg name="ns" value="robot_1" />
+      <arg name="ns" value="dashgo_1" />
     </include>
     <include file="src/navigation/launch/move_base.launch">
-      <arg name="ns" value="robot_1" />
+      <arg name="ns" value="dashgo_1" />
     </include>
-
   </group>
 
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!-- Static robots (action servers and robot description) -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <group ns="assembly">
+    <node pkg="static_robot" name="work_station" type="work_station.py" output="screen" />
+      <param name="ns" value="assembly"/>
+    </node>
+    <!-- <include file="$(find workspace_description)/launch/original_display.launch"> -->
+  </group>
+
+  <group ns="boxing">
+    <node pkg="static_robot" name="work_station" type="work_station.py" output="screen" />
+      <param name="ns" value="boxing"/>
+    </node>
+    <!-- <include file="$(find workspace_description)/launch/original_display.launch"> -->
+  </group>
 </launch>
