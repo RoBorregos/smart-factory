@@ -30,7 +30,6 @@ class Dashgo(object):
         self._action_name = name
         rospy.loginfo(name)
         self.move_base_status = 0
-        self.pub_amcl = rospy.Publisher('initialpose', PoseWithCovarianceStamped, queue_size=10)
         # Initialize Navigation Action Server
         self._as = actionlib.SimpleActionServer(self._action_name + "Server", mobile_robot.msg.MobileRobotAction, execute_cb=self.execute_cb, auto_start = False)
         self.moveBaseStatusTopic = rospy.Subscriber(self._action_name + "/move_base/status", GoalStatusArray, self.setServerFeedback)
@@ -50,7 +49,7 @@ class Dashgo(object):
             beginning = self.factory_context["process_steps"][action][0]
             end = self.factory_context["process_steps"][action][1]
             
-            raw_pose = self.factory_context["static_robots"][beginning]["output"]
+            raw_pose = self.factory_context["static_robots"][beginning[:-2]]["output"][beginning[-1]]
             point = Point()
             point.x = raw_pose[0]
             point.y = raw_pose[1]
@@ -67,7 +66,7 @@ class Dashgo(object):
                 return
             print("Robot " + self._action_name + " reached beginning!")
             # TODO: retrieve input
-            raw_pose = self.factory_context["static_robots"][end]["output"]
+            raw_pose = self.factory_context["static_robots"][end[:-2]]["output"][end[-1]]
             point = Point()
             point.x = raw_pose[0]
             point.y = raw_pose[1]
@@ -82,16 +81,12 @@ class Dashgo(object):
                 self._result.result = False
                 self._as.set_aborted()
                 return
-            print("Robot " + self._action_name + " reached end!")
+            print("Robot " + self._action_name + " finished transportation.")
 
             self._result.result = True
             self._as.set_succeeded(self._result)
         elif action == -1:
             # TODO: Cancel actions and reset robot actuators
-            rospy.loginfo("Executing teleop action")
-            currentAction = moveBase()
-            currentAction.cancelGoal()
-            self._as.set_aborted(self._result)
         else:
             self._as.se
             rospy.loginfo("Invalid Action")

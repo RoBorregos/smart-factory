@@ -27,19 +27,18 @@ class Storage():
         self.state = "initializing"
         self._feedback.stateMachine = self.state
         self._as.publish_feedback(self._feedback)
-        self._action_name = name + "_storage"
-        self._as = actionlib.SimpleActionServer(self._action_name, static_robot.msg.StaticRobot, execute_cb=self.execute_cb, auto_start = False)
+        self._action_name = name
+        self._as = actionlib.SimpleActionServer(self._action_name + "StorageServer", static_robot.msg.StaticRobot, execute_cb=self.execute_cb, auto_start = False)
         self.static_robot_request_pub = rospy.Publisher('/static_robot_requests', StaticRobotSignal, queue_size=10)
         self._as.start()
         
-        rospy.loginfo("Storage " + self._action_name[:8] + " ready for input.")
+        rospy.loginfo("Storage " + self._action_name + " ready for input.")
         # publishes request to FTM
         self.publish_request(False)
 
     def publish_request(self, io):
         storage_request = StaticRobotSignal()
-        # sends only id, without type
-        storage_request.id = self._action_name[:8]
+        storage_request.id = self._action_name
         storage_request.io = io
         self.static_robot_request_pub.publish(storage_request)
         self.state = "ready"
@@ -51,11 +50,11 @@ class Storage():
         # TODO: Call the corresponding actions servers for storing input 
         # and retrieving output to validate goal
         if self.state = "error":
-            rospy.loginfo("Storage " + self._action_name[:8] + " in ERROR state.")
+            rospy.loginfo("Storage " + self._action_name + " in ERROR state.")
             self._result.result = "error"
             self._as.set_rejected(self._result)
         elif goal.action == "store" and self.state == "ready":
-            rospy.loginfo("Storage " + self._action_name[:8] + " starting storing process.")
+            rospy.loginfo("Storage " + self._action_name + " starting storing process.")
             self.state = "processing"
             self._feedback.stateMachine = self.state
             self._as.publish_feedback(self._feedback)
@@ -64,7 +63,7 @@ class Storage():
             self._as.set_succeeded(self._result)
             self.publish_request(False)
         elif goal.action == "restock" and self.state == "ready":
-            rospy.loginfo("Storage " + self._action_name[:8] + " starting retrieval.")
+            rospy.loginfo("Storage " + self._action_name + " starting retrieval.")
             self.state = "processing"
             self._feedback.stateMachine = self.state
             self._as.publish_feedback(self._feedback)
@@ -73,18 +72,18 @@ class Storage():
             self._as.set_succeeded(self._result)
             self.publish_request(True)
         elif goal.action == "cancel":
-            rospy.loginfo("Storage " + self._action_name[:8] + " canceled.")
+            rospy.loginfo("Storage " + self._action_name + " canceled.")
             self.state = "error"
             self._feedback.stateMachine = self.state
             self._as.publish_feedback(self._feedback)
             self._result.result = "canceled"
             self._as.set_aborted(self._result)
         elif goal.action in ["store", "restock", "cancel"]:
-            rospy.loginfo("Storage " + self._action_name[:8] + " cannot do action right now.")
+            rospy.loginfo("Storage " + self._action_name + " cannot do action right now.")
             self._result.result = "busy"
             self._as.set_rejected(self._result)
         else:
-            rospy.loginfo("Storage " + self._action_name[:8] + " received invalid action.")
+            rospy.loginfo("Storage " + self._action_name + " received invalid action.")
             self._result.result = "invalid"
             self._as.set_rejected(self._result)
 
