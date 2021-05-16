@@ -30,6 +30,8 @@
   <group ns="dashgo_0">
     <include file="src/navigation/launch/nav.launch">
       <arg name="ns" value="dashgo_0" />
+      <arg name="initial_pose_x" value="0.591092" />
+      <arg name="initial_pose_y" value="4.537635" />
     </include>
     <include file="src/navigation/launch/move_base.launch">
       <arg name="ns" value="dashgo_0" />
@@ -39,6 +41,8 @@
   <group ns="dashgo_1">
     <include file="src/navigation/launch/nav.launch">
       <arg name="ns" value="dashgo_1" />
+      <arg name="initial_pose_x" value="0.571774" />
+      <arg name="initial_pose_y" value="3.399817" />
     </include>
     <include file="src/navigation/launch/move_base.launch">
       <arg name="ns" value="dashgo_1" />
@@ -49,17 +53,17 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!-- Static robots (action servers and robot description) -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <group ns="assembly">
+  <!-- <group ns="assembly">
     <node pkg="static_robot" name="work_station" type="work_station.py" output="screen" />
       <param name="ns" value="assembly"/>
     </node>
-    <!-- <include file="$(find workspace_description)/launch/original_display.launch"> -->
+    <include file="$(find workspace_description)/launch/original_display.launch">
   </group>
 
   <group ns="boxing">
     <node pkg="static_robot" name="work_station" type="work_station.py" output="screen" />
       <param name="ns" value="boxing"/>
     </node>
-    <!-- <include file="$(find workspace_description)/launch/original_display.launch"> -->
-  </group>
+    <include file="$(find workspace_description)/launch/original_display.launch">
+  </group> -->
 </launch>
