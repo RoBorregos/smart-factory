@@ -59,17 +59,39 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!-- Static robots (action servers and robot description) -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!-- <group ns="assembly">
-    <node pkg="static_robot" name="work_station" type="work_station.py" output="screen" />
+  <group ns="CNC">
+    <node pkg="static_robot" name="work_station" type="work_station.py" output="screen" >
+      <param name="ns" value="CNC"/>
+    </node>
+  </group>
+
+  <group ns="assembly">
+    <node pkg="static_robot" name="work_station" type="work_station.py" output="screen" >
       <param name="ns" value="assembly"/>
     </node>
-    <include file="$(find workspace_description)/launch/original_display.launch">
   </group>
 
   <group ns="boxing">
-    <node pkg="static_robot" name="work_station" type="work_station.py" output="screen" />
+    <node pkg="static_robot" name="work_station" type="work_station.py" output="screen" >
       <param name="ns" value="boxing"/>
     </node>
-    <include file="$(find workspace_description)/launch/original_display.launch">
-  </group> -->
+  </group>
+
+  <group ns="conveyor_0">
+    <node pkg="static_robot" name="work_station" type="work_station.py" output="screen" >
+      <param name="ns" value="conveyor_0"/>
+    </node>
+  </group>
+
+  <group ns="raw_materials">
+    <node pkg="static_robot" name="storage" type="storage.py" output="screen" >
+      <param name="ns" value="raw_materials"/>
+    </node>
+  </group>
+
+  <group ns="finished_product">
+    <node pkg="static_robot" name="storage" type="storage.py" output="screen" >
+      <param name="ns" value="finished_product"/>
+    </node>
+  </group>
 </launch>
