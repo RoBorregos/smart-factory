@@ -2,13 +2,17 @@
 from __future__ import print_function
 import tf
 import math
+import os
+import json
 
 import actionlib
 import rospy
+import rospkg
 from actionlib_msgs.msg import *
 from geometry_msgs.msg import *
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
-import mobile_robot.msg
+from mobile_robot.msg import *
+from static_robot.msg import StaticRobotSignal
 
 """
 Valid states:
@@ -31,12 +35,20 @@ class Dashgo(object):
         rospy.loginfo(name)
         self.move_base_status = 0
         # Initialize Navigation Action Server
-        self._as = actionlib.SimpleActionServer(self._action_name + "Server", mobile_robot.msg.MobileRobotAction, execute_cb=self.execute_cb, auto_start = False)
+        self._as = actionlib.SimpleActionServer(self._action_name + "Server", MobileRobotAction, execute_cb=self.execute_cb, auto_start = False)
         self.moveBaseStatusTopic = rospy.Subscriber(self._action_name + "/move_base/status", GoalStatusArray, self.setServerFeedback)
+        self.mobile_robot_request_pub = rospy.Publisher('/mobile_robot_requests', StaticRobotSignal, queue_size=10)
         self._as.start()
-        with open("./src/contextualizer/context/smart-factory.json", "r") as read_file:
+        rospack = rospkg.RosPack()
+        with open(os.path.join(rospack.get_path("contextualizer"), "contexts", "smart-factory.json"), 'r') as read_file:
             self.factory_context = json.load(read_file)
         print(self.factory_context)
+
+    def publish_request(self, id, io):
+        storage_request = StaticRobotSignal()
+        storage_request.id = id
+        storage_request.io = io
+        self.mobile_robot_request_pub.publish(storage_request)
     
     def execute_cb(self, goal):
         # Possible actions:
@@ -44,12 +56,13 @@ class Dashgo(object):
         # - -1 -> cancel
 
         action = goal.process_step
-
         if action in range(len(self.factory_context["process_steps"])):
+            self._as.set_accepted()
             beginning = self.factory_context["process_steps"][action][0]
             end = self.factory_context["process_steps"][action][1]
             
-            raw_pose = self.factory_context["static_robots"][beginning[:-2]]["output"][beginning[-1]]
+            process = beginning.split("-")
+            raw_pose = self.factory_context["static_robots"][process[0]]["output"][process[1]]
             point = Point()
             point.x = raw_pose[0]
             point.y = raw_pose[1]
@@ -65,8 +78,11 @@ class Dashgo(object):
                 self._as.set_aborted()
                 return
             print("Robot " + self._action_name + " reached beginning!")
-            # TODO: retrieve input
-            raw_pose = self.factory_context["static_robots"][end[:-2]]["output"][end[-1]]
+            # Publish output trigger
+            publish_request(process[0], 1)
+
+            process = end.split("-")
+            raw_pose = self.factory_context["static_robots"][process[0]]["input"][process[1]]
             point = Point()
             point.x = raw_pose[0]
             point.y = raw_pose[1]
@@ -82,11 +98,13 @@ class Dashgo(object):
                 self._as.set_aborted()
                 return
             print("Robot " + self._action_name + " finished transportation.")
+            publish_request(process[0], 0)
 
             self._result.result = True
             self._as.set_succeeded(self._result)
         elif action == -1:
             # TODO: Cancel actions and reset robot actuators
+            self._as.set_aborted()
         else:
             self._as.se
             rospy.loginfo("Invalid Action")
@@ -143,6 +161,7 @@ if __name__ == '__main__':
     ns = ""
     if rospy.get_param(full_param_name):
         ns = rospy.get_param(full_param_name)
+        ns = ns["dashgo"]["ns"]
     rospy.loginfo("Initializing work station...")
 
     rospy.init_node(ns + '_dashgo', anonymous=True)

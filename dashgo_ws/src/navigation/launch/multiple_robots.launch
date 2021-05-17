@@ -4,7 +4,7 @@
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/multiple_robots.rviz"/>
 
   <!-- Map server initialization, outside namespaces -->
-  <node name="map_server" pkg="map_server" type="map_server" output="screen"
+  <node name="map_server" pkg="map_server" type="map_server"
         args="$(find contextualizer)/maps/factory.yaml">
         <param name="frame_id" value="/map"/>
   </node>
@@ -36,6 +36,9 @@
     <include file="src/navigation/launch/move_base.launch">
       <arg name="ns" value="dashgo_0" />
     </include>
+    <node pkg="mobile_robot" name="dashgo" type="dashgo.py" output="screen">
+      <param name="ns" value="dashgo_0"/>
+    </node>
   </group>
 
   <group ns="dashgo_1">
@@ -47,6 +50,9 @@
     <include file="src/navigation/launch/move_base.launch">
       <arg name="ns" value="dashgo_1" />
     </include>
+    <node pkg="mobile_robot" name="dashgo" type="dashgo.py" output="screen">
+      <param name="ns" value="dashgo_1"/>
+    </node>
   </group>
 
 

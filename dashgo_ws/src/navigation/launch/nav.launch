@@ -11,16 +11,16 @@
     
     <node pkg="tf" type="static_transform_publisher" name="lidar_tf_publisher" args="0.19 0.01 0.20 0 0 0 1 $(arg ns)/base_link $(arg ns)/laser_link 100" />
 
-    <node name="laser_simulator" pkg="laser_simulator" type="laser_simulator" output="screen">
+    <node name="laser_simulator" pkg="laser_simulator" type="laser_simulator" >
         <remap from="/scan" to="/$(arg ns)/scan"/>
         <param name="noise" value="0.05"/>
         <param name="ns" type="str" value="$(arg ns)"/>
     </node>
-    <node name="mobile_base" pkg="mobile_base_simulator" type="mobile_base_simulator.py" output="screen">
+    <node name="mobile_base" pkg="mobile_base_simulator" type="mobile_base_simulator.py" >
         <remap from="/cmd_vel" to="/$(arg ns)/cmd_vel"/>
         <param name="ns" type="str" value="$(arg ns)"/>
     </node>
-    <node name="loc_amcl" pkg="amcl" type="amcl" output="screen" args="scan:=/$(arg ns)/scan">
+    <node name="loc_amcl" pkg="amcl" type="amcl" args="scan:=/$(arg ns)/scan">
         <param name="odom_alpha1" value="0.6"/>
         <param name="odom_alpha2" value="0.6"/>
         <param name="odom_alpha3" value="0.6"/>

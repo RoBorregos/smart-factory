@@ -26,9 +26,8 @@ class Storage():
     def __init__(self, name):
         self.state = "initializing"
         self._feedback.stateMachine = self.state
-        self._as.publish_feedback(self._feedback)
         self._action_name = name
-        self._as = actionlib.SimpleActionServer(self._action_name + "StorageServer", static_robot.msg.StaticRobot, execute_cb=self.execute_cb, auto_start = False)
+        self._as = actionlib.SimpleActionServer(self._action_name + "Server", StaticRobotAction, execute_cb=self.execute_cb, auto_start = False)
         self.static_robot_request_pub = rospy.Publisher('/static_robot_requests', StaticRobotSignal, queue_size=10)
         self._as.start()
         
@@ -38,18 +37,18 @@ class Storage():
 
     def publish_request(self, io):
         storage_request = StaticRobotSignal()
-        storage_request.id = self._action_name
+        storage_request.id = self._action_name + "-0"
         storage_request.io = io
         self.static_robot_request_pub.publish(storage_request)
+        print("I've sent a static_robot_request")
         self.state = "ready"
         self._feedback.stateMachine = self.state
-        self._as.publish_feedback(self._feedback)
 
 
     def execute_cb(self, goal):
         # TODO: Call the corresponding actions servers for storing input 
         # and retrieving output to validate goal
-        if self.state = "error":
+        if self.state == "error":
             rospy.loginfo("Storage " + self._action_name + " in ERROR state.")
             self._result.result = "error"
             self._as.set_rejected(self._result)
@@ -62,6 +61,7 @@ class Storage():
             self._result.result = "stored"
             self._as.set_succeeded(self._result)
             self.publish_request(False)
+            self._as.publish_feedback(self._feedback)
         elif goal.action == "restock" and self.state == "ready":
             rospy.loginfo("Storage " + self._action_name + " starting retrieval.")
             self.state = "processing"
@@ -71,6 +71,7 @@ class Storage():
             self._result.result = "stored"
             self._as.set_succeeded(self._result)
             self.publish_request(True)
+            self._as.publish_feedback(self._feedback)
         elif goal.action == "cancel":
             rospy.loginfo("Storage " + self._action_name + " canceled.")
             self.state = "error"
@@ -93,6 +94,7 @@ if __name__ == '__main__':
     ns = ""
     if rospy.get_param(full_param_name):
         ns = rospy.get_param(full_param_name)
+        ns = ns["storage"]["ns"]
     rospy.loginfo("Initializing storage...")
 
     rospy.init_node(ns + '_storage', anonymous=True)
