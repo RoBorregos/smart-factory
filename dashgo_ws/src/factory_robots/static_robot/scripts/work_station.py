@@ -33,7 +33,7 @@ class WorkStation():
         self._input_counter = 0
         self._feedback.stateMachine = self.state
         self._as = actionlib.SimpleActionServer(self._action_name + "Server", StaticRobotAction, execute_cb=self.execute_cb, auto_start = False)
-        self.static_robot_request_pub = rospy.Publisher('/static_robot_requests', StaticRobotSignal, queue_size=10)
+        self.static_robot_request_pub = rospy.Publisher('/static_robot_requests', StaticRobotSignal, queue_size=10, latch=True)
         self._as.start()
         self.state = "ready"
         self.workstation_context = None
@@ -54,6 +54,7 @@ class WorkStation():
             workstation_request.id = self._action_name + "-" + str(index)
             self.static_robot_request_pub.publish(workstation_request)
             print(workstation_request.id)
+            rospy.sleep(0.1)
         self.state = "ready" if io else "finished"
         self._feedback.stateMachine = self.state
 

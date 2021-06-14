@@ -4,6 +4,9 @@ import rospy
 from std_msgs.msg import *
 import actionlib
 from static_robot.msg import *
+import os
+import json
+import rospkg
 
 '''
 Internal states:
@@ -28,19 +31,29 @@ class Storage():
         self._feedback.stateMachine = self.state
         self._action_name = name
         self._as = actionlib.SimpleActionServer(self._action_name + "Server", StaticRobotAction, execute_cb=self.execute_cb, auto_start = False)
-        self.static_robot_request_pub = rospy.Publisher('/static_robot_requests', StaticRobotSignal, queue_size=10)
+        self.static_robot_request_pub = rospy.Publisher('/static_robot_requests', StaticRobotSignal, queue_size=10, latch=True)
         self._as.start()
+
+        rospack = rospkg.RosPack()
+        with open(os.path.join(rospack.get_path("contextualizer"), "contexts", "smart-factory.json"), 'r') as read_file:
+             self.storage_context = json.load(read_file)
+        self.storage_context =  self.storage_context["static_robots"][self._action_name]
         
         rospy.loginfo("Storage " + self._action_name + " ready for input.")
         # publishes request to FTM
         self.publish_request(False)
+        rospy.sleep(0.1)
+        self.publish_request(True)
 
     def publish_request(self, io):
         storage_request = StaticRobotSignal()
-        storage_request.id = self._action_name + "-0"
-        storage_request.io = io
-        self.static_robot_request_pub.publish(storage_request)
-        print("I've sent a static_robot_request")
+        io_list = "input" if io == False else "output"
+        for index, _ in enumerate(self.storage_context[io_list]):
+            storage_request.id = self._action_name + "-" + str(index)
+            storage_request.io = io
+            self.static_robot_request_pub.publish(storage_request)
+            print("I've sent a static_robot_request")
+            rospy.sleep(0.1)
         self.state = "ready"
         self._feedback.stateMachine = self.state
 

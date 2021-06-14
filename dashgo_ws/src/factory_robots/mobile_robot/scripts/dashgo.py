@@ -37,7 +37,7 @@ class Dashgo(object):
         # Initialize Navigation Action Server
         self._as = actionlib.SimpleActionServer(self._action_name + "Server", MobileRobotAction, execute_cb=self.execute_cb, auto_start = False)
         self.moveBaseStatusTopic = rospy.Subscriber(self._action_name + "/move_base/status", GoalStatusArray, self.setServerFeedback)
-        self.mobile_robot_request_pub = rospy.Publisher('/mobile_robot_requests', StaticRobotSignal, queue_size=10)
+        self.mobile_robot_request_pub = rospy.Publisher('/mobile_robot_requests', StaticRobotSignal, queue_size=10, latch=True)
         self._as.start()
         rospack = rospkg.RosPack()
         with open(os.path.join(rospack.get_path("contextualizer"), "contexts", "smart-factory.json"), 'r') as read_file:
