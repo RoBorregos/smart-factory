@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!-- Static robots (action servers and robot description) -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <group ns="CNC">
+    <node pkg="static_robot" name="work_station" type="work_station.py" output="screen" >
+      <param name="ns" value="CNC"/>
+    </node>
+  </group>
+
+  <group ns="raw_materials">
+    <node pkg="static_robot" name="storage" type="storage.py" output="screen" >
+      <param name="ns" value="raw_materials"/>
+    </node>
+  </group>
+
+  <group ns="finished_product">
+    <node pkg="static_robot" name="storage" type="storage.py" output="screen" >
+      <param name="ns" value="finished_product"/>
+    </node>
+  </group>
+</launch>

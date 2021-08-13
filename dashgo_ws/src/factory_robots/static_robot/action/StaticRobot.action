@@ -1,0 +1,8 @@
+#goal definition
+string action
+---
+#result definition
+string result
+---
+#feedback
+string stateMachine

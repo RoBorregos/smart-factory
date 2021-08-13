@@ -1,0 +1,8 @@
+#goal definition
+uint16 process_step
+---
+#result definition
+string result
+---
+#feedback
+string stateMachine

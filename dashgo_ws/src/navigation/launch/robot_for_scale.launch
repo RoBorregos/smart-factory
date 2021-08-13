@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find robot_description_robert)/launch/original_display.launch">
+    </include>
+    <node pkg="tf" type="static_transform_publisher" name="base_link" args="1 0 0 0 0 0 1 map base_link 100" />
+</launch>

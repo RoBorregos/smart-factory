@@ -1,7 +1,7 @@
 
 <launch>
   <arg name="ns" default="/"/>
-  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" >
     <remap from="/cmd_vel" to="/$(arg ns)/cmd_vel"/>
     <remap from="map" to="/map"/>
 
