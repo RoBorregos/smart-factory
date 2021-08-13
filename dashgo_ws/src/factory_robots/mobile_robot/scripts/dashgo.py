@@ -34,15 +34,37 @@ class Dashgo(object):
         self._action_name = name
         rospy.loginfo(name)
         self.move_base_status = 0
+
+        # Initialize move base client
+        self.move_base_client = actionlib.SimpleActionClient('/' + self._action_name + '/move_base', MoveBaseAction)
+        print("Waiting for move base client of " + self._action_name)
+        self.move_base_client.wait_for_server()
+        print(self._action_name + " running.")
+
         # Initialize Navigation Action Server
         self._as = actionlib.SimpleActionServer(self._action_name + "Server", MobileRobotAction, execute_cb=self.execute_cb, auto_start = False)
         self.moveBaseStatusTopic = rospy.Subscriber(self._action_name + "/move_base/status", GoalStatusArray, self.setServerFeedback)
         self.mobile_robot_request_pub = rospy.Publisher('/mobile_robot_requests', StaticRobotSignal, queue_size=10, latch=True)
         self._as.start()
+
+        # Get context
         rospack = rospkg.RosPack()
         with open(os.path.join(rospack.get_path("contextualizer"), "contexts", "smart-factory.json"), 'r') as read_file:
             self.factory_context = json.load(read_file)
         print(self.factory_context)
+
+        # Subscribe to calculate cost
+        # rospy.Subscriber(self._action_name + "/move_base/DWAPlannerROS/global_plan", Path, publish_cost)
+
+    # def publish_cost(self, path):
+    #     prev_x = path.poses[0].pose.position.x
+    #     prev_y = path.poses[0].pose.position.y
+    #     cost = 0
+
+    #     for pose in path.poses[1:]:
+    #         cost+= math.sqrt(pow((pose.pose.position.x - prev_x),2)+ pow((pose.pose.position.y - prev_y),2))
+    #         prev_x = pose.pose.position.x
+    #         prev_y = pose.pose.position.y
 
     def publish_request(self, id, io):
         storage_request = StaticRobotSignal()
@@ -57,50 +79,60 @@ class Dashgo(object):
 
         action = goal.process_step
         if action in range(len(self.factory_context["process_steps"])):
-            self._as.set_accepted()
             beginning = self.factory_context["process_steps"][action][0]
             end = self.factory_context["process_steps"][action][1]
             
             process = beginning.split("-")
-            raw_pose = self.factory_context["static_robots"][process[0]]["output"][process[1]]
+            print("///////////////////////")
+            print(process)
+            raw_pose = self.factory_context["static_robots"][process[0]]["output"][int(process[1])]
             point = Point()
             point.x = raw_pose[0]
             point.y = raw_pose[1]
             point.z = 0.0
-            pose = MoveBaseGoal()
-            pose.target_pose.header.frame_id = "map"
-            pose.target_pose.header.stamp = rospy.Time.now()
-            pose.target_pose.pose = Pose(point, Quaternion(raw_pose[2], raw_pose[3], raw_pose[4], raw_pose[5]))
-            actionResult = self.send_goal(pose)
-            if not actionResult:
+            movebase_goal = MoveBaseGoal()
+            movebase_goal.target_pose.header.frame_id = "/map"
+            movebase_goal.target_pose.header.stamp = rospy.Time.now()
+            movebase_goal.target_pose.pose = Pose(point,  Quaternion(raw_pose[2], raw_pose[3], raw_pose[4], raw_pose[5]))
+            
+            self.move_base_client.send_goal(movebase_goal)
+            wait = self.move_base_client.wait_for_result()
+            if not wait:
                 rospy.loginfo("The robot failed to reach the destination")
                 self._result.result = False
                 self._as.set_aborted()
                 return
+
             print("Robot " + self._action_name + " reached beginning!")
-            # Publish output trigger
-            publish_request(process[0], 1)
-
+            # Publish output retrieved
+            self.publish_request(process[0], 1)
             process = end.split("-")
-            raw_pose = self.factory_context["static_robots"][process[0]]["input"][process[1]]
+            print("///////////////////////")
+            print(process)
+
+            raw_pose = self.factory_context["static_robots"][process[0]]["input"][int(process[1])]
             point = Point()
             point.x = raw_pose[0]
             point.y = raw_pose[1]
             point.z = 0.0
-            pose = MoveBaseGoal()
-            pose.target_pose.header.frame_id = "map"
-            pose.target_pose.header.stamp = rospy.Time.now()
-            pose.target_pose.pose = Pose(point, Quaternion(raw_pose[2], raw_pose[3], raw_pose[4], raw_pose[5]))
-            actionResult = self.send_goal(pose)
-            if not actionResult:
+            movebase_goal = MoveBaseGoal()
+            movebase_goal.target_pose.header.frame_id = "/map"
+            movebase_goal.target_pose.header.stamp = rospy.Time.now()
+            movebase_goal.target_pose.pose = Pose(point,  Quaternion(raw_pose[2], raw_pose[3], raw_pose[4], raw_pose[5]))
+            
+            self.move_base_client.send_goal(movebase_goal)
+            wait = self.move_base_client.wait_for_result()
+            if not wait:
                 rospy.loginfo("The robot failed to reach the destination")
-                self._result.result = False
+                self._result.result = "FAILED"
                 self._as.set_aborted()
                 return
+            
             print("Robot " + self._action_name + " finished transportation.")
-            publish_request(process[0], 0)
+            # Publish input given
+            self.publish_request(process[0], 0)
 
-            self._result.result = True
+            self._result.result = "SUCCEDED"
             self._as.set_succeeded(self._result)
         elif action == -1:
             # TODO: Cancel actions and reset robot actuators
@@ -108,8 +140,8 @@ class Dashgo(object):
         else:
             self._as.se
             rospy.loginfo("Invalid Action")
-            self._result = False
-            self._as.set_rejected()
+            self._result = "FAILED"
+            self._as.set_aborted()
 
     def setServerFeedback(self, data):
         if len(data.status_list):

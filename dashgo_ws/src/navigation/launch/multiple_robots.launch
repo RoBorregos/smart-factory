@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <!-- Start RVIZ simulator -->
-  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/multiple_robots.rviz"/> -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/multiple_robots.rviz"/>
 
   <!-- Map server initialization, outside namespaces -->
   <node name="map_server" pkg="map_server" type="map_server"

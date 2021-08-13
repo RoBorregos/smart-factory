@@ -43,7 +43,7 @@ class WorkStation():
         self.workstation_context =  self.workstation_context["static_robots"][self._action_name]
         rospy.loginfo("Workstation " + self._action_name + " ready for input.")
         print(self.workstation_context)
-        # publishes request to FTM
+        # publishes request to FTM to get input
         self.publish_request(False)
 
     def publish_request(self, io):
@@ -55,14 +55,14 @@ class WorkStation():
             self.static_robot_request_pub.publish(workstation_request)
             print(workstation_request.id)
             rospy.sleep(0.1)
-        self.state = "ready" if io else "finished"
+        # self.state = "finished" if io else "ready"
         self._feedback.stateMachine = self.state
 
 
     def execute_cb(self, goal):
         if self.state == "error":
             rospy.loginfo("Work station " + self._action_name + " in error state.")
-            self._as.set_rejected()
+            self._as.set_aborted()
         elif goal.action == "start_process" and self.state == "ready":
             self._input_counter+=1
             if self._input_counter == len(self.workstation_context["input"]):
@@ -75,10 +75,11 @@ class WorkStation():
                 self.state = "finished"
                 self._feedback.stateMachine = self.state
                 self._as.publish_feedback(self._feedback)
-                self._as.set_succeeded()
                 self.publish_request(True)
                 self._as.publish_feedback(self._feedback)
+                self._as.set_succeeded()
         elif goal.action == "restart" and self.state == "finished":
+            self.state = "ready"
             rospy.loginfo("Work station " + self._action_name + " ready for input.")
             self.publish_request(False)
             self._as.publish_feedback(self._feedback)
@@ -91,10 +92,10 @@ class WorkStation():
             self._as.set_aborted()
         elif goal.action in ["start_process", "restart", "cancel"]:
             rospy.loginfo("Work station " + self._action_name + " cannot do action.")
-            self._as.set_rejected()
+            self._as.set_aborted()
         else:
             rospy.loginfo("Work station " + self._action_name + " received invalid action.")
-            self._as.set_rejected()
+            self._as.set_aborted()
 
 if __name__ == '__main__':
     rospy.sleep(1.)

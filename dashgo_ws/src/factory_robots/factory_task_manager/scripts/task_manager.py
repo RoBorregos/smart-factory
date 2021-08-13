@@ -46,6 +46,8 @@ class TaskManager():
             self.static_robot_clients[static_robot_key].wait_for_server()
             print("done.")
 
+        self.process_history = []
+
     def addIOTrigger(self, action_msg):
         io = (action_msg.io+1)%2
         for index, process in enumerate(self.factory_context["process_steps"]):
@@ -60,14 +62,15 @@ class TaskManager():
         # print("Received IO ready/retrieved trigger.")
 
     def addStaticRobotTrigger(self, msg):
-        # static_robot-#
-        # io
-        data = msg.split("-")
+        # id - static_robot-#
+        # io - bool
+        data = msg.id.split("-")
         static_robot_type = self.factory_context["static_robots"][data[0]]["type"]
+        goal = StaticRobotGoal()
         if  static_robot_type == "workstation":
-            goal = actions.msg.navServGoal(action = "restart" if io else "start_process")
+            goal.action = "restart" if msg.io else "start_process"
         elif static_robot_type == "storage":
-            goal = actions.msg.navServGoal(action = "restock" if io else "store")
+            goal.action = "restock" if msg.io else "store"
         self.static_robot_clients[data[0]].send_goal(goal)
         print("Received static robot trigger.")
 
@@ -75,14 +78,39 @@ class TaskManager():
     def addToActionStack(self, process_index):
         # TODO: Add to action queue according to priority
         self.unassigned_action_stack.append(process_index)
+        self.unassigned_action_stack = sorted(self.unassigned_action_stack)[::-1]
+        # reversed(self.unassigned_action_stack)
+        print(self.unassigned_action_stack)
+        for processtate in self.processState:
+            print(processtate)
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 
     def delegate_actions(self):
+        # for action in self.unassigned_action_stack:
+        #     print(action)
+        # # for processtate in self.processState:
+        # #     print(processtate)
+        # print("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
         for action in self.unassigned_action_stack:
-            print(action)
-        for process in self.processState:
-            print(process)
-        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            for mobile_robot in self.mobile_robot_clients:
+                if self.mobile_robot_clients[mobile_robot].get_state() in [2, 3, 8, 9]:
+                    # See http://docs.ros.org/en/kinetic/api/actionlib_msgs/html/msg/GoalStatus.html
+                    goal = MobileRobotGoal()
+                    self.process_history.append(self.unassigned_action_stack.pop())
+                    goal.process_step = self.process_history[-1]
+                    self.mobile_robot_clients[mobile_robot].send_goal(goal)
+                    break
+
+        # if len(self.unassigned_action_stack) == 2:
+        #     for mobile_robot in self.mobile_robot_clients:
+        #         goal = MobileRobotGoal()
+        #         goal.process_step = self.unassigned_action_stack.pop()
+        #         self.mobile_robot_clients[mobile_robot].send_goal(goal)
+        #     self.unassigned_action_stack = []
+        # for process in self.processState:
+        #     print(process)
 
 # def navigationClient():
 #     # Creates the SimpleActionClient, passing the type of the action
