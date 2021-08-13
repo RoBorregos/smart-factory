@@ -55,6 +55,12 @@
     </node>
   </group>
 
+  <group ns="conveyor_0">
+    <node pkg="mobile_robot" name="conveyor" type="conveyor.py" output="screen" >
+      <param name="ns" value="conveyor_0"/>
+    </node>
+  </group>
+
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!-- Static robots (action servers and robot description) -->
@@ -74,12 +80,6 @@
   <group ns="boxing">
     <node pkg="static_robot" name="work_station" type="work_station.py" output="screen" >
       <param name="ns" value="boxing"/>
-    </node>
-  </group>
-
-  <group ns="conveyor">
-    <node pkg="static_robot" name="work_station" type="work_station.py" output="screen" >
-      <param name="ns" value="conveyor"/>
     </node>
   </group>
 

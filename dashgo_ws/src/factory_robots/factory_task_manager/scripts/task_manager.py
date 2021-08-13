@@ -1,5 +1,4 @@
 #! /usr/bin/env python
-
 from __future__ import print_function
 import os
 import json
@@ -79,7 +78,6 @@ class TaskManager():
         # TODO: Add to action queue according to priority
         self.unassigned_action_stack.append(process_index)
         self.unassigned_action_stack = sorted(self.unassigned_action_stack)[::-1]
-        # reversed(self.unassigned_action_stack)
         print(self.unassigned_action_stack)
         for processtate in self.processState:
             print(processtate)
@@ -91,47 +89,18 @@ class TaskManager():
         #     print(action)
         # # for processtate in self.processState:
         # #     print(processtate)
-        # print("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-
         for action in self.unassigned_action_stack:
             for mobile_robot in self.mobile_robot_clients:
-                if self.mobile_robot_clients[mobile_robot].get_state() in [2, 3, 8, 9]:
+                print("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                print(self.factory_context["mobile_robots"][mobile_robot]["type"] + " " + self.factory_context["process_steps"][action][-1])
+                print(self.factory_context["mobile_robots"][mobile_robot]["type"] == self.factory_context["process_steps"][action][-1])
+                if self.mobile_robot_clients[mobile_robot].get_state() in [2, 3, 8, 9] and self.factory_context["mobile_robots"][mobile_robot]["type"] == self.factory_context["process_steps"][action][-1]:
                     # See http://docs.ros.org/en/kinetic/api/actionlib_msgs/html/msg/GoalStatus.html
                     goal = MobileRobotGoal()
                     self.process_history.append(self.unassigned_action_stack.pop())
                     goal.process_step = self.process_history[-1]
                     self.mobile_robot_clients[mobile_robot].send_goal(goal)
                     break
-
-        # if len(self.unassigned_action_stack) == 2:
-        #     for mobile_robot in self.mobile_robot_clients:
-        #         goal = MobileRobotGoal()
-        #         goal.process_step = self.unassigned_action_stack.pop()
-        #         self.mobile_robot_clients[mobile_robot].send_goal(goal)
-        #     self.unassigned_action_stack = []
-        # for process in self.processState:
-        #     print(process)
-
-# def navigationClient():
-#     # Creates the SimpleActionClient, passing the type of the action
-#     # (NavigationAction) to the constructor.
-
-#     # Waits until the action server has started up and started
-#     # listening for goals.
-#     client.wait_for_server()
-#     print("Dashgo server running...")
-
-#     # Creates a goal to send to the action server.
-#     goal = actions.msg.navServGoal(process_step = 0)
-
-#     # Sends the goal to the action server.
-#     client.send_goal(goal)
-
-#     # Waits for the server to finish performing the action.
-#     client.wait_for_result()
-
-#     # Prints out the result of executing the action
-#     return client.get_result()  # The Navigation status result
 
 
 if __name__ == '__main__':
