@@ -1,7 +1,7 @@
-# EAIBot Smart Factory               
+# Smart Factory               
 
 
-Development of an automated robotic warehouse simulationj system that retrieves, classifies and stores materials and products. Some tech areas involved include safety, object and person recognition, object manipulation, robot-robot communication/coordination and robot-human interaction/cooperation.
+Development of an automated robotic warehouse simulation system that retrieves, classifies and stores materials and products. Some tech areas involved include safety, object and person recognition, object manipulation, robot-robot communication/coordination and robot-human interaction/cooperation.
 
 ## Table of contents
 
