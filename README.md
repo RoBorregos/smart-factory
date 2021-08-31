@@ -77,4 +77,4 @@ Use `Ctrl + C` to exit the logs and turn all nodes and application down.
 | Iqui Balam  | [iquibalamhm@gmail.com](mailto:iquibalamhm@gmail.com) | [@IquiBalamHM ](https://github.com/IquiBalamHM ) | Computer vision |
 | Paul Vazquez | [pev@live.com.mx](mailto:pev@live.com.mx) | [@paulvazbad](https://github.com/paulvazbad) | Robot sinchronization and system coordination |
 | Miguel Elizondo | [pev@live.com.mx](mailto:pev@live.com.mx) | [@Miguelelizondov](https://github.com/Miguelelizondov) | Cobot arm control |
-|Diego Prado| [diegochapa01@live.com](mailto:diegochapa01@live.com) | [@DiegoPrado27] (https://github.com/DiegoPrado27)| Electronics and PLC, UR Control|
+|Diego Prado| [diegochapa01@live.com](mailto:diegochapa01@live.com) | [@DiegoPrado27](https://github.com/DiegoPrado27)| Electronics and PLC, UR Control|
