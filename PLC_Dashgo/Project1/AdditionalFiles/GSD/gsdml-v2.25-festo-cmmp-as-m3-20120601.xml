@@ -1,0 +1,2527 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- **********
+This file has been upgraded automatically by UpgradeGSDML V2.25!
+Please check the following changes:
+Read from GSDML-V2.2-FESTO-CMMP-AS-20120313.xml
+Set xsi:schemaLocation to http://www.profibus.com/GSDML/2003/11/DeviceProfile ..\xsd\GSDML-DeviceProfile-V2.25.xsd
+Add ../DeviceAccessPointList/DeviceAccessPointItem[@ID="DAP1"]/SystemDefinedSubmoduleList/InterfaceSubmoduleItem/@ID = "IDS_DAP1I"
+Add ../DeviceAccessPointList/DeviceAccessPointItem[@ID="DAP1"]/SystemDefinedSubmoduleList/PortSubmoduleItem/@ID = "IDS_DAP1P1"
+Add ../DeviceAccessPointList/DeviceAccessPointItem[@ID="DAP1"]/SystemDefinedSubmoduleList/PortSubmoduleItem/@ID = "IDS_DAP1P2"
+Add ../DeviceAccessPointList/DeviceAccessPointItem[@ID="DAP1"]/@DeviceAccessSupported ="true"
+Write to GSDML-V2.25-FESTO-CMMP-AS-20120313.xml
+********** -->
+<ISO15745Profile xmlns="http://www.profibus.com/GSDML/2003/11/DeviceProfile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.profibus.com/GSDML/2003/11/DeviceProfile ..\xsd\GSDML-DeviceProfile-V2.25.xsd">
+	<ProfileHeader>
+		<ProfileIdentification>PROFINET Device Profile</ProfileIdentification>
+		<ProfileRevision>1.00</ProfileRevision>
+		<ProfileName>Device Profile for PROFINET Devices</ProfileName>
+		<ProfileSource>PROFIBUS Nutzerorganisation e. V. (PNO)</ProfileSource>
+		<ProfileClassID>Device</ProfileClassID>
+		<ISO15745Reference>
+			<ISO15745Part>4</ISO15745Part>
+			<ISO15745Edition>1</ISO15745Edition>
+			<ProfileTechnology>GSDML</ProfileTechnology>
+		</ISO15745Reference>
+	</ProfileHeader>
+	<ProfileBody>
+		<DeviceIdentity VendorID="0x014D" DeviceID="0x0202">
+			<InfoText TextId="DeviceDescription"/>
+			<VendorName Value="Festo"/>
+		</DeviceIdentity>
+		<DeviceFunction>
+			<Family MainFamily="Drives" ProductFamily="Festo CMMP-AS-M3"/>
+		</DeviceFunction>
+		<ApplicationProcess>
+			<DeviceAccessPointList>
+				<DeviceAccessPointItem ID="DAP1" PhysicalSlots="0..4" ModuleIdentNumber="0x00010001" MinDeviceInterval="32" ImplementationType="netX" DNS_CompatibleName="cmmp-as-m3" FixedInSlots="0" AddressAssignment="DCP;LOCAL" NameOfStationNotTransferable="false" ObjectUUID_LocalIndex="1" MultipleWriteSupported="false" DeviceAccessSupported="false">
+					<ModuleInfo>
+						<Name TextId="DAP1_Name"/>
+						<InfoText TextId="DAP1_Infotext"/>
+						<VendorName Value="Festo"/>
+						<OrderNumber Value="CMMP-AS-M3"/>
+						<HardwareRelease Value="1"/>
+						<SoftwareRelease Value="T40.2.56"/>
+					</ModuleInfo>
+					<SubslotList>
+						<SubslotItem SubslotNumber="32768" TextId="X1"/>
+						<SubslotItem SubslotNumber="32769" TextId="X1P1"/>
+						<SubslotItem SubslotNumber="32770" TextId="X1P2"/>
+					</SubslotList>
+					<IOConfigData MaxInputLength="64" MaxOutputLength="64"/>
+					<UseableModules>
+						<ModuleItemRef ModuleItemTarget="MI_FHPPStandard"   AllowedInSlots="1" UsedInSlots="1"/>
+						<ModuleItemRef ModuleItemTarget="MI_FHPPFPC"        AllowedInSlots="2"/>
+						<ModuleItemRef ModuleItemTarget="MI_FHPP+8ByteIn"   AllowedInSlots="3"/>
+						<ModuleItemRef ModuleItemTarget="MI_FHPP+16ByteIn"  AllowedInSlots="3"/>
+						<ModuleItemRef ModuleItemTarget="MI_FHPP+24ByteIn"  AllowedInSlots="3"/>
+						<ModuleItemRef ModuleItemTarget="MI_FHPP+8ByteOut"  AllowedInSlots="4"/>
+						<ModuleItemRef ModuleItemTarget="MI_FHPP+16ByteOut" AllowedInSlots="4"/>
+						<ModuleItemRef ModuleItemTarget="MI_FHPP+24ByteOut" AllowedInSlots="4"/>
+					</UseableModules>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="DIM 2" SubmoduleIdentNumber="0x00010000" Writeable_IM_Records="1 2 3 4">
+							<IOData IOPS_Length="1" IOCS_Length="1"/>
+							<ModuleInfo CategoryRef="DAP Module">
+								<Name TextId="DAP v3.3"/>
+								<InfoText TextId="DAP2_Infotext"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+					<SystemDefinedSubmoduleList>
+						<InterfaceSubmoduleItem ID="IDS_DAP1I" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_3" IsochroneModeInRT_Classes="RT_CLASS_3" SupportedProtocols="SNMP;LLDP" SupportedMibs="MIB2" SubslotNumber="32768" TextId="PN-IO" SubmoduleIdentNumber="0x00010001" DCP_HelloSupported="true">
+							<RT_Class3Properties MaxBridgeDelay="2340" MaxNumberIR_FrameData="128"/>
+							<SynchronisationMode SupportedRole="SyncSlave" MaxLocalJitter="50" T_PLL_MAX="1000" SupportedSyncProtocols="PTCP"/>
+							<ApplicationRelations>
+								<!-- we support 1 ms  2 ms  4 ms  as Base Sendclockfactor -->
+								<TimingProperties SendClock="32 64 128" ReductionRatio="1 2 4 8 16 32 64 128 256 512"/>
+								<RT_Class3TimingProperties SendClock="32 64 128" ReductionRatio="1 2 4 8 16"/>
+							</ApplicationRelations>
+							<MediaRedundancy SupportedRole="Client"/>
+						</InterfaceSubmoduleItem>
+						<PortSubmoduleItem ID="IDS_DAP1P1" SubslotNumber="32769" MAUTypes="16" TextId="Port1" SubmoduleIdentNumber="0x00010001" MaxPortTxDelay="72" MaxPortRxDelay="320" PortDeactivationSupported="true" LinkStateDiagnosisCapability="Up+Down" IsDefaultRingport="true"/>
+						<PortSubmoduleItem ID="IDS_DAP1P2" SubslotNumber="32770" MAUTypes="16" TextId="Port2" SubmoduleIdentNumber="0x00010001" MaxPortTxDelay="72" MaxPortRxDelay="320" PortDeactivationSupported="true" LinkStateDiagnosisCapability="Up+Down" IsDefaultRingport="true"/>
+					</SystemDefinedSubmoduleList>
+					<Graphics>
+						<GraphicItemRef Type="DeviceSymbol" GraphicItemTarget="ID_IMG_1"/>
+					</Graphics>
+				</DeviceAccessPointItem>
+			</DeviceAccessPointList>
+			<ModuleList>
+				<!-- FHPP Standard -->
+				<ModuleItem ID="MI_FHPPStandard" ModuleIdentNumber="0x00000001">
+					<ModuleInfo CategoryRef="FHPP Standard Module">
+						<Name TextId="FHPP Standard"/>
+						<InfoText TextId="8 Byte FHPP Standard"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="1" SubmoduleIdentNumber="0x00000001">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+								<Input>
+									<DataItem DataType="OctetString" Length="8" TextId="FHPP Standard Input"/>
+								</Input>
+								<Output>
+									<DataItem DataType="OctetString" Length="8" TextId="FHPP Standard Output"/>
+								</Output>
+							</IOData>
+							<ModuleInfo>
+								<Name TextId="FHPP Standard"/>
+								<InfoText TextId="8 Byte FHPP Standard"/>
+							</ModuleInfo>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+				</ModuleItem>
+				<!-- FHPP FPC -->
+				<ModuleItem ID="MI_FHPPFPC" ModuleIdentNumber="0x00000002">
+					<ModuleInfo CategoryRef="FHPP FPC Module">
+						<Name TextId="FHPP FPC"/>
+						<InfoText TextId="8 Byte FHPP FPC"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="2" SubmoduleIdentNumber="0x00000002">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+								<Input>
+									<DataItem DataType="OctetString" Length="8" TextId="FHPP FPC Input"/>
+								</Input>
+								<Output>
+									<DataItem DataType="OctetString" Length="8" TextId="FHPP FPC Output"/>
+								</Output>
+							</IOData>
+							<ModuleInfo>
+								<Name TextId="FHPP FPC"/>
+								<InfoText TextId="8 Byte FHPP FPC"/>
+							</ModuleInfo>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+				</ModuleItem>
+				<!-- FHPP+ 8 Byte Input -->
+				<ModuleItem ID="MI_FHPP+8ByteIn" ModuleIdentNumber="0x00000003">
+					<ModuleInfo CategoryRef="FHPP+ Module">
+						<Name TextId="FHPP+ 8ByteInput"/>
+						<InfoText TextId="8 Byte Input FHPP+"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="3" SubmoduleIdentNumber="0x00000003">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+								<Input>
+									<DataItem DataType="OctetString" Length="8" TextId="8 Byte Input FHPP+"/>
+								</Input>
+							</IOData>
+							<ModuleInfo>
+								<Name TextId="FHPP+ 8ByteInput"/>
+								<InfoText TextId="8 Byte Input FHPP+"/>
+							</ModuleInfo>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+				</ModuleItem>
+				<!-- FHPP+ 16 Byte Input -->
+				<ModuleItem ID="MI_FHPP+16ByteIn" ModuleIdentNumber="0x00000004">
+					<ModuleInfo CategoryRef="FHPP+ Module">
+						<Name TextId="FHPP+ 16ByteInput"/>
+						<InfoText TextId="16 Byte Input FHPP+"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="4" SubmoduleIdentNumber="0x00000004">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+								<Input>
+									<DataItem DataType="OctetString" Length="16" TextId="16 Byte Input FHPP+"/>
+								</Input>
+							</IOData>
+							<ModuleInfo>
+								<Name TextId="FHPP+ 16ByteInput"/>
+								<InfoText TextId="16 Byte Input FHPP+"/>
+							</ModuleInfo>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+				</ModuleItem>
+				<!-- FHPP+ 24 Byte Input -->
+				<ModuleItem ID="MI_FHPP+24ByteIn" ModuleIdentNumber="0x00000005">
+					<ModuleInfo CategoryRef="FHPP+ Module">
+						<Name TextId="FHPP+ 24ByteInput"/>
+						<InfoText TextId="24 Byte Input FHPP+"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="5" SubmoduleIdentNumber="0x00000005">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+								<Input>
+									<DataItem DataType="OctetString" Length="24" TextId="24 Byte Input FHPP+"/>
+								</Input>
+							</IOData>
+							<ModuleInfo>
+								<Name TextId="FHPP+ 24ByteInput"/>
+								<InfoText TextId="24 Byte Input FHPP+"/>
+							</ModuleInfo>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+				</ModuleItem>
+				<!-- FHPP+ 8 Byte Output -->
+				<ModuleItem ID="MI_FHPP+8ByteOut" ModuleIdentNumber="0x00000006">
+					<ModuleInfo CategoryRef="FHPP+ Module">
+						<Name TextId="FHPP+ 8ByteOutput"/>
+						<InfoText TextId="8 Byte Output FHPP+"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="6" SubmoduleIdentNumber="0x00000006">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+								<Output>
+									<DataItem DataType="OctetString" Length="8" TextId="8 Byte Output FHPP+"/>
+								</Output>
+							</IOData>
+							<ModuleInfo>
+								<Name TextId="FHPP+ 8ByteOutput"/>
+								<InfoText TextId="8 Byte Output FHPP+"/>
+							</ModuleInfo>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+				</ModuleItem>
+				<!-- FHPP+ 16 Byte Input -->
+				<ModuleItem ID="MI_FHPP+16ByteOut" ModuleIdentNumber="0x00000007">
+					<ModuleInfo CategoryRef="FHPP+ Module">
+						<Name TextId="FHPP+ 16ByteOutput"/>
+						<InfoText TextId="16 Byte Output FHPP+"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="7" SubmoduleIdentNumber="0x00000007">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+								<Output>
+									<DataItem DataType="OctetString" Length="16" TextId="16 Byte Output FHPP+"/>
+								</Output>
+							</IOData>
+							<ModuleInfo>
+								<Name TextId="FHPP+ 16ByteOutput"/>
+								<InfoText TextId="16 Byte Output FHPP+"/>
+							</ModuleInfo>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+				</ModuleItem>
+				<!-- FHPP+ 24 Byte Input -->
+				<ModuleItem ID="MI_FHPP+24ByteOut" ModuleIdentNumber="0x00000008">
+					<ModuleInfo CategoryRef="FHPP+ Module">
+						<Name TextId="FHPP+ 24ByteOutput"/>
+						<InfoText TextId="24 Byte Output FHPP+"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="8" SubmoduleIdentNumber="0x00000008">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+								<Output>
+									<DataItem DataType="OctetString" Length="24" TextId="24 Byte Output FHPP+"/>
+								</Output>
+							</IOData>
+							<ModuleInfo>
+								<Name TextId="FHPP+ 24ByteOutput"/>
+								<InfoText TextId="24 Byte Output FHPP+"/>
+							</ModuleInfo>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+				</ModuleItem>
+			</ModuleList>
+    <!-- ========================================
+                       Fehlerliste
+         ======================================== -->  
+			<ChannelDiagList>
+           <ChannelDiagItem ErrorType="4096">
+             <Name TextId="E_00"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_00_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_00_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_00_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_00_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_00_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_00_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_00_9"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4106">
+                 <Name TextId="E_00_10"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4107">
+                 <Name TextId="E_00_11"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4108">
+                 <Name TextId="E_00_12"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4109">
+                 <Name TextId="E_00_13"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4110">
+                 <Name TextId="E_00_14"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4111">
+                 <Name TextId="E_00_15"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4097">
+             <Name TextId="E_01"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_01_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4098">
+             <Name TextId="E_02"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_02_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4099">
+             <Name TextId="E_03"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_03_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_03_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_03_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_03_3"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4100">
+             <Name TextId="E_04"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_04_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_04_1"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4101">
+             <Name TextId="E_05"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_05_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_05_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_05_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_05_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_05_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_05_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_05_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_05_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_05_8"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4102">
+             <Name TextId="E_06"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_06_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_06_1"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4103">
+             <Name TextId="E_07"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_07_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4104">
+             <Name TextId="E_08"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_08_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_08_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_08_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_08_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_08_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_08_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_08_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_08_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_08_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_08_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4105">
+             <Name TextId="E_09"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_09_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_09_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_09_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_09_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_09_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_09_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_09_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_09_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4106">
+             <Name TextId="E_10"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_10_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4107">
+             <Name TextId="E_11"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_11_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_11_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_11_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_11_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_11_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_11_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_11_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_11_7"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4108">
+             <Name TextId="E_12"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_12_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_12_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_12_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_12_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_12_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_12_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_12_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4109">
+             <Name TextId="E_13"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_13_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4110">
+             <Name TextId="E_14"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_14_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_14_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_14_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_14_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_14_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_14_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_14_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_14_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_14_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_14_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4111">
+             <Name TextId="E_15"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_15_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_15_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_15_2"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4112">
+             <Name TextId="E_16"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_16_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_16_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_16_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_16_3"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4113">
+             <Name TextId="E_17"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_17_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_17_1"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4114">
+             <Name TextId="E_18"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_18_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_18_1"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4117">
+             <Name TextId="E_21"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_21_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_21_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_21_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_21_3"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4118">
+             <Name TextId="E_22"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_22_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_22_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_22_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_22_4"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4121">
+             <Name TextId="E_25"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_25_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_25_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_25_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_25_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_25_4"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4122">
+             <Name TextId="E_26"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_26_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_26_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_26_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_26_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_26_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_26_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_26_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_26_7"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4123">
+             <Name TextId="E_27"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_27_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4124">
+             <Name TextId="E_28"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_28_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_28_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_28_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_28_3"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4125">
+             <Name TextId="E_29"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_29_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_29_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_29_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_29_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_29_4"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4126">
+             <Name TextId="E_30"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_30_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4127">
+             <Name TextId="E_31"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_31_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_31_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_31_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_31_3"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4128">
+             <Name TextId="E_32"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_32_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_32_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_32_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_32_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_32_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_32_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_32_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4129">
+             <Name TextId="E_33"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_33_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4130">
+             <Name TextId="E_34"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_34_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_34_1"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4131">
+             <Name TextId="E_35"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_35_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_35_5"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4132">
+             <Name TextId="E_36"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_36_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_36_1"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4133">
+             <Name TextId="E_37"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_37_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_37_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_37_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_37_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_37_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_37_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_37_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_37_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_37_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_37_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4134">
+             <Name TextId="E_38"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_38_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_38_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_38_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_38_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_38_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_38_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_38_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_38_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_38_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_38_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4135">
+             <Name TextId="E_39"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_39_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_39_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_39_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_39_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_39_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_39_5"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4136">
+             <Name TextId="E_40"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_40_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_40_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_40_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_40_3"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4137">
+             <Name TextId="E_41"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_41_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4138">
+             <Name TextId="E_42"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_42_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_42_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_42_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_42_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_42_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_42_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_42_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4139">
+             <Name TextId="E_43"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_43_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_43_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_43_2"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4140">
+             <Name TextId="E_44"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_44_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_44_1"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4141">
+             <Name TextId="E_45"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_45_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_45_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_45_2"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4143">
+             <Name TextId="E_47"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_47_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4144">
+             <Name TextId="E_48"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_48_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4145">
+             <Name TextId="E_49"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_49_2"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4146">
+             <Name TextId="E_50"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_50_1"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4147">
+             <Name TextId="E_51"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_51_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_51_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_51_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_51_3"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4148">
+             <Name TextId="E_52"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_52_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_52_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_52_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_52_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_52_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_52_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_52_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_52_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_52_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_52_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4149">
+             <Name TextId="E_53"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_53_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_53_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_53_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_53_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_53_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_53_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_53_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_53_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_53_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_53_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4150">
+             <Name TextId="E_54"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_54_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_54_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_54_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_54_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_54_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_54_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_54_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_54_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_54_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_54_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4151">
+             <Name TextId="E_55"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_55_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_55_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_55_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_55_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_55_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_55_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_55_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_55_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_55_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_55_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4152">
+             <Name TextId="E_56"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_56_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_56_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_56_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_56_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_56_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_56_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_56_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_56_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_56_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_56_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4153">
+             <Name TextId="E_57"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_57_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_57_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_57_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_57_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_57_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_57_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_57_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_57_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_57_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_57_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4154">
+             <Name TextId="E_58"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_58_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_58_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_58_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_58_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_58_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_58_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_58_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_58_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_58_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_58_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4155">
+             <Name TextId="E_59"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_59_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_59_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_59_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_59_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_59_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_59_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_59_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_59_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_59_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_59_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4156">
+             <Name TextId="E_60"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_60_1"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4157">
+             <Name TextId="E_61"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_61_1"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4158">
+             <Name TextId="E_62"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_62_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_62_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_62_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_62_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_62_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_62_5"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4159">
+             <Name TextId="E_63"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_63_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_63_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_63_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_63_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_63_4"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4160">
+             <Name TextId="E_64"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_64_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_64_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_64_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_64_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_64_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_64_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_64_6"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4161">
+             <Name TextId="E_65"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_65_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_65_1"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4166">
+             <Name TextId="E_70"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_70_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_70_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_70_3"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4167">
+             <Name TextId="E_71"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_71_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_71_2"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4168">
+             <Name TextId="E_72"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_72_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_72_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_72_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_72_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_72_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_72_6"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4169">
+             <Name TextId="E_73"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_73_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4176">
+             <Name TextId="E_80"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_80_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_80_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_80_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_80_3"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4177">
+             <Name TextId="E_81"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_81_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_81_5"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4178">
+             <Name TextId="E_82"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_82_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4179">
+             <Name TextId="E_83"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_83_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_83_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_83_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_83_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_83_4"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4180">
+             <Name TextId="E_84"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_84_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4186">
+             <Name TextId="E_90"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_90_0"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4097">
+                 <Name TextId="E_90_1"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4098">
+                 <Name TextId="E_90_2"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4099">
+                 <Name TextId="E_90_3"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4100">
+                 <Name TextId="E_90_4"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4101">
+                 <Name TextId="E_90_5"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4102">
+                 <Name TextId="E_90_6"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4103">
+                 <Name TextId="E_90_7"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4104">
+                 <Name TextId="E_90_8"/>
+               </ExtChannelDiagItem>
+               <ExtChannelDiagItem ErrorType="4105">
+                 <Name TextId="E_90_9"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+           <ChannelDiagItem ErrorType="4187">
+             <Name TextId="E_91"/>
+             <ExtChannelDiagList>
+               <ExtChannelDiagItem ErrorType="4096">
+                 <Name TextId="E_91_0"/>
+               </ExtChannelDiagItem>
+             </ExtChannelDiagList>
+           </ChannelDiagItem>
+    			</ChannelDiagList>
+			<GraphicsList>
+				<GraphicItem ID="ID_IMG_1" GraphicFile="GSDML-014D-0202-CMMP-AS-M3-N" /> 
+				<GraphicItem ID="ID_IMG_2" GraphicFile="GSDML-014D-0202-CMMP-AS-M3-S" /> 
+				<GraphicItem ID="ID_IMG_3" GraphicFile="GSDML-014D-0202-CMMP-AS-M3-D" /> 
+			</GraphicsList>
+			<CategoryList>
+				<CategoryItem ID="FHPP Standard Module" TextId="FHPP Standard Module"/>
+				<CategoryItem ID="FHPP FPC Module" TextId="FHPP FPC Module"/>
+				<CategoryItem ID="FHPP+ Module" TextId="FHPP+ Module"/>
+				<CategoryItem ID="DAP Module" TextId="DAP Module"/>
+			</CategoryList>
+			<ExternalTextList>
+				<PrimaryLanguage>
+					<Text TextId="DeviceDescription" Value="Servo Drive CMMP-AS-M3"/>
+					<Text TextId="DAP1_Name" Value="CMMP-AS-M3"/>
+					<Text TextId="DAP1_Infotext" Value="CMMP-AS-M3"/>
+					<!--Moduleinteilung-->
+					<Text TextId="FHPP Standard Module" Value="FHPP standard modules"/>
+					<Text TextId="FHPP FPC Module" Value="FHPP FPC modules"/>
+					<Text TextId="FHPP+ Module" Value="FHPP+ modules"/>
+					<Text TextId="DAP Module" Value="DAP modules"/>
+					<!-- DAP-Module -->
+					<Text TextId="DAP v3.3" Value="DAP v3.3"/>
+					<Text TextId="DAP2_Infotext" Value="Supports RT communication."/>
+					<!--FHPP Standard Modul-->
+					<Text TextId="FHPP Standard" Value="FHPP standard"/>
+					<Text TextId="8 Byte FHPP Standard" Value="8 byte FHPP standard"/>
+					<Text TextId="FHPP Standard Input" Value="FHPP standard input"/>
+					<Text TextId="FHPP Standard Output" Value="FHPP standard output"/>
+					<!--FHPP FPC Modul-->
+					<Text TextId="FHPP FPC" Value="FHPP FPC"/>
+					<Text TextId="8 Byte FHPP FPC" Value="8 byte FHPP FPC"/>
+					<Text TextId="FHPP FPC Input" Value="FHPP FPC input"/>
+					<Text TextId="FHPP FPC Output" Value="FHPP FPC output"/>
+					<!--FHPP+ Module-->
+					<Text TextId="FHPP+ 8ByteInput" Value="FHPP+ 8ByteInput"/>
+					<Text TextId="8 Byte Input FHPP+" Value="8 Byte Input FHPP+"/>
+					<Text TextId="FHPP+ 16ByteInput" Value="FHPP+ 16ByteInput"/>
+					<Text TextId="16 Byte Input FHPP+" Value="16 Byte Input FHPP+"/>
+					<Text TextId="FHPP+ 24ByteInput" Value="FHPP+ 24ByteInput"/>
+					<Text TextId="24 Byte Input FHPP+" Value="24 Byte Input FHPP+"/>
+					<Text TextId="FHPP+ 8ByteOutput" Value="FHPP+ 8ByteOutput"/>
+					<Text TextId="8 Byte Output FHPP+" Value="8 Byte Output FHPP+"/>
+					<Text TextId="FHPP+ 16ByteOutput" Value="FHPP+ 16ByteOutput"/>
+					<Text TextId="16 Byte Output FHPP+" Value="16 Byte Output FHPP+"/>
+					<Text TextId="FHPP+ 24ByteOutput" Value="FHPP+ 24ByteOutput"/>
+					<Text TextId="24 Byte Output FHPP+" Value="24 Byte Output FHPP+"/>
+					<Text TextId="X1" Value="X1"/>
+					<Text TextId="X1P1" Value="X1 P1"/>
+					<Text TextId="X1P2" Value="X1 P2"/>
+					<Text TextId="PN-IO" Value="PN-IO"/>
+					<Text TextId="Port1" Value="Port 1"/>
+					<Text TextId="Port2" Value="Port 2"/>
+          <!-- ========================================
+                         Englische Fehlertexte
+               ======================================== -->
+               <Text TextId="E_00" Value="" />
+               <Text TextId="E_00_0" Value="E 00-0: Invalid error" />
+               <Text TextId="E_00_1" Value="E 00-1: Invalid error detected and corrected" />
+               <Text TextId="E_00_2" Value="E 00-2: Error cleared" />
+               <Text TextId="E_00_4" Value="E 00-4: Serial number / device type changed (change of modules)" />
+               <Text TextId="E_00_8" Value="E 00-8: Controller switched on" />
+               <Text TextId="E_00_7" Value="E 00-7: Consecutive Entry" />
+               <Text TextId="E_00_9" Value="E 00-9: Controller safety parameters changed" />
+               <Text TextId="E_00_10" Value="E 00-10: FSM safety parameters changed" />
+               <Text TextId="E_00_11" Value="E 00-11: Module change: previous module" />
+               <Text TextId="E_00_12" Value="E 00-12: Module change: current module" />
+               <Text TextId="E_00_13" Value="E 00-13: FSM error acknowledged" />
+               <Text TextId="E_00_14" Value="E 00-14: Safety function requested" />
+               <Text TextId="E_00_15" Value="E 00-15: Parameterisation session started" />
+               <Text TextId="E_01" Value="" />
+               <Text TextId="E_01_0" Value="E 01-0: Stack overflow" />
+               <Text TextId="E_02" Value="" />
+               <Text TextId="E_02_0" Value="E 02-0: Intermediate circuit undervoltage" />
+               <Text TextId="E_03" Value="" />
+               <Text TextId="E_03_0" Value="E 03-0: Analogue motor overtemperature" />
+               <Text TextId="E_03_1" Value="E 03-1: Digital motor overtemperature" />
+               <Text TextId="E_03_2" Value="E 03-2: Analogue motor overtemperature: broken wire" />
+               <Text TextId="E_03_3" Value="E 03-3: Analogue motor overtemperature: short circuit" />
+               <Text TextId="E_04" Value="" />
+               <Text TextId="E_04_0" Value="E 04-0: Power section overtemperature" />
+               <Text TextId="E_04_1" Value="E 04-1: Intermediate circuit overtemperature" />
+               <Text TextId="E_05" Value="" />
+               <Text TextId="E_05_0" Value="E 05-0: Failure of internal voltage 1" />
+               <Text TextId="E_05_1" Value="E 05-1: Failure of internal voltage 2" />
+               <Text TextId="E_05_2" Value="E 05-2: Failure of driver supply" />
+               <Text TextId="E_05_3" Value="E 05-3: Undervoltage of digital I/O" />
+               <Text TextId="E_05_4" Value="E 05-4: Overcurrent of digital I/O" />
+               <Text TextId="E_05_5" Value="E 05-5: Technology module supply voltage failure" />
+               <Text TextId="E_05_6" Value="E 05-6: X10, X11 and RS232 supply voltage failure" />
+               <Text TextId="E_05_7" Value="E 05-7: Safety module internal voltage failure" />
+               <Text TextId="E_05_8" Value="E 05-8: Internal undervoltage supply 3 (15V)" />
+               <Text TextId="E_06" Value="" />
+               <Text TextId="E_06_0" Value="E 06-0: Short-circuit of output stage" />
+               <Text TextId="E_06_1" Value="E 06-1: Brake chopper overcurrent" />
+               <Text TextId="E_07" Value="" />
+               <Text TextId="E_07_0" Value="E 07-0: Intermediate circuit overvoltage" />
+               <Text TextId="E_08" Value="" />
+               <Text TextId="E_08_0" Value="E 08-0: Resolver angle encoder error" />
+               <Text TextId="E_08_1" Value="E 08-1: Sense of rotation of the serial and incremental position evaluation is not identical" />
+               <Text TextId="E_08_2" Value="E 08-2: Incremental encoder Z0 track signals error" />
+               <Text TextId="E_08_3" Value="E 08-3: Incremental encoder Z1 track signals error" />
+               <Text TextId="E_08_4" Value="E 08-4: Digital incremental encoder track signals error (X2B)" />
+               <Text TextId="E_08_5" Value="E 08-5: Incremental encoder Hall generator signals error" />
+               <Text TextId="E_08_6" Value="E 08-6: Faulty angle encoder communication" />
+               <Text TextId="E_08_7" Value="E 08-7: Signal amplitude of encoder erroneous (X10)" />
+               <Text TextId="E_08_8" Value="E 08-8: Error message of the internal angle encoder monitoring system" />
+               <Text TextId="E_08_9" Value="E 08-9: Angle encoder variant not supported (X2B)" />
+               <Text TextId="E_09" Value="" />
+               <Text TextId="E_09_0" Value="E 09-0: Old encoder parameter set" />
+               <Text TextId="E_09_1" Value="E 09-1: Encoder parameter set cannot be decoded" />
+               <Text TextId="E_09_2" Value="E 09-2: Unknown encoder parameter set version" />
+               <Text TextId="E_09_3" Value="E 09-3: Corrupted encoder parameter set data" />
+               <Text TextId="E_09_4" Value="E 09-4: EEPROM data: Erroneous custom specific configuration" />
+               <Text TextId="E_09_7" Value="E 09-7: Encoder EEPROM is write protected" />
+               <Text TextId="E_09_8" Value="E 09-8: Error in the parameter memory of the angle encoder" />
+               <Text TextId="E_09_9" Value="E 09-9: Memory size of encoder EEPROM too small" />
+               <Text TextId="E_10" Value="" />
+               <Text TextId="E_10_0" Value="E 10-0: Velocity Violation" />
+               <Text TextId="E_11" Value="" />
+               <Text TextId="E_11_0" Value="E 11-0: Error when homing is started" />
+               <Text TextId="E_11_1" Value="E 11-1: Error during homing" />
+               <Text TextId="E_11_2" Value="E 11-2: Homing: No valid index pulse" />
+               <Text TextId="E_11_3" Value="E 11-3: Timeout during homing" />
+               <Text TextId="E_11_4" Value="E 11-4: Homing: Incorrect limit switch" />
+               <Text TextId="E_11_5" Value="E 11-5: Homing: I&#178;t / following error" />
+               <Text TextId="E_11_6" Value="E 11-6: Homing: End of search path reached" />
+               <Text TextId="E_11_7" Value="E 11-7: Homing: Erro Encoder Difference Control" />
+               <Text TextId="E_12" Value="" />
+               <Text TextId="E_12_0" Value="E 12-0: CAN: Double node number" />
+               <Text TextId="E_12_1" Value="E 12-1: Faulty CAN bus communication" />
+               <Text TextId="E_12_2" Value="E 12-2: Faulty CAN bus communication during transmission" />
+               <Text TextId="E_12_3" Value="E 12-3: Faulty CAN bus communication during reception" />
+               <Text TextId="E_12_4" Value="E 12-4: No Node Guarding-telegram during the parameterized time received" />
+               <Text TextId="E_12_5" Value="E 12-5: CAN: RPDO too short" />
+               <Text TextId="E_12_9" Value="E 12-9: CAN: Protocol error" />
+               <Text TextId="E_13" Value="" />
+               <Text TextId="E_13_0" Value="E 13-0: CAN: Timeout" />
+               <Text TextId="E_14" Value="" />
+               <Text TextId="E_14_0" Value="E 14-0: Automatic current controller parameter identification: Insufficient intermediate circuit voltage" />
+               <Text TextId="E_14_1" Value="E 14-1: Automatic current controller parameter identification: Time constant range exceeded" />
+               <Text TextId="E_14_2" Value="E 14-2: Automatic parameter identification: Timeout during waiting" />
+               <Text TextId="E_14_3" Value="E 14-3: Automatic parameter identification: Cancel" />
+               <Text TextId="E_14_4" Value="E 14-4: Automatic angle encoder parameter identification: Unsuitable type" />
+               <Text TextId="E_14_5" Value="E 14-5: Automatic angle encoder parameter identification: Missing index pulse" />
+               <Text TextId="E_14_6" Value="E 14-6: Automatic angle encoder parameter identification: Faulty Hall signals" />
+               <Text TextId="E_14_7" Value="E 14-7: Automatic angle encoder parameter identification: Invalid measurement" />
+               <Text TextId="E_14_8" Value="E 14-8: Automatic angle encoder parameter identification: Invalid number of pairs of poles" />
+               <Text TextId="E_14_9" Value="E 14-9: Automatic parameter identification: General error" />
+               <Text TextId="E_15" Value="" />
+               <Text TextId="E_15_0" Value="E 15-0: Division by zero" />
+               <Text TextId="E_15_1" Value="E 15-1: Mathematical overflow during division" />
+               <Text TextId="E_15_2" Value="E 15-2: Mathematical underflow" />
+               <Text TextId="E_16" Value="" />
+               <Text TextId="E_16_0" Value="E 16-0: Error during program execution" />
+               <Text TextId="E_16_1" Value="E 16-1: Illegal interrupt" />
+               <Text TextId="E_16_2" Value="E 16-2: Initialization error" />
+               <Text TextId="E_16_3" Value="E 16-3: Unexpected state" />
+               <Text TextId="E_17" Value="" />
+               <Text TextId="E_17_0" Value="E 17-0: Following error limit exceeded" />
+               <Text TextId="E_17_1" Value="E 17-1: Difference between actual position and commutation encoder exceeds limit" />
+               <Text TextId="E_18" Value="" />
+               <Text TextId="E_18_0" Value="E 18-0: Analogue motor temperature" />
+               <Text TextId="E_18_1" Value="E 18-1: Temperature power stage" />
+               <Text TextId="E_21" Value="" />
+               <Text TextId="E_21_0" Value="E 21-0: Error 1 current measurement U" />
+               <Text TextId="E_21_1" Value="E 21-1: Error 1 current measurement V" />
+               <Text TextId="E_21_2" Value="E 21-2: Error 2 current measurement U" />
+               <Text TextId="E_21_3" Value="E 21-3: Error 2 current measurement V" />
+               <Text TextId="E_22" Value="" />
+               <Text TextId="E_22_0" Value="E 22-0: PROFIBUS: Initialization error" />
+               <Text TextId="E_22_2" Value="E 22-2: PROFIBUS: Faulty communication" />
+               <Text TextId="E_22_3" Value="E 22-3: PROFIBUS: Invalid slave address" />
+               <Text TextId="E_22_4" Value="E 22-4: PROFIBUS: Conversion error" />
+               <Text TextId="E_25" Value="" />
+               <Text TextId="E_25_0" Value="E 25-0: Invalid device type" />
+               <Text TextId="E_25_1" Value="E 25-1: Device type not supported" />
+               <Text TextId="E_25_2" Value="E 25-2: Invalid hardware revision" />
+               <Text TextId="E_25_3" Value="E 25-3: Device with restricted functionality: Firmware cannot be executed" />
+               <Text TextId="E_25_4" Value="E 25-4: Invalid power stage type" />
+               <Text TextId="E_26" Value="" />
+               <Text TextId="E_26_0" Value="E 26-0: Missing user parameter set" />
+               <Text TextId="E_26_1" Value="E 26-1: Checksum error" />
+               <Text TextId="E_26_2" Value="E 26-2: Flash: Write error" />
+               <Text TextId="E_26_3" Value="E 26-3: Flash: Delete error" />
+               <Text TextId="E_26_4" Value="E 26-4: Flash: Internal flash error" />
+               <Text TextId="E_26_5" Value="E 26-5: Missing calibration data" />
+               <Text TextId="E_26_6" Value="E 26-6: Missing position data sets" />
+               <Text TextId="E_26_7" Value="E 26-7: Faulty data tables (CAM)" />
+               <Text TextId="E_27" Value="" />
+               <Text TextId="E_27_0" Value="E 27-0: Following error warning threshold" />
+               <Text TextId="E_28" Value="" />
+               <Text TextId="E_28_0" Value="E 28-0: Missing operating hour meter" />
+               <Text TextId="E_28_1" Value="E 28-1: Error during saving of operating hour meter" />
+               <Text TextId="E_28_2" Value="E 28-2: Operating hour meter corrected" />
+               <Text TextId="E_28_3" Value="E 28-3: Operating hour meter converted" />
+               <Text TextId="E_29" Value="" />
+               <Text TextId="E_29_0" Value="E 29-0: SD-Card not available" />
+               <Text TextId="E_29_1" Value="E 29-1: SD-Card: Initialisation error" />
+               <Text TextId="E_29_2" Value="E 29-2: SD-Card: Data error" />
+               <Text TextId="E_29_3" Value="E 29-3: SD-Card: Write error" />
+               <Text TextId="E_29_4" Value="E 29-4: SD-Card: Firmware read error" />
+               <Text TextId="E_30" Value="" />
+               <Text TextId="E_30_0" Value="E 30-0: Internal mathematical error" />
+               <Text TextId="E_31" Value="" />
+               <Text TextId="E_31_0" Value="E 31-0: Motor I&#178;t" />
+               <Text TextId="E_31_1" Value="E 31-1: Power stage I&#178;t" />
+               <Text TextId="E_31_2" Value="E 31-2: PFC I&#178;t" />
+               <Text TextId="E_31_3" Value="E 31-3: Braking resistor I&#178;t" />
+               <Text TextId="E_32" Value="" />
+               <Text TextId="E_32_0" Value="E 32-0: Intermediate circuit charging time exceeded" />
+               <Text TextId="E_32_1" Value="E 32-1: Undervoltage for active PFC" />
+               <Text TextId="E_32_5" Value="E 32-5: Brake chopper overload" />
+               <Text TextId="E_32_6" Value="E 32-6: Intermediate circuit discharge time exceeded" />
+               <Text TextId="E_32_7" Value="E 32-7: Controller could not be enabled" />
+               <Text TextId="E_32_8" Value="E 32-8: Mains failure with active controller enabling" />
+               <Text TextId="E_32_9" Value="E 32-9: Phase failure" />
+               <Text TextId="E_33" Value="" />
+               <Text TextId="E_33_0" Value="E 33-0: Encoder emulation following error" />
+               <Text TextId="E_34" Value="" />
+               <Text TextId="E_34_0" Value="E 34-0: No synchronization via field bus" />
+               <Text TextId="E_34_1" Value="E 34-1: Field bus synchronization error" />
+               <Text TextId="E_35" Value="" />
+               <Text TextId="E_35_0" Value="E 35-0: Linear motor spinning protection" />
+               <Text TextId="E_35_5" Value="E 35-5: Error during the determination of the commutation position" />
+               <Text TextId="E_36" Value="" />
+               <Text TextId="E_36_0" Value="E 36-0: Parameter limited during loading of parameter set" />
+               <Text TextId="E_36_1" Value="E 36-1: Parameter not accepted during loading of parameter set" />
+               <Text TextId="E_37" Value="" />
+               <Text TextId="E_37_0" Value="E 37-0: SERCOS: Excessive distortion" />
+               <Text TextId="E_37_1" Value="E 37-1: SERCOS: Ring not closed" />
+               <Text TextId="E_37_2" Value="E 37-2: SERCOS: MST missing twice" />
+               <Text TextId="E_37_3" Value="E 37-3: SERCOS: Illegal phase requested by master" />
+               <Text TextId="E_37_4" Value="E 37-4: SERCOS: MDT missing twice" />
+               <Text TextId="E_37_5" Value="E 37-5: SERCOS: Unknown operation mode selected" />
+               <Text TextId="E_37_6" Value="E 37-6: SERCOS: T3 invalid" />
+               <Text TextId="E_37_7" Value="E 37-7: SERCOS field bus" />
+               <Text TextId="E_37_8" Value="E 37-8: SERCOS field bus" />
+               <Text TextId="E_37_9" Value="E 37-9: SERCOS field bus" />
+               <Text TextId="E_38" Value="" />
+               <Text TextId="E_38_0" Value="E 38-0: SERCOS: SERCON Status event" />
+               <Text TextId="E_38_1" Value="E 38-1: SERCOS: No module" />
+               <Text TextId="E_38_2" Value="E 38-2: SERCOS: Defective module" />
+               <Text TextId="E_38_3" Value="E 38-3: SERCOS: S-0-0127: Invalid data in S-0-0021" />
+               <Text TextId="E_38_4" Value="E 38-4: SERCOS: S-0-0127: Illegal IDNs in AT or MDT" />
+               <Text TextId="E_38_5" Value="E 38-5: SERCOS: S-0-0128: Invalid data in S-0-0022" />
+               <Text TextId="E_38_6" Value="E 38-6: SERCOS: S-0-0128: Invalid scaling" />
+               <Text TextId="E_38_7" Value="E 38-7: SERCOS: Invalid IDN in S-0-0026 / S-0-0027" />
+               <Text TextId="E_38_8" Value="E 38-8: SERCOS: Error at conversion" />
+               <Text TextId="E_38_9" Value="E 38-9: SERCOS: SERCON 410b mode activated" />
+               <Text TextId="E_39" Value="" />
+               <Text TextId="E_39_0" Value="E 39-0: SERCOS: List S-0-0370: Invalid configuration MDT-Data container" />
+               <Text TextId="E_39_1" Value="E 39-1: SERCOS: List S-0-0371: Invalid configuration AT-Data container" />
+               <Text TextId="E_39_2" Value="E 39-2: SERCOS: Cyclic channel fault MDT" />
+               <Text TextId="E_39_3" Value="E 39-3: SERCOS: Cyclic channel fault AT" />
+               <Text TextId="E_39_4" Value="E 39-4: SERCOS: Cyclic data container fault MDT" />
+               <Text TextId="E_39_5" Value="E 39-5: SERCOS: Cyclic data container fault AT" />
+               <Text TextId="E_40" Value="" />
+               <Text TextId="E_40_0" Value="E 40-0: Negative software limit switch" />
+               <Text TextId="E_40_1" Value="E 40-1: Positive software limit switch" />
+               <Text TextId="E_40_2" Value="E 40-2: Positioning beyond negative software limit switch suppressed" />
+               <Text TextId="E_40_3" Value="E 40-3: Positioning beyond positive software limit switch suppressed" />
+               <Text TextId="E_41" Value="" />
+               <Text TextId="E_41_0" Value="E 41-0: Position set forwarding: synchronization error" />
+               <Text TextId="E_42" Value="" />
+               <Text TextId="E_42_0" Value="E 42-0: Positioning: The drive stops automatically because there is no follow-up positioning" />
+               <Text TextId="E_42_1" Value="E 42-1: Positioning: Drive stops as rotation reversal is not allowed" />
+               <Text TextId="E_42_2" Value="E 42-2: Positioning: Illegal rotation reversal after &quot;stop&quot;" />
+               <Text TextId="E_42_3" Value="E 42-3: Start positioning rejected: wrong mode of operation" />
+               <Text TextId="E_42_4" Value="E 42-4: Please enforce homing run!" />
+               <Text TextId="E_42_5" Value="E 42-5: Rotary axis: direction of rotation is not allowed" />
+               <Text TextId="E_42_9" Value="E 42-9: Error at starting the positioning" />
+               <Text TextId="E_43" Value="" />
+               <Text TextId="E_43_0" Value="E 43-0: Setpoint locked by negative limit switch E0" />
+               <Text TextId="E_43_1" Value="E 43-1: Setpoint locked by positive limit switch E1" />
+               <Text TextId="E_43_2" Value="E 43-2: Positioning suppressed by locked setpoint" />
+               <Text TextId="E_44" Value="" />
+               <Text TextId="E_44_0" Value="E 44-0: Error in Cam Data Tables" />
+               <Text TextId="E_44_1" Value="E 44-1: Cam Disc: General Error Homing" />
+               <Text TextId="E_45" Value="" />
+               <Text TextId="E_45_0" Value="E 45-0: Driver supply not switched off" />
+               <Text TextId="E_45_1" Value="E 45-1: Missing driver supply" />
+               <Text TextId="E_45_2" Value="E 45-2: Self-activation of driver supply" />
+               <Text TextId="E_47" Value="" />
+               <Text TextId="E_47_0" Value="E 47-0: Timeout (thread mode)" />
+               <Text TextId="E_48" Value="" />
+               <Text TextId="E_48_0" Value="E 48-0: Invalid operation mode: Please enforce homing run!" />
+               <Text TextId="E_49" Value="" />
+               <Text TextId="E_49_2" Value="E 49-2: Data error in DCO file" />
+               <Text TextId="E_50" Value="" />
+               <Text TextId="E_50_1" Value="E 50-1: Too many synchronous PDOs" />
+               <Text TextId="E_51" Value="" />
+               <Text TextId="E_51_0" Value="E 51-0: Unknown FSM module" />
+               <Text TextId="E_51_1" Value="E 51-1: FSM-Module: Driver supply defective" />
+               <Text TextId="E_51_2" Value="E 51-2: FSM-Module: Dissimilar module type" />
+               <Text TextId="E_51_3" Value="E 51-3: FSM-Module: Dissimilar module version" />
+               <Text TextId="E_52" Value="" />
+               <Text TextId="E_52_0" Value="E 52-0: FSM-Module: Error" />
+               <Text TextId="E_52_1" Value="E 52-1: FSM-Module: Discrepancy time expired" />
+               <Text TextId="E_52_2" Value="E 52-2: FSM-Module: Error" />
+               <Text TextId="E_52_3" Value="E 52-3: FSM-Module: Error" />
+               <Text TextId="E_52_4" Value="E 52-4: FSM-Module: Error" />
+               <Text TextId="E_52_5" Value="E 52-5: FSM-Module: Error" />
+               <Text TextId="E_52_6" Value="E 52-6: FSM-Module: Error" />
+               <Text TextId="E_52_7" Value="E 52-7: FSM-Module: Error" />
+               <Text TextId="E_52_8" Value="E 52-8: FSM-Module: Error" />
+               <Text TextId="E_52_9" Value="E 52-9: FSM-Module: Error" />
+               <Text TextId="E_53" Value="" />
+               <Text TextId="E_53_0" Value="E 53-0: USF 0: Safety Condition Violated" />
+               <Text TextId="E_53_1" Value="E 53-1: USF 1: Safety Condition Violated" />
+               <Text TextId="E_53_2" Value="E 53-2: USF 2: Safety Condition Violated" />
+               <Text TextId="E_53_3" Value="E 53-3: USF 3: Safety Condition Violated" />
+               <Text TextId="E_53_4" Value="E 53-4: Safety Condition Violated" />
+               <Text TextId="E_53_5" Value="E 53-5: Safety Condition Violated" />
+               <Text TextId="E_53_6" Value="E 53-6: SDI 0: Safety Condition Violated" />
+               <Text TextId="E_53_7" Value="E 53-7: SDI 1: Safety Condition Violated" />
+               <Text TextId="E_53_8" Value="E 53-8: SDI 2: Safety Condition Violated" />
+               <Text TextId="E_53_9" Value="E 53-9: SDI 3: Safety Condition Violated" />
+               <Text TextId="E_54" Value="" />
+               <Text TextId="E_54_0" Value="E 54-0: SBC: Safety Condition Violated" />
+               <Text TextId="E_54_1" Value="E 54-1: SBT: Safety Condition Violated" />
+               <Text TextId="E_54_2" Value="E 54-2: SS2: Safety Condition Violated" />
+               <Text TextId="E_54_3" Value="E 54-3: SOS: Safety Condition Violated" />
+               <Text TextId="E_54_4" Value="E 54-4: SS1: Safety Condition Violated" />
+               <Text TextId="E_54_5" Value="E 54-5: STO: Safety Condition Violated" />
+               <Text TextId="E_54_6" Value="E 54-6: SBC: Brake not vented for 24h" />
+               <Text TextId="E_54_7" Value="E 54-7: Safety Condition Violated" />
+               <Text TextId="E_54_8" Value="E 54-8: Safety Condition Violated" />
+               <Text TextId="E_54_9" Value="E 54-9: Safety Condition Violated" />
+               <Text TextId="E_55" Value="" />
+               <Text TextId="E_55_0" Value="E 55-0: Actual value not available" />
+               <Text TextId="E_55_1" Value="E 55-1: SinCos-Encoder faulty" />
+               <Text TextId="E_55_2" Value="E 55-2: SinCos downtime exceeded (max. 24h)" />
+               <Text TextId="E_55_3" Value="E 55-3: Resolver faulty" />
+               <Text TextId="E_55_4" Value="E 55-4: EnDat-Encoder: Error during current operation" />
+               <Text TextId="E_55_5" Value="E 55-5: EnDat-Encoder: Recognition faulty" />
+               <Text TextId="E_55_6" Value="E 55-6: Incremental encoder X10 faulty" />
+               <Text TextId="E_55_7" Value="E 55-7: Angle information in controller faulty" />
+               <Text TextId="E_55_8" Value="E 55-8: Error during measuring of actual value" />
+               <Text TextId="E_55_9" Value="E 55-9: Error during measuring of actual value" />
+               <Text TextId="E_56" Value="" />
+               <Text TextId="E_56_0" Value="E 56-0: Error during measuring of actual value" />
+               <Text TextId="E_56_1" Value="E 56-1: Error during measuring of actual value" />
+               <Text TextId="E_56_2" Value="E 56-2: Error during measuring of actual value" />
+               <Text TextId="E_56_3" Value="E 56-3: Error during measuring of actual value" />
+               <Text TextId="E_56_4" Value="E 56-4: Error during measuring of actual value" />
+               <Text TextId="E_56_5" Value="E 56-5: Error during measuring of actual value" />
+               <Text TextId="E_56_6" Value="E 56-6: Error during measuring of actual value" />
+               <Text TextId="E_56_7" Value="E 56-7: Error during measuring of actual value" />
+               <Text TextId="E_56_8" Value="E 56-8: Discrepancy angle encoder 1 / 2" />
+               <Text TextId="E_56_9" Value="E 56-9: Discrepancy angle processor 1 / 2" />
+               <Text TextId="E_57" Value="" />
+               <Text TextId="E_57_0" Value="E 57-0: I/O: internal Error" />
+               <Text TextId="E_57_1" Value="E 57-1: Digital Input: Faulty signaling game" />
+               <Text TextId="E_57_2" Value="E 57-2: Digital Input: External test signals faulty" />
+               <Text TextId="E_57_3" Value="E 57-3: I/O Error" />
+               <Text TextId="E_57_4" Value="E 57-4: I/O Error" />
+               <Text TextId="E_57_5" Value="E 57-5: I/O Error" />
+               <Text TextId="E_57_6" Value="E 57-6: I/O Error" />
+               <Text TextId="E_57_7" Value="E 57-7: I/O Error" />
+               <Text TextId="E_57_8" Value="E 57-8: I/O Error" />
+               <Text TextId="E_57_9" Value="E 57-9: I/O Error" />
+               <Text TextId="E_58" Value="" />
+               <Text TextId="E_58_0" Value="E 58-0: Plausibility check of parameters failed" />
+               <Text TextId="E_58_1" Value="E 58-1: Parameterisation session rejected" />
+               <Text TextId="E_58_2" Value="E 58-2: Error during communication / parameterisation" />
+               <Text TextId="E_58_3" Value="E 58-3: Error during communication / parameterisation" />
+               <Text TextId="E_58_4" Value="E 58-4: SSIO buffer overflow, external communication faulty" />
+               <Text TextId="E_58_5" Value="E 58-5: Internal SSIO communication error" />
+               <Text TextId="E_58_6" Value="E 58-6: Communication error with 2nd processor" />
+               <Text TextId="E_58_7" Value="E 58-7: Error during communication / parameterisation" />
+               <Text TextId="E_58_8" Value="E 58-8: Error during communication / parameterisation" />
+               <Text TextId="E_58_9" Value="E 58-9: Error during communication / parameterisation" />
+               <Text TextId="E_59" Value="" />
+               <Text TextId="E_59_0" Value="E 59-0: Internal error" />
+               <Text TextId="E_59_1" Value="E 59-1: Internal error" />
+               <Text TextId="E_59_2" Value="E 59-2: Error external power supply" />
+               <Text TextId="E_59_3" Value="E 59-3: Error internal power supply" />
+               <Text TextId="E_59_4" Value="E 59-4: Overflow error management" />
+               <Text TextId="E_59_5" Value="E 59-5: Error log could not be saved to controller" />
+               <Text TextId="E_59_6" Value="E 59-6: Error while saving parameter set" />
+               <Text TextId="E_59_7" Value="E 59-7: Checksum flash memory incorrect" />
+               <Text TextId="E_59_8" Value="E 59-8: Internal monitoring system" />
+               <Text TextId="E_59_9" Value="E 59-9: Structural error, invalid software state" />
+               <Text TextId="E_60" Value="" />
+               <Text TextId="E_60_1" Value="E 60-1: User-specific error ethernet module" />
+               <Text TextId="E_61" Value="" />
+               <Text TextId="E_61_1" Value="E 61-1: User-specific error ethernet module" />
+               <Text TextId="E_62" Value="" />
+               <Text TextId="E_62_0" Value="E 62-0: EtherCAT: Initialisation error" />
+               <Text TextId="E_62_1" Value="E 62-1: EtherCAT: Initialisation error" />
+               <Text TextId="E_62_2" Value="E 62-2: EtherCAT: Protocol error" />
+               <Text TextId="E_62_3" Value="E 62-3: EtherCAT: Invalid RPDO length" />
+               <Text TextId="E_62_4" Value="E 62-4: EtherCAT: Invalid TPDO length" />
+               <Text TextId="E_62_5" Value="E 62-5: EtherCAT: Erroneous cyclic communication" />
+               <Text TextId="E_63" Value="" />
+               <Text TextId="E_63_0" Value="E 63-0: EtherCAT: Defective module" />
+               <Text TextId="E_63_1" Value="E 63-1: EtherCAT: Invalid data" />
+               <Text TextId="E_63_2" Value="E 63-2: EtherCAT: TPDO data has not been read" />
+               <Text TextId="E_63_3" Value="E 63-3: EtherCAT: No distributed clocks active" />
+               <Text TextId="E_63_4" Value="E 63-4: EtherCAT: Missing SYNC message in IPO cycle" />
+               <Text TextId="E_64" Value="" />
+               <Text TextId="E_64_0" Value="E 64-0: DeviceNet: Duplicate MAC ID" />
+               <Text TextId="E_64_1" Value="E 64-1: DeviceNet: Bus power lost" />
+               <Text TextId="E_64_2" Value="E 64-2: DeviceNet: RX queue overflow" />
+               <Text TextId="E_64_3" Value="E 64-3: DeviceNet: TX queue overflow" />
+               <Text TextId="E_64_4" Value="E 64-4: DeviceNet: IO send error" />
+               <Text TextId="E_64_5" Value="E 64-5: DeviceNet: Bus OFF" />
+               <Text TextId="E_64_6" Value="E 64-6: DeviceNet: CAN controller overflow" />
+               <Text TextId="E_65" Value="" />
+               <Text TextId="E_65_0" Value="E 65-0: DeviceNet active, but no module" />
+               <Text TextId="E_65_1" Value="E 65-1: Timeout IO Connection" />
+               <Text TextId="E_70" Value="" />
+               <Text TextId="E_70_1" Value="E 70-1: FHPP fieldbus" />
+               <Text TextId="E_70_2" Value="E 70-2: FHPP fieldbus" />
+               <Text TextId="E_70_3" Value="E 70-3: FHPP fieldbus" />
+               <Text TextId="E_71" Value="" />
+               <Text TextId="E_71_1" Value="E 71-1: FHPP: Wrong Receive Telegram Length" />
+               <Text TextId="E_71_2" Value="E 71-2: FHPP: Wrong Response Telegram Length" />
+               <Text TextId="E_72" Value="" />
+               <Text TextId="E_72_0" Value="E 72-0: Profinet Initialising error" />
+               <Text TextId="E_72_1" Value="E 72-1: Profinet Bus error" />
+               <Text TextId="E_72_3" Value="E 72-3: Profinet Invalid IP Configuration" />
+               <Text TextId="E_72_4" Value="E 72-4: Profinet Invalid Device name" />
+               <Text TextId="E_72_5" Value="E 72-5: Profinet Technology modul broken" />
+               <Text TextId="E_72_6" Value="E 72-6: Profinet Unsupported Feature" />
+               <Text TextId="E_73" Value="" />
+               <Text TextId="E_73_0" Value="E 73-0: PROFIenergy State not alllowed" />
+               <Text TextId="E_80" Value="" />
+               <Text TextId="E_80_0" Value="E 80-0: Overflow current controller IRQ" />
+               <Text TextId="E_80_1" Value="E 80-1: Overflow speed controller IRQ" />
+               <Text TextId="E_80_2" Value="E 80-2: Overflow position controller IRQ" />
+               <Text TextId="E_80_3" Value="E 80-3: Overflow interpolator IRQ" />
+               <Text TextId="E_81" Value="" />
+               <Text TextId="E_81_4" Value="E 81-4: Overflow low-level IRQ" />
+               <Text TextId="E_81_5" Value="E 81-5: Overflow MDC IRQ" />
+               <Text TextId="E_82" Value="" />
+               <Text TextId="E_82_0" Value="E 82-0: Internal sequencing control: Process cancelled" />
+               <Text TextId="E_83" Value="" />
+               <Text TextId="E_83_0" Value="E 83-0: Invalid technology module" />
+               <Text TextId="E_83_1" Value="E 83-1: Technology module not supported" />
+               <Text TextId="E_83_2" Value="E 83-2: Technology module: hardware revision not supported" />
+               <Text TextId="E_83_3" Value="E 83-3: Technology module: write error" />
+               <Text TextId="E_83_4" Value="E 83-4: MC2000 Watchdog" />
+               <Text TextId="E_84" Value="" />
+               <Text TextId="E_84_0" Value="E 84-0: Conditions for controller enabled not fulfilled" />
+               <Text TextId="E_90" Value="" />
+               <Text TextId="E_90_0" Value="E 90-0: External RAM not recognized" />
+               <Text TextId="E_90_1" Value="E 90-1: External flash not recognized" />
+               <Text TextId="E_90_2" Value="E 90-2: Error at FPGA boot-up" />
+               <Text TextId="E_90_3" Value="E 90-3: Error at SD-ADU start" />
+               <Text TextId="E_90_4" Value="E 90-4: SD-ADU synchronization error after start" />
+               <Text TextId="E_90_5" Value="E 90-5: SD-ADU not synchronous" />
+               <Text TextId="E_90_6" Value="E 90-6: Trigger error" />
+               <Text TextId="E_90_7" Value="E 90-7: Missing CAN controller" />
+               <Text TextId="E_90_8" Value="E 90-8: Checksum error in device parameters" />
+               <Text TextId="E_90_9" Value="E 90-9: Illegal firmware version" />
+               <Text TextId="E_91" Value="" />
+               <Text TextId="E_91_0" Value="E 91-0: Processor error" />
+				</PrimaryLanguage>
+				<Language xml:lang="de">
+					<Text TextId="DeviceDescription" Value="Servo Drive CMMP-AS-M3"/>
+					<Text TextId="DAP1_Name" Value="CMMP-AS-M3"/>
+					<Text TextId="DAP1_Infotext" Value="CMMP-AS-M3"/>
+					<!--Moduleinteilung-->
+					<Text TextId="FHPP Standard Module" Value="FHPP Standard Module"/>
+					<Text TextId="FHPP FPC Module" Value="FHPP FPC Module"/>
+					<Text TextId="FHPP+ Module" Value="FHPP+ Module"/>
+					<Text TextId="DAP Module" Value="DAP Module"/>
+					<!-- DAP-Module -->
+					<Text TextId="DAP v3.3" Value="DAP v3.3"/>
+					<Text TextId="DAP2_Infotext" Value="Unterstützt RT Kommunikation."/>
+					<!--FHPP Standard Modul-->
+					<Text TextId="FHPP Standard" Value="FHPP Standard"/>
+					<Text TextId="8 Byte FHPP Standard" Value="8 Byte FHPP Standard"/>
+					<Text TextId="FHPP Standard Input" Value="FHPP Standard Input"/>
+					<Text TextId="FHPP Standard Output" Value="FHPP Standard Output"/>
+					<!--FHPP FPC Modul-->
+					<Text TextId="FHPP FPC" Value="FHPP FPC"/>
+					<Text TextId="8 Byte FHPP FPC" Value="8 Byte FHPP FPC"/>
+					<Text TextId="FHPP FPC Input" Value="FHPP FPC Input"/>
+					<Text TextId="FHPP FPC Output" Value="FHPP FPC Output"/>
+					<!--FHPP+ Module-->
+					<Text TextId="FHPP+ 8ByteInput" Value="FHPP+ 8ByteInput"/>
+					<Text TextId="8 Byte Input FHPP+" Value="8 Byte Input FHPP+"/>
+					<Text TextId="FHPP+ 16ByteInput" Value="FHPP+ 16ByteInput"/>
+					<Text TextId="16 Byte Input FHPP+" Value="16 Byte Input FHPP+"/>
+					<Text TextId="FHPP+ 24ByteInput" Value="FHPP+ 24ByteInput"/>
+					<Text TextId="24 Byte Input FHPP+" Value="24 Byte Input FHPP+"/>
+					<Text TextId="FHPP+ 8ByteOutput" Value="FHPP+ 8ByteOutput"/>
+					<Text TextId="8 Byte Output FHPP+" Value="8 Byte Output FHPP+"/>
+					<Text TextId="FHPP+ 16ByteOutput" Value="FHPP+ 16ByteOutput"/>
+					<Text TextId="16 Byte Output FHPP+" Value="16 Byte Output FHPP+"/>
+					<Text TextId="FHPP+ 24ByteOutput" Value="FHPP+ 24ByteOutput"/>
+					<Text TextId="24 Byte Output FHPP+" Value="24 Byte Output FHPP+"/>
+					<Text TextId="X1" Value="X1"/>
+					<Text TextId="X1P1" Value="X1 P1"/>
+					<Text TextId="X1P2" Value="X1 P2"/>
+					<Text TextId="PN-IO" Value="PN-IO"/>
+					<Text TextId="Port1" Value="Port 1"/>
+					<Text TextId="Port2" Value="Port 2"/>
+          <!-- ========================================
+                         Deutsche Fehlertexte
+               ======================================== -->     
+               <Text TextId="E_00" Value="" />
+               <Text TextId="E_00_0" Value="E 00-0: Ung&#252;ltiger Fehler" />
+               <Text TextId="E_00_1" Value="E 00-1: Ung&#252;ltiger Fehler entdeckt und korrigiert" />
+               <Text TextId="E_00_2" Value="E 00-2: Fehler gel&#246;scht" />
+               <Text TextId="E_00_4" Value="E 00-4: Seriennummer / Ger&#228;tetyp (Modultausch)" />
+               <Text TextId="E_00_8" Value="E 00-8: Controller eingeschaltet" />
+               <Text TextId="E_00_7" Value="E 00-7: Folgeeintrag" />
+               <Text TextId="E_00_9" Value="E 00-9: Controller Safety-Parameter ge&#228;ndert" />
+               <Text TextId="E_00_10" Value="E 00-10: FSM Safety-Parameter ge&#228;ndert" />
+               <Text TextId="E_00_11" Value="E 00-11: Modulwechsel: vorheriges Modul" />
+               <Text TextId="E_00_12" Value="E 00-12: Modulwechsel: aktuelles Modul" />
+               <Text TextId="E_00_13" Value="E 00-13: FSM-Fehler quittiert" />
+               <Text TextId="E_00_14" Value="E 00-14: Sicherheitsfunktion angefordert" />
+               <Text TextId="E_00_15" Value="E 00-15: Parametriersitzung ge&#246;ffnet" />
+               <Text TextId="E_01" Value="" />
+               <Text TextId="E_01_0" Value="E 01-0: Stack overflow" />
+               <Text TextId="E_02" Value="" />
+               <Text TextId="E_02_0" Value="E 02-0: Unterspannung Zwischenkreis" />
+               <Text TextId="E_03" Value="" />
+               <Text TextId="E_03_0" Value="E 03-0: &#220;bertemperatur Motor analog" />
+               <Text TextId="E_03_1" Value="E 03-1: &#220;bertemperatur Motor digital" />
+               <Text TextId="E_03_2" Value="E 03-2: &#220;bertemperatur Motor analog: Drahtbruch" />
+               <Text TextId="E_03_3" Value="E 03-3: &#220;bertemperatur Motor analog: Kurzschluss" />
+               <Text TextId="E_04" Value="" />
+               <Text TextId="E_04_0" Value="E 04-0: &#220;bertemperatur Leistungsteil" />
+               <Text TextId="E_04_1" Value="E 04-1: &#220;bertemperatur Zwischenkreis" />
+               <Text TextId="E_05" Value="" />
+               <Text TextId="E_05_0" Value="E 05-0: Ausfall interne Spannung 1" />
+               <Text TextId="E_05_1" Value="E 05-1: Ausfall interne Spannung 2" />
+               <Text TextId="E_05_2" Value="E 05-2: Ausfall Treiberversorgung" />
+               <Text TextId="E_05_3" Value="E 05-3: Unterspannung digitaler I/O" />
+               <Text TextId="E_05_4" Value="E 05-4: &#220;berstrom digitaler I/O" />
+               <Text TextId="E_05_5" Value="E 05-5: Ausfall Spannung Technologiemodul" />
+               <Text TextId="E_05_6" Value="E 05-6: Ausfall Spannung X10, X11 und RS232" />
+               <Text TextId="E_05_7" Value="E 05-7: Ausfall interne Spannung Sicherheitsmodul" />
+               <Text TextId="E_05_8" Value="E 05-8: Ausfall interne Spannung 3 (15V)" />
+               <Text TextId="E_06" Value="" />
+               <Text TextId="E_06_0" Value="E 06-0: Kurzschluss Endstufe" />
+               <Text TextId="E_06_1" Value="E 06-1: &#220;berstrom Bremschopper" />
+               <Text TextId="E_07" Value="" />
+               <Text TextId="E_07_0" Value="E 07-0: &#220;berspannung im Zwischenkreis" />
+               <Text TextId="E_08" Value="" />
+               <Text TextId="E_08_0" Value="E 08-0: Winkelgeberfehler Resolver" />
+               <Text TextId="E_08_1" Value="E 08-1: Drehsinn der seriellen und inkrementellen Lageerfassung ungleich" />
+               <Text TextId="E_08_2" Value="E 08-2: Fehler Spursignale Z0 Inkrementalgeber" />
+               <Text TextId="E_08_3" Value="E 08-3: Fehler Spursignale Z1 Inkrementalgeber" />
+               <Text TextId="E_08_4" Value="E 08-4: Fehler Spursignale digitaler Inkrementalgeber (X2B)" />
+               <Text TextId="E_08_5" Value="E 08-5: Fehler Hallgebersignale Inkrementalgeber" />
+               <Text TextId="E_08_6" Value="E 08-6: Fehlerhafte Winkelgeber-Kommunikation" />
+               <Text TextId="E_08_7" Value="E 08-7: Signalamplitude Winkelgeber fehlerhaft (X10)" />
+               <Text TextId="E_08_8" Value="E 08-8: Fehlermeldung der internen &#220;berwachung des Winkelgebers" />
+               <Text TextId="E_08_9" Value="E 08-9: Nicht unterst&#252;tzte Winkelgebervariante (X2B)" />
+               <Text TextId="E_09" Value="" />
+               <Text TextId="E_09_0" Value="E 09-0: Alter Winkelgeber-Parametersatz" />
+               <Text TextId="E_09_1" Value="E 09-1: Winkelgeber-Parametersatz kann nicht dekodiert werden" />
+               <Text TextId="E_09_2" Value="E 09-2: Unbekannte Version Winkelgeber-Parametersatz" />
+               <Text TextId="E_09_3" Value="E 09-3: Defekte Datenstruktur Winkelgeber-Parametersatz" />
+               <Text TextId="E_09_4" Value="E 09-4: EEPROM-Daten: Kundenspezifische Konfiguration fehlerhaft" />
+               <Text TextId="E_09_7" Value="E 09-7: Schreibgesch&#252;tztes EEPROM Winkelgeber" />
+               <Text TextId="E_09_8" Value="E 09-8: Fehler im Parameterspeicher des Winkelgebers" />
+               <Text TextId="E_09_9" Value="E 09-9: EEPROM Winkelgeber zu klein" />
+               <Text TextId="E_10" Value="" />
+               <Text TextId="E_10_0" Value="E 10-0: Geschwindigkeit &#252;berschritten" />
+               <Text TextId="E_11" Value="" />
+               <Text TextId="E_11_0" Value="E 11-0: Fehler beim Start der Referenzfahrt" />
+               <Text TextId="E_11_1" Value="E 11-1: Fehler w&#228;hrend der Referenzfahrt" />
+               <Text TextId="E_11_2" Value="E 11-2: Referenzfahrt: Kein g&#252;ltiger Nullimpuls" />
+               <Text TextId="E_11_3" Value="E 11-3: Timeout bei der Referenzfahrt" />
+               <Text TextId="E_11_4" Value="E 11-4: Referenzfahrt: Falscher Endschalter" />
+               <Text TextId="E_11_5" Value="E 11-5: Referenzfahrt: I&#178;t / Schleppfehler" />
+               <Text TextId="E_11_6" Value="E 11-6: Referenzfahrt: Ende der Suchstrecke erreicht" />
+               <Text TextId="E_11_7" Value="E 11-7: Referenzfahrt: Fehler Geberdifferenz&#252;berwachung" />
+               <Text TextId="E_12" Value="" />
+               <Text TextId="E_12_0" Value="E 12-0: CAN: Doppelte Knotennummer" />
+               <Text TextId="E_12_1" Value="E 12-1: Fehlerhafte CAN-Bus Kommunikation" />
+               <Text TextId="E_12_2" Value="E 12-2: Fehlerhafte CAN-Bus Kommunikation beim Senden" />
+               <Text TextId="E_12_3" Value="E 12-3: Fehlerhafte CAN-Bus Kommunikation beim Empfangen" />
+               <Text TextId="E_12_4" Value="E 12-4: Kein Node Guarding-Telegramm innerhalb der parametrierten Zeit empfangen" />
+               <Text TextId="E_12_5" Value="E 12-5: CAN: RPDO zu kurz" />
+               <Text TextId="E_12_9" Value="E 12-9: CAN: Protokollfehler" />
+               <Text TextId="E_13" Value="" />
+               <Text TextId="E_13_0" Value="E 13-0: CAN: Timeout" />
+               <Text TextId="E_14" Value="" />
+               <Text TextId="E_14_0" Value="E 14-0: Automatische Parameteridentifikation Stromregler: Unzureichende Zwischenkreisspannung" />
+               <Text TextId="E_14_1" Value="E 14-1: Automatische Parameteridentifikation Stromregler: Bereichs&#252;berschreitung Zeitkonstante" />
+               <Text TextId="E_14_2" Value="E 14-2: Automatische Parameteridentifikation: Timeout beim Warten" />
+               <Text TextId="E_14_3" Value="E 14-3: Automatische Parameteridentifikation: Abbruch" />
+               <Text TextId="E_14_4" Value="E 14-4: Automatische Parameteridentifikation Winkelgeber: Typ ungeeignet" />
+               <Text TextId="E_14_5" Value="E 14-5: Automatische Parameteridentifikation Winkelgeber: Nullimpuls fehlt" />
+               <Text TextId="E_14_6" Value="E 14-6: Automatische Parameteridentifikation Winkelgeber: Hallsignale fehlerhaft" />
+               <Text TextId="E_14_7" Value="E 14-7: Automatische Parameteridentifikation Winkelgeber: Ung&#252;ltige Messung" />
+               <Text TextId="E_14_8" Value="E 14-8: Automatische Parameteridentifikation Winkelgeber: Ung&#252;ltige Polpaarzahl" />
+               <Text TextId="E_14_9" Value="E 14-9: Automatische Parameteridentifizierung: Allgemeiner Fehler" />
+               <Text TextId="E_15" Value="" />
+               <Text TextId="E_15_0" Value="E 15-0: Division durch Null" />
+               <Text TextId="E_15_1" Value="E 15-1: Mathematischer &#220;berlauf bei Division" />
+               <Text TextId="E_15_2" Value="E 15-2: Mathematischer Unterlauf" />
+               <Text TextId="E_16" Value="" />
+               <Text TextId="E_16_0" Value="E 16-0: Programmausf&#252;hrung fehlerhaft" />
+               <Text TextId="E_16_1" Value="E 16-1: Illegaler Interrupt" />
+               <Text TextId="E_16_2" Value="E 16-2: Initialisierungsfehler" />
+               <Text TextId="E_16_3" Value="E 16-3: Unerwarteter Zustand" />
+               <Text TextId="E_17" Value="" />
+               <Text TextId="E_17_0" Value="E 17-0: &#220;berschreitung Grenzwert Schleppfehler" />
+               <Text TextId="E_17_1" Value="E 17-1: Abweichung zwischen Lageistwert und Kommutiergeber zu gro&#223;?" />
+               <Text TextId="E_18" Value="" />
+               <Text TextId="E_18_0" Value="E 18-0: Analoge Motortemperatur" />
+               <Text TextId="E_18_1" Value="E 18-1: Temperatur Leistungsteil" />
+               <Text TextId="E_21" Value="" />
+               <Text TextId="E_21_0" Value="E 21-0: Fehler 1 Strommessung U" />
+               <Text TextId="E_21_1" Value="E 21-1: Fehler 1 Strommessung V" />
+               <Text TextId="E_21_2" Value="E 21-2: Fehler 2 Strommessung U" />
+               <Text TextId="E_21_3" Value="E 21-3: Fehler 2 Strommessung V" />
+               <Text TextId="E_22" Value="" />
+               <Text TextId="E_22_0" Value="E 22-0: PROFIBUS: Initialisierungsfehler" />
+               <Text TextId="E_22_2" Value="E 22-2: PROFIBUS: Fehlerhafte Kommunikation" />
+               <Text TextId="E_22_3" Value="E 22-3: PROFIBUS: Ung&#252;ltige Slave-Adresse" />
+               <Text TextId="E_22_4" Value="E 22-4: PROFIBUS: Umrechnungsfehler" />
+               <Text TextId="E_25" Value="" />
+               <Text TextId="E_25_0" Value="E 25-0: Ung&#252;ltiger Ger&#228;tetyp" />
+               <Text TextId="E_25_1" Value="E 25-1: Nicht unterst&#252;tzter Ger&#228;tetyp" />
+               <Text TextId="E_25_2" Value="E 25-2: Ung&#252;ltige Hardware-Revision" />
+               <Text TextId="E_25_3" Value="E 25-3: Funktionsbeschr&#228;nktes Ger&#228;t: Firmware nicht ausf&#252;hrbar" />
+               <Text TextId="E_25_4" Value="E 25-4: Ung&#252;ltiger Leistungsteiltyp" />
+               <Text TextId="E_26" Value="" />
+               <Text TextId="E_26_0" Value="E 26-0: Fehlender User-Parametersatz" />
+               <Text TextId="E_26_1" Value="E 26-1: Checksummenfehler" />
+               <Text TextId="E_26_2" Value="E 26-2: Flash: Fehler beim Schreiben" />
+               <Text TextId="E_26_3" Value="E 26-3: Flash: Fehler beim L&#246;schen" />
+               <Text TextId="E_26_4" Value="E 26-4: Flash: Fehler im internen Flash" />
+               <Text TextId="E_26_5" Value="E 26-5: Fehlende Kalibrierdaten" />
+               <Text TextId="E_26_6" Value="E 26-6: Fehlende Positionsdatens&#228;tze" />
+               <Text TextId="E_26_7" Value="E 26-7: Fehler in den Datentabellen (CAM)" />
+               <Text TextId="E_27" Value="" />
+               <Text TextId="E_27_0" Value="E 27-0: Warnschwelle Schleppfehler" />
+               <Text TextId="E_28" Value="" />
+               <Text TextId="E_28_0" Value="E 28-0: Betriebsstundez&#228;hler fehlt" />
+               <Text TextId="E_28_1" Value="E 28-1: Fehler beim Speichern des Betriebsstundez&#228;hlers" />
+               <Text TextId="E_28_2" Value="E 28-2: Betriebsstundez&#228;hler korrigiert" />
+               <Text TextId="E_28_3" Value="E 28-3: Betriebsstundenz&#228;hler konvertiert" />
+               <Text TextId="E_29" Value="" />
+               <Text TextId="E_29_0" Value="E 29-0: Keine SD-Karte vorhanden" />
+               <Text TextId="E_29_1" Value="E 29-1: SD-Karte: Initialisierungsfehler" />
+               <Text TextId="E_29_2" Value="E 29-2: SD-Karte: Datenfehler" />
+               <Text TextId="E_29_3" Value="E 29-3: SD-Karte: Schreibfehler" />
+               <Text TextId="E_29_4" Value="E 29-4: SD-Karte: Lesefehler Firmware" />
+               <Text TextId="E_30" Value="" />
+               <Text TextId="E_30_0" Value="E 30-0: Interner mathematischer Fehler" />
+               <Text TextId="E_31" Value="" />
+               <Text TextId="E_31_0" Value="E 31-0: I&#178;t-Motor" />
+               <Text TextId="E_31_1" Value="E 31-1: I&#178;t-Endstufe" />
+               <Text TextId="E_31_2" Value="E 31-2: I&#178;t-PFC" />
+               <Text TextId="E_31_3" Value="E 31-3: I&#178;t-Bremswiderstand" />
+               <Text TextId="E_32" Value="" />
+               <Text TextId="E_32_0" Value="E 32-0: Ladezeit Zwischenkreis &#252;berschritten" />
+               <Text TextId="E_32_1" Value="E 32-1: Unterspannung f&#252;r aktive PFC" />
+               <Text TextId="E_32_5" Value="E 32-5: &#220;berlast Bremschopper" />
+               <Text TextId="E_32_6" Value="E 32-6: Entladezeit Zwischenkreis &#252;berschritten" />
+               <Text TextId="E_32_7" Value="E 32-7: Reglerfreigabe konnte nicht erteilt werden" />
+               <Text TextId="E_32_8" Value="E 32-8: Netzausfall bei aktiver Reglerfreigabe" />
+               <Text TextId="E_32_9" Value="E 32-9: Phasenausfall" />
+               <Text TextId="E_33" Value="" />
+               <Text TextId="E_33_0" Value="E 33-0: Schleppfehler Encoder-Emulation" />
+               <Text TextId="E_34" Value="" />
+               <Text TextId="E_34_0" Value="E 34-0: Keine Synchronisation &#252;ber Feldbus" />
+               <Text TextId="E_34_1" Value="E 34-1: Synchronisationsfehler Feldbus" />
+               <Text TextId="E_35" Value="" />
+               <Text TextId="E_35_0" Value="E 35-0: Durchdrehschutz Linearmotor" />
+               <Text TextId="E_35_5" Value="E 35-5: Fehler bei der Kommutierlagebestimmung" />
+               <Text TextId="E_36" Value="" />
+               <Text TextId="E_36_0" Value="E 36-0: Parameter beim Laden des Parametersatzes begrenzt" />
+               <Text TextId="E_36_1" Value="E 36-1: Parameter beim Laden des Parametersatzes nicht akzeptiert" />
+               <Text TextId="E_37" Value="" />
+               <Text TextId="E_37_0" Value="E 37-0: SERCOS: Empfangsdaten gest&#246;rt" />
+               <Text TextId="E_37_1" Value="E 37-1: SERCOS: LWL-Ring unterbrochen" />
+               <Text TextId="E_37_2" Value="E 37-2: SERCOS: Zweifacher MST-Ausfall" />
+               <Text TextId="E_37_3" Value="E 37-3: SERCOS: Ung&#252;ltige Phasenvorgabe in MST-Info" />
+               <Text TextId="E_37_4" Value="E 37-4: SERCOS: Zweifacher MDT-Ausfall" />
+               <Text TextId="E_37_5" Value="E 37-5: SERCOS: Sprung in unbekannte Betriebsart" />
+               <Text TextId="E_37_6" Value="E 37-6: SERCOS: T3 ung&#252;ltig" />
+               <Text TextId="E_37_7" Value="E 37-7: SERCOS-Feldbus" />
+               <Text TextId="E_37_8" Value="E 37-8: SERCOS-Feldbus" />
+               <Text TextId="E_37_9" Value="E 37-9: SERCOS-Feldbus" />
+               <Text TextId="E_38" Value="" />
+               <Text TextId="E_38_0" Value="E 38-0: SERCOS: SERCON Status event" />
+               <Text TextId="E_38_1" Value="E 38-1: SERCOS: Kein Modul vorhanden" />
+               <Text TextId="E_38_2" Value="E 38-2: SERCOS: Modul defekt" />
+               <Text TextId="E_38_3" Value="E 38-3: SERCOS: S-0-0127: Ung&#252;ltige Daten in S-0-0021" />
+               <Text TextId="E_38_4" Value="E 38-4: SERCOS: S-0-0127: Unzul&#228;ssige IDNs in AT oder MDT" />
+               <Text TextId="E_38_5" Value="E 38-5: SERCOS: S-0-0128: Ung&#252;ltige Daten in S-0-0022" />
+               <Text TextId="E_38_6" Value="E 38-6: SERCOS: S-0-0128: Wichtungsparameter fehlerhaft" />
+               <Text TextId="E_38_7" Value="E 38-7: SERCOS: Ung&#252;ltige IDN in S-0-0026 / S-0-0027" />
+               <Text TextId="E_38_8" Value="E 38-8: SERCOS: Fehler bei Umrechnung" />
+               <Text TextId="E_38_9" Value="E 38-9: SERCOS: SERCON 410b Modus aktiv" />
+               <Text TextId="E_39" Value="" />
+               <Text TextId="E_39_0" Value="E 39-0: SERCOS: Liste S-0-0370: Konfigurationsfehler MDT-Datencontainer" />
+               <Text TextId="E_39_1" Value="E 39-1: SERCOS: Liste S-0-0371: Konfigurationsfehler AT-Datencontainer" />
+               <Text TextId="E_39_2" Value="E 39-2: SERCOS: Fehler im zyklischen Kanal MDT" />
+               <Text TextId="E_39_3" Value="E 39-3: SERCOS: Fehler im zyklischen Kanal AT" />
+               <Text TextId="E_39_4" Value="E 39-4: SERCOS: Fehler im zyklischen Datencontainer MDT" />
+               <Text TextId="E_39_5" Value="E 39-5: SERCOS: Fehler im zyklischen Datencontainer AT" />
+               <Text TextId="E_40" Value="" />
+               <Text TextId="E_40_0" Value="E 40-0: Negativer Software-Endschalter" />
+               <Text TextId="E_40_1" Value="E 40-1: Positiver Software-Endschalter" />
+               <Text TextId="E_40_2" Value="E 40-2: Positionierung &#252;ber negativen Software-Endschalter unterdr&#252;ckt" />
+               <Text TextId="E_40_3" Value="E 40-3: Positionierung &#252;ber positiven Software-Endschalter unterdr&#252;ckt" />
+               <Text TextId="E_41" Value="" />
+               <Text TextId="E_41_0" Value="E 41-0: Satzweiterschaltung: Synchronisationsfehler" />
+               <Text TextId="E_42" Value="" />
+               <Text TextId="E_42_0" Value="E 42-0: Positionierung: Antrieb stoppt automatisch aufgrund fehlender Anschlusspositionierung" />
+               <Text TextId="E_42_1" Value="E 42-1: Positionierung: Antrieb stoppt weil Drehrichtungsumkehr nicht erlaubt" />
+               <Text TextId="E_42_2" Value="E 42-2: Positionierung: Unerlaubte Drehrichtungsumkehr nach &quot;Halt&quot;" />
+               <Text TextId="E_42_3" Value="E 42-3: Start Positionierung verworfen: falsche Betriebsart" />
+               <Text TextId="E_42_4" Value="E 42-4: Referenzfahrt erforderlich" />
+               <Text TextId="E_42_5" Value="E 42-5: Rundachse: Drehrichtung nicht erlaubt" />
+               <Text TextId="E_42_9" Value="E 42-9: Fehler beim Starten der Positionierung" />
+               <Text TextId="E_43" Value="" />
+               <Text TextId="E_43_0" Value="E 43-0: Sollwertsperre durch negativen Endschalter E0" />
+               <Text TextId="E_43_1" Value="E 43-1: Sollwertsperre durch positiven Endschalter E1" />
+               <Text TextId="E_43_2" Value="E 43-2: Positionierung durch Sollwertsperre unterdr&#252;ckt" />
+               <Text TextId="E_44" Value="" />
+               <Text TextId="E_44_0" Value="E 44-0: Fehler in den Kurvenscheibentabellen" />
+               <Text TextId="E_44_1" Value="E 44-1: Kurvenscheibe: Allgemeiner Fehler Referenzierung" />
+               <Text TextId="E_45" Value="" />
+               <Text TextId="E_45_0" Value="E 45-0: Treiberversorgung nicht abgeschaltet" />
+               <Text TextId="E_45_1" Value="E 45-1: Treiberversorgung fehlt" />
+               <Text TextId="E_45_2" Value="E 45-2: Treiberversorgung hat sich aktiviert" />
+               <Text TextId="E_47" Value="" />
+               <Text TextId="E_47_0" Value="E 47-0: Timeout (Einrichtbetrieb)" />
+               <Text TextId="E_48" Value="" />
+               <Text TextId="E_48_0" Value="E 48-0: Betriebsart nicht erlaubt: Referenzfahrt erforderlich" />
+               <Text TextId="E_49" Value="" />
+               <Text TextId="E_49_2" Value="E 49-2: DCO-Datei: Datenfehler" />
+               <Text TextId="E_50" Value="" />
+               <Text TextId="E_50_1" Value="E 50-1: Zu viele synchrone PDOs" />
+               <Text TextId="E_51" Value="" />
+               <Text TextId="E_51_0" Value="E 51-0: Unbekanntes FSM-Modul" />
+               <Text TextId="E_51_1" Value="E 51-1: FSM-Modul: Treiberversorgung fehlerhaft" />
+               <Text TextId="E_51_2" Value="E 51-2: FSM-Modul: Ungleicher Modultyp" />
+               <Text TextId="E_51_3" Value="E 51-3: FSM-Modul: Ungleiche Modulversion" />
+               <Text TextId="E_52" Value="" />
+               <Text TextId="E_52_0" Value="E 52-0: FSM-Modul: Fehler" />
+               <Text TextId="E_52_1" Value="E 52-1: FSM-Modul: Diskrepanzzeit abgelaufen" />
+               <Text TextId="E_52_2" Value="E 52-2: FSM-Modul: Fehler" />
+               <Text TextId="E_52_3" Value="E 52-3: FSM-Modul: Fehler" />
+               <Text TextId="E_52_4" Value="E 52-4: FSM-Modul: Fehler" />
+               <Text TextId="E_52_5" Value="E 52-5: FSM-Modul: Fehler" />
+               <Text TextId="E_52_6" Value="E 52-6: FSM-Modul: Fehler" />
+               <Text TextId="E_52_7" Value="E 52-7: FSM-Modul: Fehler" />
+               <Text TextId="E_52_8" Value="E 52-8: FSM-Modul: Fehler" />
+               <Text TextId="E_52_9" Value="E 52-9: FSM-Modul: Fehler" />
+               <Text TextId="E_53" Value="" />
+               <Text TextId="E_53_0" Value="E 53-0: USF 0: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_53_1" Value="E 53-1: USF 1: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_53_2" Value="E 53-2: USF 2: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_53_3" Value="E 53-3: USF 3: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_53_4" Value="E 53-4: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_53_5" Value="E 53-5: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_53_6" Value="E 53-6: SDI 0: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_53_7" Value="E 53-7: SDI 1: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_53_8" Value="E 53-8: SDI 2: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_53_9" Value="E 53-9: SDI 3: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_54" Value="" />
+               <Text TextId="E_54_0" Value="E 54-0: SBC: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_54_1" Value="E 54-1: SBT: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_54_2" Value="E 54-2: SS2: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_54_3" Value="E 54-3: SOS: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_54_4" Value="E 54-4: SS1: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_54_5" Value="E 54-5: STO: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_54_6" Value="E 54-6: SBC: Bremse 24h nicht gel&#252;ftet" />
+               <Text TextId="E_54_7" Value="E 54-7: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_54_8" Value="E 54-8: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_54_9" Value="E 54-9: Sicherheitsbedingung verletzt" />
+               <Text TextId="E_55" Value="" />
+               <Text TextId="E_55_0" Value="E 55-0: Istwert nicht verf&#252;gbar" />
+               <Text TextId="E_55_1" Value="E 55-1: SinCos-Geber fehlerhaft" />
+               <Text TextId="E_55_2" Value="E 55-2: SinCos Stillstandszeit &#252;berschritten (max. 24h)" />
+               <Text TextId="E_55_3" Value="E 55-3: Resolver fehlerhaft" />
+               <Text TextId="E_55_4" Value="E 55-4: EnDat-Geber: Fehler im laufenden Betrieb" />
+               <Text TextId="E_55_5" Value="E 55-5: EnDat-Encoder: Erkennung fehlerhaft" />
+               <Text TextId="E_55_6" Value="E 55-6: Inkrementalgeber X10 fehlerhaft" />
+               <Text TextId="E_55_7" Value="E 55-7: Winkelinformation aus Grundger&#228;t fehlerhaft" />
+               <Text TextId="E_55_8" Value="E 55-8: Fehler bei der Istwerterfassung" />
+               <Text TextId="E_55_9" Value="E 55-9: Fehler bei der Istwerterfassung" />
+               <Text TextId="E_56" Value="" />
+               <Text TextId="E_56_0" Value="E 56-0: Fehler bei der Istwerterfassung" />
+               <Text TextId="E_56_1" Value="E 56-1: Fehler bei der Istwerterfassung" />
+               <Text TextId="E_56_2" Value="E 56-2: Fehler bei der Istwerterfassung" />
+               <Text TextId="E_56_3" Value="E 56-3: Fehler bei der Istwerterfassung" />
+               <Text TextId="E_56_4" Value="E 56-4: Fehler bei der Istwerterfassung" />
+               <Text TextId="E_56_5" Value="E 56-5: Fehler bei der Istwerterfassung" />
+               <Text TextId="E_56_6" Value="E 56-6: Fehler bei der Istwerterfassung" />
+               <Text TextId="E_56_7" Value="E 56-7: Fehler bei der Istwerterfassung" />
+               <Text TextId="E_56_8" Value="E 56-8: Diskrepanz Winkelgeber 1 / 2" />
+               <Text TextId="E_56_9" Value="E 56-9: Diskrepanz Winkelprozessor 1 / 2" />
+               <Text TextId="E_57" Value="" />
+               <Text TextId="E_57_0" Value="E 57-0: I/O: interner Fehler" />
+               <Text TextId="E_57_1" Value="E 57-1: Digitale Eing&#228;nge: Fehlerhaftes Signalspiel" />
+               <Text TextId="E_57_2" Value="E 57-2: Digital Input: Externe Testsignale fehlerhaft" />
+               <Text TextId="E_57_3" Value="E 57-3: I/O Fehler" />
+               <Text TextId="E_57_4" Value="E 57-4: I/O Fehler" />
+               <Text TextId="E_57_5" Value="E 57-5: I/O Fehler" />
+               <Text TextId="E_57_6" Value="E 57-6: I/O Fehler" />
+               <Text TextId="E_57_7" Value="E 57-7: I/O Fehler" />
+               <Text TextId="E_57_8" Value="E 57-8: I/O Fehler" />
+               <Text TextId="E_57_9" Value="E 57-9: I/O Fehler" />
+               <Text TextId="E_58" Value="" />
+               <Text TextId="E_58_0" Value="E 58-0: Plausibilit&#228;tspr&#252;fung der Parameter fehlgeschlagen" />
+               <Text TextId="E_58_1" Value="E 58-1: Parametriersitzung abgelehnt" />
+               <Text TextId="E_58_2" Value="E 58-2: Fehler bei Kommunikation / Parametrierung" />
+               <Text TextId="E_58_3" Value="E 58-3: Fehler bei Kommunikation / Parametrierung" />
+               <Text TextId="E_58_4" Value="E 58-4: SSIO Puffer&#252;berlauf, Kommunikation von au&#223;en fehlerhaft" />
+               <Text TextId="E_58_5" Value="E 58-5: SSIO-Kommunikationsfehler intern" />
+               <Text TextId="E_58_6" Value="E 58-6: Fehler Kommunikation mit 2. Prozessor" />
+               <Text TextId="E_58_7" Value="E 58-7: Fehler bei Kommunikation / Parametrierung" />
+               <Text TextId="E_58_8" Value="E 58-8: Fehler bei Kommunikation / Parametrierung" />
+               <Text TextId="E_58_9" Value="E 58-9: Fehler bei Kommunikation / Parametrierung" />
+               <Text TextId="E_59" Value="" />
+               <Text TextId="E_59_0" Value="E 59-0: Interner Fehler" />
+               <Text TextId="E_59_1" Value="E 59-1: Interner Fehler" />
+               <Text TextId="E_59_2" Value="E 59-2: Fehler externe Spannungsversorgung" />
+               <Text TextId="E_59_3" Value="E 59-3: Fehler interne Spannungsversorgung" />
+               <Text TextId="E_59_4" Value="E 59-4: &#220;berlauf Fehlermanagement" />
+               <Text TextId="E_59_5" Value="E 59-5: Fehlerlog im Grundger&#228;t konnte nicht geschrieben werden" />
+               <Text TextId="E_59_6" Value="E 59-6: Fehler beim Speichern des Parametersatzes" />
+               <Text TextId="E_59_7" Value="E 59-7: Checksumme Flash-Speicher fehlerhaft" />
+               <Text TextId="E_59_8" Value="E 59-8: Interne &#220;berwachung" />
+               <Text TextId="E_59_9" Value="E 59-9: Strukturfehler, ung&#252;ltiger Softwarezustand" />
+               <Text TextId="E_60" Value="" />
+               <Text TextId="E_60_1" Value="E 60-1: Benutzerspezifischer Fehler Ethernetmodul" />
+               <Text TextId="E_61" Value="" />
+               <Text TextId="E_61_1" Value="E 61-1: Benutzerspezifischer Fehler Ethernetmodul" />
+               <Text TextId="E_62" Value="" />
+               <Text TextId="E_62_0" Value="E 62-0: EtherCAT: Allgemeiner Busfehler" />
+               <Text TextId="E_62_1" Value="E 62-1: EtherCAT: Initialisierungsfehler" />
+               <Text TextId="E_62_2" Value="E 62-2: EtherCAT: Protokollfehler" />
+               <Text TextId="E_62_3" Value="E 62-3: EtherCAT: Ung&#252;ltige RPDO-L&#228;nge" />
+               <Text TextId="E_62_4" Value="E 62-4: EtherCAT: Ung&#252;ltige TPDO-L&#228;nge" />
+               <Text TextId="E_62_5" Value="E 62-5: EtherCAT: Zyklische Daten&#252;bertragung fehlerhaft" />
+               <Text TextId="E_63" Value="" />
+               <Text TextId="E_63_0" Value="E 63-0: EtherCAT: Modul defekt" />
+               <Text TextId="E_63_1" Value="E 63-1: EtherCAT: Ung&#252;ltige Daten" />
+               <Text TextId="E_63_2" Value="E 63-2: EtherCAT: TPDO-Daten wurden nicht gelesen" />
+               <Text TextId="E_63_3" Value="E 63-3: EtherCAT: Keine Distributed Clocks aktiv" />
+               <Text TextId="E_63_4" Value="E 63-4: EtherCAT: Fehlen einer SYNC-NAchricht im IPO-Zyklus" />
+               <Text TextId="E_64" Value="" />
+               <Text TextId="E_64_0" Value="E 64-0: DeviceNet: MAC ID doppelt" />
+               <Text TextId="E_64_1" Value="E 64-1: DeviceNet: Busspannung fehlt" />
+               <Text TextId="E_64_2" Value="E 64-2: DeviceNet: Empfangspuffer &#252;bergelaufen" />
+               <Text TextId="E_64_3" Value="E 64-3: DeviceNet: Sendepuffer &#252;bergelaufen" />
+               <Text TextId="E_64_4" Value="E 64-4: DeviceNet: IO-Nachricht nicht gesendet" />
+               <Text TextId="E_64_5" Value="E 64-5: DeviceNet: Bus AUS" />
+               <Text TextId="E_64_6" Value="E 64-6: DeviceNet: CAN-Controller meldet &#220;berlauf" />
+               <Text TextId="E_65" Value="" />
+               <Text TextId="E_65_0" Value="E 65-0: DeviceNet aktiviert, aber kein Modul" />
+               <Text TextId="E_65_1" Value="E 65-1: Timeout IO-Verbindung" />
+               <Text TextId="E_70" Value="" />
+               <Text TextId="E_70_1" Value="E 70-1: Fehler FHPP" />
+               <Text TextId="E_70_2" Value="E 70-2: Fehler FHPP" />
+               <Text TextId="E_70_3" Value="E 70-3: Fehler FHPP" />
+               <Text TextId="E_71" Value="" />
+               <Text TextId="E_71_1" Value="E 71-1: FHPP: Falsche Empfangstelegramml&#228;nge" />
+               <Text TextId="E_71_2" Value="E 71-2: FHPP: Falsche Antworttelegramml&#228;nge" />
+               <Text TextId="E_72" Value="" />
+               <Text TextId="E_72_0" Value="E 72-0: Profinet Initialisierungfehler" />
+               <Text TextId="E_72_1" Value="E 72-1: Profinet Busfehler" />
+               <Text TextId="E_72_3" Value="E 72-3: Profinet Ung&#252;ltige IP Konfiguration" />
+               <Text TextId="E_72_4" Value="E 72-4: Profinet Ung&#252;ltiger Ger&#228;tename" />
+               <Text TextId="E_72_5" Value="E 72-5: Profinet Technologiemodul defekt" />
+               <Text TextId="E_72_6" Value="E 72-6: Profinet Nicht unterst&#252;tztes Feature" />
+               <Text TextId="E_73" Value="" />
+               <Text TextId="E_73_0" Value="E 73-0: PROFIenergy Zustand nicht m&#246;glich" />
+               <Text TextId="E_80" Value="" />
+               <Text TextId="E_80_0" Value="E 80-0: &#220;berlauf Stromregler IRQ" />
+               <Text TextId="E_80_1" Value="E 80-1: &#220;berlauf Drehzahlregler IRQ" />
+               <Text TextId="E_80_2" Value="E 80-2: &#220;berlauf Lageregler IRQ" />
+               <Text TextId="E_80_3" Value="E 80-3: &#220;berlauf Interpolator IRQ" />
+               <Text TextId="E_81" Value="" />
+               <Text TextId="E_81_4" Value="E 81-4: &#220;berlauf Low-Level IRQ" />
+               <Text TextId="E_81_5" Value="E 81-5: &#220;berlauf MDC IRQ" />
+               <Text TextId="E_82" Value="" />
+               <Text TextId="E_82_0" Value="E 82-0: Interne Ablaufsteuerung: Ereignis" />
+               <Text TextId="E_83" Value="" />
+               <Text TextId="E_83_0" Value="E 83-0: Ung&#252;ltiges Technologiemodul" />
+               <Text TextId="E_83_1" Value="E 83-1: Nicht unterst&#252;tztes Technologiemodul" />
+               <Text TextId="E_83_2" Value="E 83-2: Technologiemodul: HW-Revision nicht unterst&#252;tzt" />
+               <Text TextId="E_83_3" Value="E 83-3: Technologiemodul: Fehler beim Schreiben" />
+               <Text TextId="E_83_4" Value="E 83-4: MC2000 Watchdog" />
+               <Text TextId="E_84" Value="" />
+               <Text TextId="E_84_0" Value="E 84-0: Bedingung f&#252;r Reglerfreigabe nicht erf&#252;llt" />
+               <Text TextId="E_90" Value="" />
+               <Text TextId="E_90_0" Value="E 90-0: Externes RAM nicht erkannt" />
+               <Text TextId="E_90_1" Value="E 90-1: Externes Flash nicht erkannt" />
+               <Text TextId="E_90_2" Value="E 90-2: Fehler beim Booten FPGA" />
+               <Text TextId="E_90_3" Value="E 90-3: Fehler bei Start SD-ADUs" />
+               <Text TextId="E_90_4" Value="E 90-4: Synchronisationsfehler SD-ADU nach Start" />
+               <Text TextId="E_90_5" Value="E 90-5: SD-ADU nicht synchron" />
+               <Text TextId="E_90_6" Value="E 90-6: Trigger-Fehler" />
+               <Text TextId="E_90_7" Value="E 90-7: Kein CAN-Controller vorhanden" />
+               <Text TextId="E_90_8" Value="E 90-8: Checksummenfehler Ger&#228;teparameter" />
+               <Text TextId="E_90_9" Value="E 90-9: Illegale Firmware-Version" />
+               <Text TextId="E_91" Value="" />
+               <Text TextId="E_91_0" Value="E 91-0: Prozessor-Fehler" />
+				</Language>
+			</ExternalTextList>
+		</ApplicationProcess>
+	</ProfileBody>
+</ISO15745Profile>
