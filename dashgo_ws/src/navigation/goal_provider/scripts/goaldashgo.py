@@ -3,6 +3,7 @@ import rospy
 import actionlib
 from geometry_msgs.msg import Pose, Point, Quaternion
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 # goal_path = [
 #     [1.832814,1.753299,0.000000,0.000000,-0.710403,0.703795],
 #     [5.425715,4.625706,0.000000,0.000000,-0.000100,1.000000]
