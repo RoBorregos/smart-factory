@@ -16,7 +16,7 @@ class StateMachine:
         goal = MoveBaseGoal()
         goal.target_pose.header.frame_id = "/map"
         goal.target_pose.header.stamp = rospy.Time.now()
-        goal.target_pose.pose = Pose(Point(goal_path[plcregisters[0]][0], goal_path[plcregisters[1]][1], 0), Quaternion(goal_path[plcregisters[2]][2],goal_path[plcregisters[3]][3],goal_path[plcregisters[4]][4],goal_path[plcregisters[5]][5]))
+        goal.target_pose.pose = Pose(Point(plcregisters[0], plcregisters[1],  plcregisters[2]), Quaternion(plcregisters[3],plcregisters[4],plcregisters[5],plcregisters[6]))
         self.client.send_goal(goal)
         print("Goal to dashgo 0 sent")
         wait = self.client.wait_for_result()
