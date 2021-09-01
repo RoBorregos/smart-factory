@@ -41,8 +41,8 @@ if __name__ == '__main__':
                 rospy.logwarn("Modbus connection error")
                 rospy.logwarn(error)
             try:
-                rr = self.client.read_holding_registers(0,26,unit=self.UNIT)
-                self.client.close()
+                rr = client.read_holding_registers(0,15,unit=UNIT)
+                client.close()
                 rospy.logwarn(rr.registers)
                 rospy.logwarn("PLC-DASHGO working")
                 robot.do_mission(rr.registers)
