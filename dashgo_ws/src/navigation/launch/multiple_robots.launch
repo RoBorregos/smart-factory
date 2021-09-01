@@ -28,12 +28,12 @@
    -->
    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <group ns="dashgo_0">
-    <include file="src/navigation/launch/nav.launch">
+    <include file="nav.launch">
       <arg name="ns" value="dashgo_0" />
       <arg name="initial_pose_x" value="0.591092" />
       <arg name="initial_pose_y" value="4.537635" />
     </include>
-    <include file="src/navigation/launch/move_base.launch">
+    <include file="move_base.launch">
       <arg name="ns" value="dashgo_0" />
     </include>
     <node pkg="mobile_robot" name="dashgo" type="dashgo.py" output="screen">
@@ -42,12 +42,12 @@
   </group>
 
   <group ns="dashgo_1">
-    <include file="src/navigation/launch/nav.launch">
+    <include file="nav.launch">
       <arg name="ns" value="dashgo_1" />
       <arg name="initial_pose_x" value="0.571774" />
       <arg name="initial_pose_y" value="3.399817" />
     </include>
-    <include file="src/navigation/launch/move_base.launch">
+    <include file="move_base.launch">
       <arg name="ns" value="dashgo_1" />
     </include>
     <node pkg="mobile_robot" name="dashgo" type="dashgo.py" output="screen">

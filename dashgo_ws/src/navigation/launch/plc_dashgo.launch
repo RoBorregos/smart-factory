@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Start RVIZ simulator -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/plc_dashgo.rviz"/>
+
+  <!-- Map server initialization, outside namespaces -->
+  <node name="map_server" pkg="map_server" type="map_server"
+        args="$(find contextualizer)/maps/factory.yaml">
+        <param name="frame_id" value="/map"/>
+  </node>
+
+  <group ns="dashgo_0">
+    <include file="nav.launch">
+      <arg name="ns" value="dashgo_0" />
+      <arg name="initial_pose_x" value="0.591092" />
+      <arg name="initial_pose_y" value="4.537635" />
+    </include>
+    <include file="move_base.launch">
+      <arg name="ns" value="dashgo_0" />
+    </include>
+    <node pkg="goal_provider" name="dashgogoal" type="goaldashgo.py" output="screen">
+    </node>
+  </group>
+
+</launch>
