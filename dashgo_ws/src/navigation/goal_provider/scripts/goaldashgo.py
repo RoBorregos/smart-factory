@@ -4,6 +4,7 @@ import actionlib
 from geometry_msgs.msg import Pose, Point, Quaternion
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
+import math
 # goal_path = [
 #     [1.832814,1.753299,0.000000,0.000000,-0.710403,0.703795],
 #     [5.425715,4.625706,0.000000,0.000000,-0.000100,1.000000]
@@ -16,16 +17,43 @@ class StateMachine:
         goal = MoveBaseGoal()
         goal.target_pose.header.frame_id = "/map"
         goal.target_pose.header.stamp = rospy.Time.now()
-        goal.target_pose.pose = Pose(Point(plcregisters[0], plcregisters[1],  plcregisters[2]), Quaternion(plcregisters[3],plcregisters[4],plcregisters[5],plcregisters[6]))
-        self.client.send_goal(goal)
-        print("Goal to dashgo 0 sent")
-        wait = self.client.wait_for_result()
-        if not wait:
-            rospy.logerr("Action server not available!")
-            rospy.signal_shutdown("Action server not available!")
-            return None
+
+        if(rr.registers[0]== 0):
+            rospy.logwarn("Manual mode ready")
+            angle = rr.registers[3]
+            a = [ plcregisters[1], plcregisters[2],0.000] #Ax,Ay,Az
+            qw = math.cos(angle/2)
+            qx = a[0]* math.sin(angle/2)
+            qy = a[1]* math.sin(angle/2)
+            qz = a[2]* math.sin(angle/2)
+            goal.target_pose.pose = Pose(Point(a[0], a[1],  a[2]), Quaternion(qx,qy,qz,qw))
+            self.client.send_goal(goal)
+            print("Goal to dashgo 0 sent")
+            wait = self.client.wait_for_result()
+            if not wait:
+                rospy.logerr("Action server not available!")
+                rospy.signal_shutdown("Action server not available!")
+                return None
+            else:
+                return self.client.get_result()
         else:
-            return self.client.get_result()
+            rospy.logwarn("Auto mode ready")
+            angle = rr.registers[6]
+            a = [ plcregisters[4], plcregisters[5],0.000] #Ax,Ay,Az
+            qw = math.cos(angle/2)
+            qx = a[0]* math.sin(angle/2)
+            qy = a[1]* math.sin(angle/2)
+            qz = a[2]* math.sin(angle/2)
+            goal.target_pose.pose = Pose(Point(a[0], a[1],  a[2]), Quaternion(qx,qy,qz,qw))
+            self.client.send_goal(goal)
+            print("Goal to dashgo 0 sent")
+            wait = self.client.wait_for_result()
+            if not wait:
+                rospy.logerr("Action server not available!")
+                rospy.signal_shutdown("Action server not available!")
+                return None
+            else:
+                return self.client.get_result()
 
 if __name__ == '__main__':
     try:
