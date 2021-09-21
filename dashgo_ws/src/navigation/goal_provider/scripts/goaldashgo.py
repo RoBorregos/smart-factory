@@ -21,8 +21,8 @@ class StateMachine:
         if(rr.registers[0]== 0):
             rospy.logwarn("Manual mode ready")
             angle = rr.registers[3]
-            ax = -plcregisters[1]/1000 if int(str(plcregisters[1])[:1]) == 1 else plcregisters[1]/1000
-            ay = -plcregisters[2]/1000 if int(str(plcregisters[2])[:1]) == 1 else plcregisters[2]/1000 
+            ax = -int(str(plcregisters[1])[1:])/1000 if int(str(plcregisters[1])[:1]) == 1 else plcregisters[1]/1000
+            ay = -int(str(plcregisters[2])[1:])/1000 if int(str(plcregisters[2])[:1]) == 1 else plcregisters[2]/1000 
             a = [ ax, ay,0.000] #Ax,Ay,Az
             qw = math.cos(angle/2)
             qx = a[0]* math.sin(angle/2)
@@ -41,8 +41,8 @@ class StateMachine:
         else:
             rospy.logwarn("Auto mode ready")
             angle = rr.registers[6]
-            ax = -plcregisters[4]/1000 if int(str(plcregisters[4])[:1]) == 1 else plcregisters[4]/1000
-            ay = -plcregisters[5]/1000 if int(str(plcregisters[5])[:1]) == 1 else plcregisters[5]/1000 
+            ax = -int(str(plcregisters[4])[1:])/1000 if int(str(plcregisters[4])[:1]) == 1 else plcregisters[4]/1000
+            ay = -int(str(plcregisters[5])[1:])/1000 if int(str(plcregisters[5])[:1]) == 1 else plcregisters[5]/1000 
             a = [ ax, ay,0.000] #Ax,Ay,Az
             qw = math.cos(angle/2)
             qx = a[0]* math.sin(angle/2)
