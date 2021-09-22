@@ -48,14 +48,22 @@ class StateMachine:
                 return self.client.get_result()
         else:
             rospy.logwarn("Auto mode ready")
-            angle = rr.registers[6]
-            ax = -float(str(plcregisters[4])[1:])/1000 if int(str(plcregisters[4])[:1]) == 1 and len(str(plcregisters[4])) == 5 else plcregisters[4]/1000
-            ay = -float(str(plcregisters[5])[1:])/1000 if int(str(plcregisters[5])[:1]) == 1 and len(str(plcregisters[5])) == 5 else plcregisters[5]/1000 
+            angle = rr.registers[6] * math.pi/180
+            ax = -float(str(plcregisters[4])[1:])/1000 if int(str(plcregisters[4])[:1]) == 1 and len(str(plcregisters[4])) == 5 else float(plcregisters[4])/1000
+            ay = -float(str(plcregisters[5])[1:])/1000 if int(str(plcregisters[5])[:1]) == 1 and len(str(plcregisters[5])) == 5 else float(plcregisters[5])/1000 
             a = [ ax, ay,0.000] #Ax,Ay,Az
             qw = math.cos(angle/2)
-            qx = a[0]* math.sin(angle/2)
-            qy = a[1]* math.sin(angle/2)
-            qz = a[2]* math.sin(angle/2)
+            qx = 0.000
+            qy = 0.000
+            qz = math.sin(angle/2)
+            rospy.logwarn(a[0])
+            rospy.logwarn(a[1])
+            rospy.logwarn(a[2])
+            rospy.logwarn(angle)
+            rospy.logwarn(qx)
+            rospy.logwarn(qy)
+            rospy.logwarn(qz)
+            rospy.logwarn(qw)
             goal.target_pose.pose = Pose(Point(a[0], a[1],  a[2]), Quaternion(qx,qy,qz,qw))
             self.client.send_goal(goal)
             print("Goal to dashgo 0 sent")
