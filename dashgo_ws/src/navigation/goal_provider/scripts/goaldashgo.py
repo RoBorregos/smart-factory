@@ -81,7 +81,7 @@ if __name__ == '__main__':
         robot = StateMachine()
         while not rospy.is_shutdown():
             try:
-                client =  ModbusClient("192.168.100.23",port=502)
+                client =  ModbusClient("192.168.31.2",port=502)
                 UNIT = 0x1
                 conexion = client.connect()
                 rospy.logwarn("Modbus connection ready")

@@ -1,0 +1,88 @@
+controller_frequency: 3.0
+controller_patience: 3.0
+
+base_local_planner: "dwa_local_planner/DWAPlannerROS"
+base_global_planner: "navfn/NavfnROS"
+
+
+NavfnROS:
+  visualize_potential: false    #Publish potential for rviz as pointcloud2, not really helpful, default false
+  allow_unknown: true          #Specifies whether or not to allow navfn to create plans that traverse unknown space, default true
+                                #Needs to have track_unknown_space: true in the obstacle / voxel layer (in costmap_commons_param) to work
+  planner_window_x: 0.0         #Specifies the x size of an optional window to restrict the planner to, default 0.0
+  planner_window_y: 0.0         #Specifies the y size of an optional window to restrict the planner to, default 0.0
+  
+  default_tolerance: 0.3        #If the goal is in an obstacle, the planer will plan to the nearest point in the radius of default_tolerance, default 0.0
+                                #The area is always searched, so could be slow for big values
+TrajectoryPlannerROS:
+  max_vel_x: 0.07 #Previous 0.225
+  min_vel_x: -0.01
+  max_vel_theta: 0.1 #0.3
+  min_vel_theta: -0.1 #-0.3
+  max_in_place_vel_theta: 0.2
+  min_in_place_vel_theta: -0.2
+  escape_vel: -0.1
+  quency: 5
+  meter_scoring: true
+  acc_lim_theta: 0.1
+  acc_lim_x: 0.3
+  acc_lim_y: 0.25
+  holonomic_robot: false
+
+DWAPlannerROS:
+  # Robot Configuration Parameters
+  max_vel_x_backwards: 0.15
+  min_turning_radius: 0.0
+  footprint_model: # types: "point", "circular", "two_circles", "line", "polygon"
+    #radius: 0.23 # for type "circular"
+    #vertices: [[-0.1, -0.26], [-0.1, 0.26],[0.287, 0.26], [0.287, -0.26]]
+    vertices: [[-0.085, -0.20], [-0.085, 0.2],[0.315, 0.2], [0.315, -0.2]]
+  max_vel_x: 0.6  # 0.225
+  min_vel_x: -0.01 
+  max_vel_y: 0.0  # diff drive robot
+  min_vel_y: 0.0  # diff drive robot
+
+  max_vel_trans: 0.4 # choose slightly less than the base's capability
+  min_vel_trans: 0.1  # this is the min trans velocity when there is negligible rotational velocity
+  trans_stopped_vel: 0.1
+
+  # Warning!
+  #   do not set min_trans_vel to 0.0 otherwise dwa will always think translational velocities
+  #   are non-negligible and small in place rotational velocities will be created.
+
+  max_vel_theta: 0.35  # choose slightly less than the base's capability
+  min_vel_theta: 0.1  # this is the min angular velocity when there is negligible translational velocity
+  theta_stopped_vel: 0.3
+  
+  acc_lim_x: 1.0 # maximum is theoretically 2.0, but we 
+  acc_lim_theta: 2.0
+  acc_lim_y: 0.1      # diff drive robot
+
+# Goal Tolerance Parameters
+  yaw_goal_tolerance: 0.3  # 0.05
+  xy_goal_tolerance: 0.22  # 0.10
+  latch_xy_goal_tolerance: true
+
+# Forward Simulation Parameters
+  sim_time: 5.0       # 1.7
+  vx_samples: 20       # 3
+  vy_samples: 1       # diff drive robot, there is only one sample
+  vtheta_samples: 40  # 20
+  sim_granularity: 0.025
+
+# Trajectory Scoring Parameters
+  path_distance_bias: 32.0      # 64.0   - weighting for how much it should stick to the global path plan
+  goal_distance_bias: 20.0      # 24.0   - wighting for how much it should attempt to reach its goal
+  occdist_scale: 0.05           # 0.01   - weighting for how much the controller should avoid obstacles
+  forward_point_distance: 0.325 # 0.325  - how far along to place an additional scoring point
+  stop_time_buffer: 0.2         # 0.2    - amount of time a robot must stop in before colliding for a valid traj.
+  scaling_speed: 0.25           # 0.25   - absolute velocity at which to start scaling the robot's footprint
+  max_scaling_factor: 0.2       # 0.2    - how much to scale the robot's footprint when at speed.
+
+# Oscillation Prevention Parameters
+  oscillation_reset_dist: 0.05  # 0.05   - how far to travel before resetting oscillation flags
+
+# Debugging
+  publish_traj_pc : true
+  publish_cost_grid_pc: true
+  global_frame_id: odom_combined
