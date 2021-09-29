@@ -5,6 +5,7 @@
   <include file="$(find dashgo_driver)/launch/driver_imu.launch"/>
   <include file="$(find ydlidar)/launch/ydlidar1_up.launch"/>
   <include file="$(find dashgo_description)/launch/dashgo_description.launch"/>
+  <include file="$(find dashgo_nav)/launch/include/imu/teb_move_base.launch"/>
   <node name="robot_pose_publisher" pkg="robot_pose_publisher" type="robot_pose_publisher" />
   <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
       <rosparam command="load" file="$(find dashgo_tools)/conf/box_filter.yaml" />
@@ -16,14 +17,15 @@
   <node name="map_server" pkg="map_server" type="map_server"
         args="$(find contextualizer)/maps/factory.yaml">
         <param name="frame_id" value="/map"/>
-  </node>
+  </node> 
 
   <group ns="dashgo_0">
-    <include file="nav.launch">
+    <?--<include file="nav.launch">
       <arg name="ns" value="" />
       <arg name="initial_pose_x" value="0.591092" />
       <arg name="initial_pose_y" value="4.537635" />
     </include>
+    --?>
     <include file="move_base.launch">
       <arg name="ns" value="" />
     </include>
