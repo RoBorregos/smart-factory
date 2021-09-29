@@ -15,7 +15,7 @@ class StateMachine:
     def do_mission(self, plcregisters):
         self.client.wait_for_server()
         goal = MoveBaseGoal()
-        goal.target_pose.header.frame_id = "/base_footprint"
+        goal.target_pose.header.frame_id = "/map"
         goal.target_pose.header.stamp = rospy.Time.now()
 
         if(rr.registers[0]== 0):
