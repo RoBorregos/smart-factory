@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <!-- Start RVIZ simulator -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/plc_dashgo.rviz"/>
+  <!--<node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/plc_dashgo.rviz"/>-->
   <include file="$(find dashgo_driver)/launch/driver_imu.launch"/>
   <include file="$(find ydlidar)/launch/ydlidar1_up.launch"/>
   <include file="$(find dashgo_description)/launch/dashgo_description.launch"/>
@@ -20,12 +20,12 @@
 
   <group ns="dashgo_0">
     <include file="nav.launch">
-      <arg name="ns" value="dashgo_0" />
+      <arg name="ns" value="" />
       <arg name="initial_pose_x" value="0.591092" />
       <arg name="initial_pose_y" value="4.537635" />
     </include>
     <include file="move_base.launch">
-      <arg name="ns" value="dashgo_0" />
+      <arg name="ns" value="" />
     </include>
     <node pkg="goal_provider" name="dashgogoal" type="goaldashgo.py" output="screen">
     </node>

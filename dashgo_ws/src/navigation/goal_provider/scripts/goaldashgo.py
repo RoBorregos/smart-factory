@@ -11,7 +11,7 @@ import math
 # ]
 class StateMachine:
     def __init__(self):
-        self.client = actionlib.SimpleActionClient('/dashgo_0/move_base', MoveBaseAction)
+        self.client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
     def do_mission(self, plcregisters):
         self.client.wait_for_server()
         goal = MoveBaseGoal()

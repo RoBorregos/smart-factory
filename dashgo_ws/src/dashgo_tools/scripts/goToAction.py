@@ -81,7 +81,7 @@ def sendGoal(goal_position):
     client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
     client.wait_for_server()
     print("Client exists")
-    goal = MoveBaseGoal()
+    goal = MoveBaseGoal() 
     goal.target_pose.header.frame_id = "/map"
     goal.target_pose.header.stamp = rospy.Time.now()
     goal.target_pose.pose = Pose(Point(goal_position[0], goal_position[1], 0.0), Quaternion(goal_position[2],goal_position[3], goal_position[4], goal_position[5]))
