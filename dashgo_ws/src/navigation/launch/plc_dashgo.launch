@@ -20,12 +20,13 @@
   </node> 
 
   <group ns="dashgo_0">
-    <?--<include file="nav.launch">
+    <?ignore
+    <include file="nav.launch">
       <arg name="ns" value="" />
       <arg name="initial_pose_x" value="0.591092" />
       <arg name="initial_pose_y" value="4.537635" />
     </include>
-    --?>
+    ?>
     <include file="move_base.launch">
       <arg name="ns" value="" />
     </include>
