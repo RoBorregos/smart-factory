@@ -11,7 +11,7 @@
   <rosparam file="$(arg map_file)" command="load" ns="map" />
   <arg name="initial_pose_x" default="0.591092"/> 
   <arg name="initial_pose_y" default="4.537635"/> 
-  <arg name="initial_pose_a" default="0.0"/>
+  <arg name="initial_pose_a" default="0.0"/>  
   <include file="$(find dashgo_nav)/launch/include/imu/amcl.launch.xml">
     <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
     <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
