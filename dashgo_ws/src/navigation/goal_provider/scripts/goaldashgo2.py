@@ -22,7 +22,7 @@ class StateMachine:
     def setServerFeedback(data):
         if len(data.status_list):
             move_base_status = data.status_list[0].status
-    def sendGoal(goal_position):
+    def sendGoal1(goal_position):
         global move_base_status
         client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
         client.wait_for_server()
@@ -54,7 +54,7 @@ class StateMachine:
             a[4] = 0.000
             a[5] = math.sin(angle/2)
             a[6] = math.cos(angle/2)
-            self.sendGoal(a)
+            self.sendGoal1(a)
             socket_pub.publish("arrive")
         else:
             rospy.logwarn("Auto mode ready")
