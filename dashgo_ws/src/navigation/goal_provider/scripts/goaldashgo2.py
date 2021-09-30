@@ -44,7 +44,6 @@ class StateMachine:
         return_to_beginning = False
         listener = tf.TransformListener()
         trans, rot = None, None
-        rospy.Subscriber("move_base/status", GoalStatusArray, setServerFeedback)
         if(rr.registers[0]== 0):
             rospy.logwarn("Manual mode ready")
             angle = rr.registers[3] * math.pi/180
