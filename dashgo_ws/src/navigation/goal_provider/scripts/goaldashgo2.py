@@ -24,20 +24,19 @@ class StateMachine:
             move_base_status = data.status_list[0].status
     def sendGoal1(self,goal_position):
         global move_base_status
-        client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
-        client.wait_for_server()
+        self.client.wait_for_server()
         print("Client exists")
         goal = MoveBaseGoal() 
         goal.target_pose.header.frame_id = "/map"
         goal.target_pose.header.stamp = rospy.Time.now()
         goal.target_pose.pose = Pose(Point(goal_position[0], goal_position[1], goal_position[2]), Quaternion(goal_position[3],goal_position[4], goal_position[5], goal_position[6]))
-        client.send_goal(goal)
-        wait = client.wait_for_result()
+        self.client.send_goal(goal)
+        wait = self.client.wait_for_result()
         if not wait:
             rospy.logerr("Action server not available!")
             rospy.signal_shutdown("Action server not available!")
         else:
-            return client.get_result()
+            return self.client.get_result()
     def do_mission(self, plcregisters):
         socket_pub = rospy.Publisher("navBridgeServer/talker", String) 
         rospy.Subscriber("move_base/status", GoalStatusArray, self.setServerFeedback)
