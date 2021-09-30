@@ -5,7 +5,23 @@
   <include file="$(find dashgo_driver)/launch/driver_imu.launch"/>
   <include file="$(find ydlidar)/launch/ydlidar1_up.launch"/>
   <include file="$(find dashgo_description)/launch/dashgo_description.launch"/>
-  <include file="$(find dashgo_nav)/launch/include/imu/teb_move_base.launch"/>
+  <node pkg="move_base" type="move_base" respawn="true" name="move_base" output="screen" clear_params="true">
+    <rosparam file="$(find dashgo_nav)/config/imu/costmap_common_params_diff.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find dashgo_nav)/config/imu/costmap_common_params_diff.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find dashgo_nav)/config/imu/local_costmap_params_diff.yaml" command="load" />
+    <rosparam file="$(find dashgo_nav)/config/imu/global_costmap_params_diff.yaml" command="load" />
+    <!-- <rosparam file="$(find dashgo_nav)/config/imu/base_global_planner_param.yaml" command="load" /> -->
+
+    <rosparam file="$(find dashgo_nav)/config/imu/move_base_params_diff.yaml" command="load" />
+    <rosparam file="$(find dashgo_nav)/config/imu/dwa_local_planner_params.yaml" command="load" />
+
+
+    <param name="global_costmap/global_frame" value="map"/>
+    <param name="global_costmap/robot_base_frame" value="base_footprint"/>
+    <param name="local_costmap/global_frame" value="odom_combined"/>
+    <param name="local_costmap/robot_base_frame" value="base_footprint"/>
+    <param name="DWAPlannerROS/global_frame_id" value="odom_combined"/>
+  </node>
   <arg name="map_file" default="$(find contextualizer)/maps/factory.yaml"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
   <rosparam file="$(arg map_file)" command="load" ns="map" />
