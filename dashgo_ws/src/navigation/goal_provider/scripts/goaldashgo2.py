@@ -16,8 +16,8 @@ class StateMachine:
     def __init__(self):
         self.client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
     def setServerFeedback(data):
-    if len(data.status_list):
-        move_base_status = data.status_list[0].status
+        if len(data.status_list):
+            move_base_status = data.status_list[0].status
     def sendGoal(goal_position):
         global move_base_status
         client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
