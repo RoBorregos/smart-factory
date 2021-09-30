@@ -40,7 +40,7 @@ class StateMachine:
             return client.get_result()
     def do_mission(self, plcregisters):
         socket_pub = rospy.Publisher("navBridgeServer/talker", String) 
-        rospy.Subscriber("move_base/status", GoalStatusArray, setServerFeedback)
+        rospy.Subscriber("move_base/status", GoalStatusArray, self.setServerFeedback)
         return_to_beginning = False
         listener = tf.TransformListener()
         trans, rot = None, None
