@@ -167,6 +167,7 @@ catkin_install_python(PROGRAMS
   scripts/goalSaver.py
   scripts/goalProvider.py
   scripts/goaldashgo.py
+  scripts/goaldashgo2.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
