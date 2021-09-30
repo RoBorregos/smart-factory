@@ -43,7 +43,7 @@
       <arg name="ns" value="" />
     </include>
     ?>
-    <node pkg="goal_provider" name="dashgogoal" type="goaldashgo.py" output="screen">
+    <node pkg="goal_provider" name="dashgogoal" type="goaldashgo2.py" output="screen">
     </node>
   </group>
 
