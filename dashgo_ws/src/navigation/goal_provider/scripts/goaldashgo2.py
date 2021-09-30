@@ -1,7 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
+import time
 import rospy
+import tf
+from std_msgs.msg import String
 import actionlib
-from geometry_msgs.msg import Pose, Point, Quaternion
+from actionlib_msgs.msg import *
+from geometry_msgs.msg import *
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import math
@@ -36,9 +40,11 @@ class StateMachine:
             return client.get_result()
     def do_mission(self, plcregisters):
         socket_pub = rospy.Publisher("navBridgeServer/talker", String) 
+        rospy.Subscriber("move_base/status", GoalStatusArray, setServerFeedback)
         return_to_beginning = False
         listener = tf.TransformListener()
         trans, rot = None, None
+        rospy.Subscriber("move_base/status", GoalStatusArray, setServerFeedback)
         if(rr.registers[0]== 0):
             rospy.logwarn("Manual mode ready")
             angle = rr.registers[3] * math.pi/180
