@@ -54,6 +54,7 @@ class StateMachine:
             a[4] = 0.000
             a[5] = math.sin(angle/2)
             a[6] = math.cos(angle/2)
+            print(a)
             self.sendGoal1(a)
             socket_pub.publish("arrive")
         else:
@@ -66,7 +67,8 @@ class StateMachine:
             a[4] = 0.000
             a[5] = math.sin(angle/2)
             a[6] = math.cos(angle/2)
-            self.sendGoal(a)
+            print(a)
+            self.sendGoal1(a)
             socket_pub.publish("arrive")
         
 if __name__ == '__main__':
