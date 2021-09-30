@@ -19,10 +19,10 @@ return_to_beginning = False
 class StateMachine:
     def __init__(self):
         self.client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
-    def setServerFeedback(data):
+    def setServerFeedback(self, data):
         if len(data.status_list):
             move_base_status = data.status_list[0].status
-    def sendGoal1(goal_position):
+    def sendGoal1(self,goal_position):
         global move_base_status
         client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
         client.wait_for_server()
@@ -49,7 +49,7 @@ class StateMachine:
             angle = rr.registers[3] * math.pi/180
             ax = -float(str(plcregisters[1])[1:])/1000 if int(str(plcregisters[1])[:1]) == 1 and len(str(plcregisters[1])) == 5 else float(plcregisters[1])/1000
             ay = -float(str(plcregisters[2])[1:])/1000 if int(str(plcregisters[2])[:1]) == 1 and len(str(plcregisters[2])) == 5 else float(plcregisters[2])/1000
-            a = [ ax, ay,0.000,0.000,0.000,0.000,0.000,0.000] #Ax,Ay,Az,qx,qy,qz,qw
+            a = [ ax, ay,0.000,0.000,0.000,0.000,0.000] #Ax,Ay,Az,qx,qy,qz,qw
             a[3] = 0.000
             a[4] = 0.000
             a[5] = math.sin(angle/2)
@@ -62,7 +62,7 @@ class StateMachine:
             angle = rr.registers[6] * math.pi/180
             ax = -float(str(plcregisters[4])[1:])/1000 if int(str(plcregisters[4])[:1]) == 1 and len(str(plcregisters[4])) == 5 else float(plcregisters[4])/1000
             ay = -float(str(plcregisters[5])[1:])/1000 if int(str(plcregisters[5])[:1]) == 1 and len(str(plcregisters[5])) == 5 else float(plcregisters[5])/1000 
-            a = [ ax, ay,0.000,0.000,0.000,0.000,0.000,0.000] #Ax,Ay,Az,qx,qy,qz,qw
+            a = [ ax, ay,0.000,0.000,0.000,0.000,0.000] #Ax,Ay,Az,qx,qy,qz,qw
             a[3] = 0.000
             a[4] = 0.000
             a[5] = math.sin(angle/2)
