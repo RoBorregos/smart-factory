@@ -9,10 +9,10 @@ from geometry_msgs.msg import *
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import math
-# goal_path = [
-#     [1.832814,1.753299,0.000000,0.000000,-0.710403,0.703795],
-#     [5.425715,4.625706,0.000000,0.000000,-0.000100,1.000000]
-# ]
+goal_path = [
+    [1.832814,1.753299,0.000000,0.000000,0.00000,-0.710403,0.703795],#Ax,Ay,Az,qx,qy,qz,qw
+    [5.425715,4.625706,0.000000,0.000000,0.00000,-0.000100,1.000000]
+]
 initial_position = None
 move_base_status = 0
 return_to_beginning = False
@@ -56,7 +56,7 @@ class StateMachine:
             print(a)
             self.sendGoal1(a)
             socket_pub.publish("arrive")
-        else:
+        elif(rr.registers[0]== 1):
             rospy.logwarn("Auto mode ready")
             angle = rr.registers[6] * math.pi/180
             ax = -float(str(plcregisters[4])[1:])/1000 if int(str(plcregisters[4])[:1]) == 1 and len(str(plcregisters[4])) == 5 else float(plcregisters[4])/1000
@@ -69,6 +69,13 @@ class StateMachine:
             print(a)
             self.sendGoal1(a)
             socket_pub.publish("arrive")
+    def test(self):
+        socket_pub = rospy.Publisher("navBridgeServer/talker", String) 
+        rospy.Subscriber("move_base/status", GoalStatusArray, self.setServerFeedback)
+        a = goal_path[0]
+        self.sendGoal1(a)
+        socket_pub.publish("arrive")
+
         
 if __name__ == '__main__':
     try:
@@ -93,5 +100,9 @@ if __name__ == '__main__':
             except Exception as error:
                 rospy.logwarn("Reading registers not ready")
                 rospy.logwarn(error)   
+            # try:
+            #     robot.test()
+            # except Exception as error:
+            #     rospy.logwarn(error)
     except rospy.ROSInterruptException:
         rospy.loginfo("Navigation test finished.")

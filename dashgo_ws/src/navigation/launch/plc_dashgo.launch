@@ -2,8 +2,8 @@
 <launch>
   <!-- Start RVIZ simulator -->
   <!--<node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/plc_dashgo.rviz"/>-->
-  <include file="$(find dashgo_driver)/launch/driver_imu.launch"/>
-  <include file="$(find ydlidar)/launch/ydlidar1_up.launch"/>
+  <!-- <include file="$(find dashgo_driver)/launch/driver_imu.launch"/> -->
+  <!-- <include file="$(find ydlidar)/launch/ydlidar1_up.launch"/> -->
   <include file="$(find dashgo_description)/launch/dashgo_description.launch"/>
   <node pkg="move_base" type="move_base" respawn="true" name="move_base" output="screen" clear_params="true">
     <rosparam file="$(find dashgo_nav)/config/imu/costmap_common_params_diff.yaml" command="load" ns="global_costmap" />
@@ -58,9 +58,9 @@
     <include file="move_base.launch">
       <arg name="ns" value="" />
     </include>
-    ?>
     <node pkg="goal_provider" name="dashgogoal" type="goaldashgo2.py" output="screen">
     </node>
+    ?>
   </group>
 
 </launch>
