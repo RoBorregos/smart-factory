@@ -5,9 +5,9 @@
   <arg name="initial_pose_y"  default="0.0"/>
   <arg name="initial_pose_a"  default="0.0"/>
   <arg name="odom_frame_id"   default="odom_combined"/>
-  <arg name="base_frame_id"   default="base_footprint"/>
+  <arg name="base_frame_id"   default="/base_link"/>
   <arg name="global_frame_id" default="map"/>
-
+  <node pkg="tf" type="static_transform_publisher" name="lidar_tf_publisher" args="0.19 0.01 0.20 0 0 0 1 /base_link /laser_link 100" />
   <node pkg="amcl" type="amcl" name="amcl" respawn="true" output="screen">
     <param name="use_map_topic"             value="$(arg use_map_topic)"/>
     <!-- Publish scans from best pose at a max of 10 Hz -->
