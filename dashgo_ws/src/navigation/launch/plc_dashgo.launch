@@ -5,20 +5,20 @@
   <arg name="map_file" default="$(find contextualizer)/maps/factory.yaml"/>
   <node name="map_server" pkg="map_server" type="map_server"
         args="$(find contextualizer)/maps/factory.yaml">
-        <!-- <param name="frame_id" value="/base_footprint"/> -->
+        <param name="frame_id" value="/map"/>
   </node> 
   <rosparam file="$(arg map_file)" command="load" ns="map" />
   <group ns="dashgo_0">
     <include file="nav.launch">
-      <arg name="ns" value="" />
-      <arg name="initial_pose_x" value="0.591092" />
-      <arg name="initial_pose_y" value="4.537635" />
+      <arg name="ns" value="dashgo_0" />
+      <arg name="initial_pose_x" value="10.6612091064" />
+      <arg name="initial_pose_y" value="10.1504592896" />
     </include>
     <include file="move_base.launch">
-      <arg name="ns" value="" />
+      <arg name="ns" value="dashgo_0" />
     </include>
-    <!-- <node pkg="goal_provider" name="dashgogoal" type="goaldashgo2.py" output="screen"> </node>-->
   </group>
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/plc_dashgo.rviz"/>
+  <node pkg="goal_provider" name="dashgogoal" type="goaldashgorviz.py" output="screen"> </node>
 
 </launch>

@@ -10,6 +10,7 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import math
 goal_path = [
+    [3.39014863968,1.60639977455,0.000000,0.000000,0.00000,-0.710403,0.703795]
     [1.832814,1.753299,0.000000,0.000000,0.00000,-0.710403,0.703795],#Ax,Ay,Az,qx,qy,qz,qw
     [5.425715,4.625706,0.000000,0.000000,0.00000,-0.000100,1.000000]
 ]
@@ -84,27 +85,27 @@ if __name__ == '__main__':
         rospy.init_node('statemachine')
         robot = StateMachine()
         while not rospy.is_shutdown():
-            try:
-                client =  ModbusClient("192.168.31.2",port=502)
-                UNIT = 0x1
-                conexion = client.connect()
-                rospy.logwarn("Modbus connection ready")
-            except Exception as error:
-                rospy.logwarn("Modbus connection error")
-                rospy.logwarn(error)
-            try:
-                rr = client.read_holding_registers(0,15,unit=UNIT)
-                client.close()
-                rospy.logwarn(rr.registers)
-                rospy.logwarn("PLC-DASHGO working")
-                robot.do_mission(rr.registers)
-                rospy.sleep(1)
-            except Exception as error:
-                rospy.logwarn("Reading registers not ready")
-                rospy.logwarn(error)   
             # try:
-            #     robot.test()
+            #     client =  ModbusClient("192.168.31.2",port=502)
+            #     UNIT = 0x1
+            #     conexion = client.connect()
+            #     rospy.logwarn("Modbus connection ready")
             # except Exception as error:
+            #     rospy.logwarn("Modbus connection error")
             #     rospy.logwarn(error)
+            # try:
+            #     rr = client.read_holding_registers(0,15,unit=UNIT)
+            #     client.close()
+            #     rospy.logwarn(rr.registers)
+            #     rospy.logwarn("PLC-DASHGO working")
+            #     robot.do_mission(rr.registers)
+            #     rospy.sleep(1)
+            # except Exception as error:
+            #     rospy.logwarn("Reading registers not ready")
+            #     rospy.logwarn(error)   
+            try:
+                robot.test()
+            except Exception as error:
+                rospy.logwarn(error)
     except rospy.ROSInterruptException:
         rospy.loginfo("Navigation test finished.")
