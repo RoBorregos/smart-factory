@@ -11,8 +11,8 @@
   <group ns="dashgo_0">
     <include file="nav.launch">
       <arg name="ns" value="dashgo_0" />
-      <arg name="initial_pose_x" value="13.4035301208" />
-      <arg name="initial_pose_y" value="12.8214330673" />
+      <arg name="initial_pose_x" value="16.6125221252" />
+      <arg name="initial_pose_y" value="16.2731819153" />
     </include>
     <include file="move_base.launch">
       <arg name="ns" value="dashgo_0" />
