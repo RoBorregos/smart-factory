@@ -10,7 +10,7 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import math
 goal_path = [
-    [10.1251420975,3.20172214508,0.000000,0.000000,0.00000,-0.710403,0.703795],
+    [14.0147047043,4.15430116653,0.000000,0.000000,0.00000,-0.710403,0.703795],
     [1.832814,1.753299,0.000000,0.000000,0.00000,-0.710403,0.703795],#Ax,Ay,Az,qx,qy,qz,qw
     [5.425715,4.625706,0.000000,0.000000,0.00000,-0.000100,1.000000]
 ]
