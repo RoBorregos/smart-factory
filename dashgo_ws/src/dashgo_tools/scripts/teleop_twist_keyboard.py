@@ -3,7 +3,7 @@ import roslib; roslib.load_manifest('teleop_twist_keyboard')
 import rospy
 
 from geometry_msgs.msg import Twist
-
+from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import sys, select, termios, tty
 
 msg = """
@@ -25,6 +25,14 @@ q/z : increase/decrease max speeds by 10%
 w/x : increase/decrease only linear speed by 10%
 e/c : increase/decrease only angular speed by 10%
 CTRL-C to quit
+
+ModbusMode(0 OR 1):
+a: Enable until is pressed again
+b: Enable until is pressed again
+d: Switch mode (1/0)
+f: Switch mode (1/0)
+g: Switch mode (1/0)
+h: Switch mode (1/0)
 """
 
 moveBindings = {
@@ -56,6 +64,15 @@ speedBindings={
 		'e':(1,1.1),
 		'c':(1,.9),
 	      }
+#location,value
+modbusmmode = {
+	"a": 0,
+	"b": 0,
+	"d": 0,
+	"f": 0,
+	"g": 0,
+	"h": 0,
+}
 
 def getKey():
 	tty.setraw(sys.stdin.fileno())
@@ -66,12 +83,13 @@ def getKey():
 
 speed = 0.30
 turn = 0.6
-
+contadora = 0
+contadorb = 0
 def vels(speed,turn):
 	return "currently:\tspeed %s\tturn %s " % (speed,turn)
 
 if __name__=="__main__":
-    	settings = termios.tcgetattr(sys.stdin)
+    settings = termios.tcgetattr(sys.stdin)
 	
 	pub = rospy.Publisher('cmd_vel', Twist, queue_size = 1)
 	rospy.init_node('teleop_twist_keyboard')
@@ -95,11 +113,49 @@ if __name__=="__main__":
 			elif key in speedBindings.keys():
 				speed = speed * speedBindings[key][0]
 				turn = turn * speedBindings[key][1]
-
 				print vels(speed,turn)
 				if (status == 14):
 					print msg
 				status = (status + 1) % 15
+			elif key in modbusmode.keys():
+					contadora+=1 if key=="a" else contadora
+					contadorb+=1 if key=="b" else contadorb
+					if key=="a" and contadora<2:
+						modbusmmode[key]=1 
+					elif key=="a" and contadora>=2:
+						contadora=0
+						modbusmmode[key]=0 
+					if key=="b" and contadorb<2:
+						modbusmmode[key]=1 
+					elif key=="b" and contadorb>=2:
+						contadora=0
+						modbusmmode[key]=0 
+					else:
+						for i in modbusmode:
+								if key !="a" or key !="b":
+									modbusmmode[i]=1 if key == i else modbusmmode[i]=0
+				#Send info to modbusregister
+				try:
+				    client =  ModbusClient("192.168.31.2",port=502)
+				    UNIT = 0x1
+				    conexion = client.connect()
+				    rospy.logwarn("Modbus connection ready")
+				except Exception as error:
+				    rospy.logwarn("Modbus connection error")
+				    rospy.logwarn(error)
+				try:
+					rr = client.read_holding_registers(0,20,unit=UNIT)
+            		outputregister = HoldingRegister()
+					myregisters = list(modbusmode.values())
+					outputregister.data = [int(i) for i in myregisters]		
+            		rq = client.write_registers(14, outputregister.data, unit=UNIT)
+				    client.close()
+				    rospy.logwarn(rr.registers)
+				    rospy.logwarn("PLC-DASHGO working")
+				    rospy.sleep(1)
+				except Exception as error:
+				    rospy.logwarn("Reading registers not ready")
+				    rospy.logwarn(error)   
 			else:
 				x = 0
 				y = 0
@@ -122,4 +178,4 @@ if __name__=="__main__":
 		twist.angular.x = 0; twist.angular.y = 0; twist.angular.z = 0
 		pub.publish(twist)
 
-    		termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
+    	termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
