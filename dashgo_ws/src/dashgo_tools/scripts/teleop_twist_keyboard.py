@@ -5,6 +5,7 @@ import rospy
 from geometry_msgs.msg import Twist
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import sys, select, termios, tty
+from std_msgs.msg import Int32MultiArray as HoldingRegister
 
 msg = """
 Reading from the keyboard  and Publishing to Twist!
@@ -128,7 +129,7 @@ if __name__=="__main__":
 					if key=="b" and contadorb<2:
 						modbusmmode[key]=1 
 					elif key=="b" and contadorb>=2:
-						contadora=0
+						contadorb=0
 						modbusmmode[key]=0 
 					else:
 						for i in modbusmode:
