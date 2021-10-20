@@ -86,6 +86,7 @@ speed = 0.30
 turn = 0.6
 contadora = 0
 contadorb = 0
+contadord = 0
 def vels(speed,turn):
 	return "currently:\tspeed %s\tturn %s " % (speed,turn)
 
@@ -121,19 +122,25 @@ if __name__=="__main__":
 			elif key in modbusmode.keys():
 					contadora+=1 if key=="a" else contadora
 					contadorb+=1 if key=="b" else contadorb
+					contadord+=1 if key=="d" else contadord
 					if key=="a" and contadora<2:
 						modbusmmode[key]=1 
 					elif key=="a" and contadora>=2:
 						contadora=0
 						modbusmmode[key]=0 
-					if key=="b" and contadorb<2:
+					elif key=="b" and contadorb<2:
 						modbusmmode[key]=1 
 					elif key=="b" and contadorb>=2:
 						contadorb=0
 						modbusmmode[key]=0 
+					elif key=="d" and contadord<2:
+						modbusmmode[key]=1 
+					elif key=="d" and contadord>=2:
+						contadord=0
+						modbusmmode[key]=0 
 					else:
 						for i in modbusmode:
-								if key !="a" or key !="b":
+								if key !="a" or key !="b" or key !="d":
 									modbusmmode[i]=1 if key == i else modbusmmode[i]=0
 				#Send info to modbusregister
 				try:
@@ -149,7 +156,7 @@ if __name__=="__main__":
             		outputregister = HoldingRegister()
 					myregisters = list(modbusmode.values())
 					outputregister.data = [int(i) for i in myregisters]		
-            		rq = client.write_registers(14, outputregister.data, unit=UNIT)
+            		rq = client.write_registers(10, outputregister.data, unit=UNIT)
 				    client.close()
 				    rospy.logwarn(rr.registers)
 				    rospy.logwarn("PLC-DASHGO working")
