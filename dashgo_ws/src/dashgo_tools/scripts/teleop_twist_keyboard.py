@@ -30,8 +30,8 @@ CTRL-C to quit
 ModbusMode(0 OR 1):
 a: Enable until is pressed again
 b: Enable until is pressed again
-d: Switch mode (1/0)
-f: Switch mode (1/0)
+d: Enable until is pressed again
+f: Enable until is pressed again
 g: Switch mode (1/0)
 h: Switch mode (1/0)
 """
@@ -67,7 +67,7 @@ speedBindings={
 	      }
 #location,value
 #Se mantiene en uno hasta que se aplaste de nuevo: a,b,d,f
-modbusmmode = {
+modbusmode = {
 	"a": 0,
 	"b": 0,
 	"d": 0,
@@ -93,17 +93,14 @@ def vels(speed,turn):
 	return "currently:\tspeed %s\tturn %s " % (speed,turn)
 
 if __name__=="__main__":
-    settings = termios.tcgetattr(sys.stdin)
-	
+	settings = termios.tcgetattr(sys.stdin)
 	pub = rospy.Publisher('cmd_vel', Twist, queue_size = 1)
 	rospy.init_node('teleop_twist_keyboard')
-
 	x = 0
 	y = 0
 	z = 0
 	th = 0
 	status = 0
-
 	try:
 		print msg
 		print vels(speed,turn)
@@ -122,35 +119,36 @@ if __name__=="__main__":
 					print msg
 				status = (status + 1) % 15
 			elif key in modbusmode.keys():
-					contadora+=1 if key=="a" else contadora
-					contadorb+=1 if key=="b" else contadorb
-					contadord+=1 if key=="d" else contadord
-					contadorf+=1 if key=="d" else contadorf
-					if key=="a" and contadora<2:
-						modbusmmode[key]=1 
-					elif key=="a" and contadora>=2:
-						contadora=0
-						modbusmmode[key]=0 
-					elif key=="b" and contadorb<2:
-						modbusmmode[key]=1 
-					elif key=="b" and contadorb>=2:
-						contadorb=0
-						modbusmmode[key]=0 
-					elif key=="d" and contadord<2:
-						modbusmmode[key]=1 
-					elif key=="d" and contadord>=2:
-						contadord=0
-						modbusmmode[key]=0 
-					elif key=="f" and contadorf<2:
-						modbusmmode[key]=1 
-					elif key=="f" and contadorf>=2:
-						contadorf=0
-						modbusmmode[key]=0 
-					else:
-						for i in modbusmode:
-								if key !="a" or key !="b" or key !="d" or key !="f":
-									modbusmmode[i]=1 if key == i else 0
+				contadora+=1 if key=="a" else contadora
+				contadorb+=1 if key=="b" else contadorb
+				contadord+=1 if key=="d" else contadord
+				contadorf+=1 if key=="d" else contadorf
+				if key=="a" and contadora<2:
+					modbusmode[key]=1 
+				elif key=="a" and contadora>=2:
+					contadora=0
+					modbusmode[key]=0 
+				elif key=="b" and contadorb<2:
+					modbusmode[key]=1 
+				elif key=="b" and contadorb>=2:
+					contadorb=0
+					modbusmode[key]=0 
+				elif key=="d" and contadord<2:
+					modbusmode[key]=1 
+				elif key=="d" and contadord>=2:
+					contadord=0
+					modbusmode[key]=0 
+				elif key=="f" and contadorf<2:
+					modbusmode[key]=1 
+				elif key=="f" and contadorf>=2:
+					contadorf=0
+					modbusmode[key]=0 
+				else:
+					for i in modbusmode:
+							if key !="a" or key !="b" or key !="d" or key !="f":
+								modbusmode[i]=1 if key == i else 0
 				#Send info to modbusregister
+				print(key +" : " +str(modbusmode[key]))
 				try:
 				    client =  ModbusClient("192.168.31.2",port=502)
 				    UNIT = 0x1
@@ -161,14 +159,14 @@ if __name__=="__main__":
 				    rospy.logwarn(error)
 				try:
 					rr = client.read_holding_registers(0,20,unit=UNIT)
-            		outputregister = HoldingRegister()
+					outputregister = HoldingRegister()
 					myregisters = list(modbusmode.values())
-					outputregister.data = [int(i) for i in myregisters]		
-            		rq = client.write_registers(10, outputregister.data, unit=UNIT)
-				    client.close()
-				    rospy.logwarn(rr.registers)
-				    rospy.logwarn("PLC-DASHGO working")
-				    rospy.sleep(1)
+					outputregister.data = [int(i) for i in myregisters]
+					rq = client.write_registers(10, outputregister.data, unit=UNIT)
+					client.close()
+					rospy.logwarn(rr.registers)
+					rospy.logwarn("PLC-DASHGO working")
+					rospy.sleep(1)
 				except Exception as error:
 				    rospy.logwarn("Reading registers not ready")
 				    rospy.logwarn(error)   
@@ -185,8 +183,8 @@ if __name__=="__main__":
 			twist.angular.x = 0; twist.angular.y = 0; twist.angular.z = th*turn
 			pub.publish(twist)
 
-	except:
-		print e
+	except Exception as error:
+		print error
 
 	finally:
 		twist = Twist()
