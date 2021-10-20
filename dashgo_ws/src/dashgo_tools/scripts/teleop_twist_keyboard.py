@@ -32,8 +32,9 @@ a: Enable until is pressed again
 b: Enable until is pressed again
 d: Enable until is pressed again
 f: Enable until is pressed again
-g: Switch mode (1/0)
-h: Switch mode (1/0)
+g: Set mode (1)
+h: Set mode (1)
+v: Stop g and h (0)
 """
 
 moveBindings = {
@@ -74,6 +75,7 @@ modbusmode = {
 	"f": 0,
 	"g": 0,
 	"h": 0,
+	"v": 0
 }
 
 def getKey():
@@ -106,6 +108,7 @@ if __name__=="__main__":
 		print vels(speed,turn)
 		while(1):
 			key = getKey()
+			rospy.logwarn(key)
 			if key in moveBindings.keys():
 				x = moveBindings[key][0]
 				y = moveBindings[key][1]
@@ -149,6 +152,8 @@ if __name__=="__main__":
 								modbusmode[i]=1 if key == i else 0
 				#Send info to modbusregister
 				print(key +" : " +str(modbusmode[key]))
+				print("g" +" : " +str(modbusmode["g"]))
+				print("h" +" : " +str(modbusmode["h"]))
 				try:
 				    client =  ModbusClient("192.168.31.2",port=502)
 				    UNIT = 0x1
