@@ -66,6 +66,7 @@ speedBindings={
 		'c':(1,.9),
 	      }
 #location,value
+#Se mantiene en uno hasta que se aplaste de nuevo: a,b,d,f
 modbusmmode = {
 	"a": 0,
 	"b": 0,
@@ -87,6 +88,7 @@ turn = 0.6
 contadora = 0
 contadorb = 0
 contadord = 0
+contadorf = 0
 def vels(speed,turn):
 	return "currently:\tspeed %s\tturn %s " % (speed,turn)
 
@@ -123,6 +125,7 @@ if __name__=="__main__":
 					contadora+=1 if key=="a" else contadora
 					contadorb+=1 if key=="b" else contadorb
 					contadord+=1 if key=="d" else contadord
+					contadorf+=1 if key=="d" else contadorf
 					if key=="a" and contadora<2:
 						modbusmmode[key]=1 
 					elif key=="a" and contadora>=2:
@@ -138,10 +141,15 @@ if __name__=="__main__":
 					elif key=="d" and contadord>=2:
 						contadord=0
 						modbusmmode[key]=0 
+					elif key=="f" and contadorf<2:
+						modbusmmode[key]=1 
+					elif key=="f" and contadorf>=2:
+						contadorf=0
+						modbusmmode[key]=0 
 					else:
 						for i in modbusmode:
-								if key !="a" or key !="b" or key !="d":
-									modbusmmode[i]=1 if key == i else modbusmmode[i]=0
+								if key !="a" or key !="b" or key !="d" or key !="f":
+									modbusmmode[i]=1 if key == i else 0
 				#Send info to modbusregister
 				try:
 				    client =  ModbusClient("192.168.31.2",port=502)
