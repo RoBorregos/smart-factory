@@ -126,7 +126,9 @@ if __name__=="__main__":
 				contadora+=1 if key=="a" else contadora
 				contadorb+=1 if key=="b" else contadorb
 				contadord+=1 if key=="d" else contadord
-				contadorf+=1 if key=="d" else contadorf
+				contadorf+=1 if key=="f" else contadorf
+				contadorg+=1 if key=="g" else contadorg
+				contadorh+=1 if key=="h" else contadorh
 				if key=="a" and contadora<2:
 					modbusmode[key]=1 
 				elif key=="a" and contadora>=2:
