@@ -75,7 +75,6 @@ modbusmode = {
 	"f": 0,
 	"g": 0,
 	"h": 0,
-	"v": 0
 }
 
 def getKey():
@@ -91,6 +90,8 @@ contadora = 0
 contadorb = 0
 contadord = 0
 contadorf = 0
+contadorg = 0
+contadorh = 0
 def vels(speed,turn):
 	return "currently:\tspeed %s\tturn %s " % (speed,turn)
 
@@ -146,10 +147,16 @@ if __name__=="__main__":
 				elif key=="f" and contadorf>=2:
 					contadorf=0
 					modbusmode[key]=0 
-				else:
-					for i in modbusmode:
-							if key !="a" or key !="b" or key !="d" or key !="f":
-								modbusmode[i]=1 if key == i else 0
+				elif key=="g" and contadorg<2:
+					modbusmode[key]=1 
+				elif key=="g" and contadorg>=2:
+					contadorg=0
+					modbusmode[key]=0 
+				elif key=="h" and contadorh<2:
+					modbusmode[key]=1 
+				elif key=="h" and contadorh>=2:
+					contadorh=0
+					modbusmode[key]=0 
 				#Send info to modbusregister
 				rospy.logwarn(key +" : " +str(modbusmode[key]))
 				rospy.logwarn("a" +" : " +str(modbusmode["a"]))
