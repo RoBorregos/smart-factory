@@ -151,9 +151,13 @@ if __name__=="__main__":
 							if key !="a" or key !="b" or key !="d" or key !="f":
 								modbusmode[i]=1 if key == i else 0
 				#Send info to modbusregister
-				print(key +" : " +str(modbusmode[key]))
-				print("g" +" : " +str(modbusmode["g"]))
-				print("h" +" : " +str(modbusmode["h"]))
+				rospy.logwarn(key +" : " +str(modbusmode[key]))
+				rospy.logwarn("a" +" : " +str(modbusmode["a"]))
+				rospy.logwarn("b" +" : " +str(modbusmode["b"]))
+				rospy.logwarn("d" +" : " +str(modbusmode["d"]))
+				rospy.logwarn("f" +" : " +str(modbusmode["f"]))
+				rospy.logwarn("g" +" : " +str(modbusmode["g"]))
+				rospy.logwarn("h" +" : " +str(modbusmode["h"]))
 				try:
 				    client =  ModbusClient("192.168.31.2",port=502)
 				    UNIT = 0x1
