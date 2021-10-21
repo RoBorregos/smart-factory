@@ -67,7 +67,7 @@ speedBindings={
 		'c':(1,.9),
 	      }
 #location,value
-#Se mantiene en uno hasta que se aplaste de nuevo: a,b,d,f
+#Se mantiene en uno hasta que se aplaste de nuevo: 1,2,3,4,5,6
 modbusmode = {
 	"1": 0,
 	"2": 0,
