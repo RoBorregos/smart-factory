@@ -158,7 +158,7 @@ if __name__=="__main__":
 					contadorh=0
 					modbusmode[key]=0 
 				#Send info to modbusregister
-				rospy.logwarn(key +" : " +str(modbusmode[key]))
+				rospy.logwarn("Pressed"+key +" : " +str(modbusmode[key]))
 				rospy.logwarn("a" +" : " +str(modbusmode["a"]))
 				rospy.logwarn("b" +" : " +str(modbusmode["b"]))
 				rospy.logwarn("d" +" : " +str(modbusmode["d"]))
