@@ -174,13 +174,11 @@ if __name__=="__main__":
 				    rospy.logwarn("Modbus connection error")
 				    rospy.logwarn(error)
 				try:
-					rr = client.read_holding_registers(0,20,unit=UNIT)
 					outputregister = HoldingRegister()
 					myregisters = list(modbusmode.values())
 					outputregister.data = [int(i) for i in myregisters]
 					rq = client.write_registers(10, outputregister.data, unit=UNIT)
 					client.close()
-					rospy.logwarn(rr.registers)
 					rospy.logwarn("PLC-DASHGO working")
 					rospy.sleep(1)
 				except Exception as error:
