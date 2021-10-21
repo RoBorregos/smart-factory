@@ -69,12 +69,12 @@ speedBindings={
 #location,value
 #Se mantiene en uno hasta que se aplaste de nuevo: a,b,d,f
 modbusmode = {
-	"a": 0,
-	"b": 0,
-	"d": 0,
-	"f": 0,
-	"g": 0,
-	"h": 0,
+	"1": 0,
+	"2": 0,
+	"3": 0,
+	"4": 0,
+	"5": 0,
+	"6": 0,
 }
 
 def getKey():
@@ -86,12 +86,12 @@ def getKey():
 
 speed = 0.30
 turn = 0.6
-contadora = 0
-contadorb = 0
-contadord = 0
-contadorf = 0
-contadorg = 0
-contadorh = 0
+contador1 = 0
+contador2 = 0
+contador3 = 0
+contador4 = 0
+contador5 = 0
+contador6 = 0
 def vels(speed,turn):
 	return "currently:\tspeed %s\tturn %s " % (speed,turn)
 
@@ -123,50 +123,50 @@ if __name__=="__main__":
 					print msg
 				status = (status + 1) % 15
 			elif key in modbusmode.keys():
-				contadora+=1 if key=="a" else contadora
-				contadorb+=1 if key=="b" else contadorb
-				contadord+=1 if key=="d" else contadord
-				contadorf+=1 if key=="f" else contadorf
-				contadorg+=1 if key=="g" else contadorg
-				contadorh+=1 if key=="h" else contadorh
-				if key=="a" and contadora<2:
+				contador1+=1 if key=="1" else contador1
+				contador2+=1 if key=="2" else contador2
+				contador3+=1 if key=="3" else contador3
+				contador4+=1 if key=="4" else contador4
+				contador5+=1 if key=="5" else contador5
+				contador6+=1 if key=="6" else contador6
+				if key=="1" and contador1<2:
 					modbusmode[key]=1 
-				elif key=="a" and contadora>=2:
-					contadora=0
+				elif key=="1" and contador1>=2:
+					contador1=0
 					modbusmode[key]=0 
-				elif key=="b" and contadorb<2:
+				elif key=="2" and contador2<2:
 					modbusmode[key]=1 
-				elif key=="b" and contadorb>=2:
-					contadorb=0
+				elif key=="2" and contador2>=2:
+					contador2=0
 					modbusmode[key]=0 
-				elif key=="d" and contadord<2:
+				elif key=="3" and contador3<2:
 					modbusmode[key]=1 
-				elif key=="d" and contadord>=2:
-					contadord=0
+				elif key=="3" and contador3>=2:
+					contador3=0
 					modbusmode[key]=0 
-				elif key=="f" and contadorf<2:
+				elif key=="4" and contador4<2:
 					modbusmode[key]=1 
-				elif key=="f" and contadorf>=2:
-					contadorf=0
+				elif key=="4" and contador4>=2:
+					contador4=0
 					modbusmode[key]=0 
-				elif key=="g" and contadorg<2:
+				elif key=="5" and contador5<2:
 					modbusmode[key]=1 
-				elif key=="g" and contadorg>=2:
-					contadorg=0
+				elif key=="5" and contador5>=2:
+					contador5=0
 					modbusmode[key]=0 
-				elif key=="h" and contadorh<2:
+				elif key=="6" and contador6<2:
 					modbusmode[key]=1 
-				elif key=="h" and contadorh>=2:
-					contadorh=0
+				elif key=="6" and contador6>=2:
+					contador6=0
 					modbusmode[key]=0 
 				#Send info to modbusregister
 				rospy.logwarn("Pressed"+key +" : " +str(modbusmode[key]))
-				rospy.logwarn("a" +" : " +str(modbusmode["a"]))
-				rospy.logwarn("b" +" : " +str(modbusmode["b"]))
-				rospy.logwarn("d" +" : " +str(modbusmode["d"]))
-				rospy.logwarn("f" +" : " +str(modbusmode["f"]))
-				rospy.logwarn("g" +" : " +str(modbusmode["g"]))
-				rospy.logwarn("h" +" : " +str(modbusmode["h"]))
+				rospy.logwarn("1" +" : " +str(modbusmode["1"]))
+				rospy.logwarn("2" +" : " +str(modbusmode["2"]))
+				rospy.logwarn("3" +" : " +str(modbusmode["3"]))
+				rospy.logwarn("4" +" : " +str(modbusmode["4"]))
+				rospy.logwarn("5" +" : " +str(modbusmode["5"]))
+				rospy.logwarn("6" +" : " +str(modbusmode["6"]))
 				try:
 				    client =  ModbusClient("192.168.31.2",port=502)
 				    UNIT = 0x1
