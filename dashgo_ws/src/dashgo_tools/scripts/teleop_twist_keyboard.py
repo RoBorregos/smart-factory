@@ -198,6 +198,45 @@ if __name__=="__main__":
 			twist.linear.x = x*speed; twist.linear.y = y*speed; twist.linear.z = z*speed;
 			twist.angular.x = 0; twist.angular.y = 0; twist.angular.z = th*turn
 			pub.publish(twist)
+			if twist.linear.x != 0:
+				#Send info to modbusregister
+				rospy.logwarn("Robot moving update register 16")
+				try:
+				    client =  ModbusClient("192.168.31.2",port=502)
+				    UNIT = 0x1
+				    conexion = client.connect()
+				    rospy.logwarn("Modbus connection ready")
+				except Exception as error:
+				    rospy.logwarn("Modbus connection error")
+				    rospy.logwarn(error)
+				try:
+					rq = client.write_registers(16,1, unit=UNIT)
+					client.close()
+					rospy.logwarn("PLC-DASHGO working")
+					rospy.sleep(1)
+				except Exception as error:
+				    rospy.logwarn("Reading registers not ready")
+				    rospy.logwarn(error)   
+			else:
+				#Send info to modbusregister
+				rospy.logwarn("Robot not moving update register 16")
+				try:
+				    client =  ModbusClient("192.168.31.2",port=502)
+				    UNIT = 0x1
+				    conexion = client.connect()
+				    rospy.logwarn("Modbus connection ready")
+				except Exception as error:
+				    rospy.logwarn("Modbus connection error")
+				    rospy.logwarn(error)
+				try:
+					rq = client.write_registers(16,0, unit=UNIT)
+					client.close()
+					rospy.logwarn("PLC-DASHGO working")
+					rospy.sleep(1)
+				except Exception as error:
+				    rospy.logwarn("Reading registers not ready")
+				    rospy.logwarn(error)   				
+
 
 	except Exception as error:
 		print error
