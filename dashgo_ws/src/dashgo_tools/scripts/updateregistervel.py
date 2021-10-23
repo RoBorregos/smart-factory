@@ -4,6 +4,7 @@ from geometry_msgs.msg import Twist
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 from std_msgs.msg import Int32MultiArray as HoldingRegister
 from nav_msgs.msg import Odometry
+from std_msgs.msg import String
 
 
 class Checkvel:
@@ -18,7 +19,7 @@ class Checkvel:
         rospy.loginfo("velxangular:"+str((self.velzangular)))
         self.updateregister =1 if self.velxlineal !=0 or self.velzangular !=0 else 0
         #Send info to modbusregister
-        rospy.logwarn("Robot update register 16")
+        rospy.logwarn("Robot update register 16 with "+ str(self.updateregister))
         try:
             client =  ModbusClient("192.168.31.2",port=502)
             UNIT = 0x1
