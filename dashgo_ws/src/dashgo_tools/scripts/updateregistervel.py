@@ -40,7 +40,7 @@ class Checkvel:
 
   def imu_cb(self, msg):
       self.velxlineal = msg.twist.twist.linear.x 
-      self.velzangular = msg.twist.twist.linear.z
+      self.velzangular = msg.twist.twist.angular.z
 
 def main():
   rospy.init_node('updateregister')
