@@ -17,7 +17,7 @@ class Checkvel:
         rospy.sleep(0.3)
         rospy.loginfo("velxlineal:"+str((self.velxlineal)))
         rospy.loginfo("velxangular:"+str((self.velzangular)))
-        self.updateregister =1 if self.velxlineal!=0 or self.velzangular !=0 else 0
+        self.updateregister =1 if self.velxlineal !=0 or self.velzangular !=0 else 0
         #Send info to modbusregister
         rospy.logwarn("Robot update register 16")
         try:
