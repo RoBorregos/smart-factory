@@ -192,11 +192,11 @@ if __name__=="__main__":
 				th = 0
 				if (key == '\x03'):
 					break
-
-			twist = Twist()
-			twist.linear.x = x*speed; twist.linear.y = y*speed; twist.linear.z = z*speed;
-			twist.angular.x = 0; twist.angular.y = 0; twist.angular.z = th*turn
-			pub.publish(twist)
+			if key in moveBindings.keys() or key in speedBindings.keys():
+				twist = Twist()
+				twist.linear.x = x*speed; twist.linear.y = y*speed; twist.linear.z = z*speed;
+				twist.angular.x = 0; twist.angular.y = 0; twist.angular.z = th*turn
+				pub.publish(twist)
 
 	except Exception as error:
 		print error
