@@ -3,8 +3,7 @@ import rospy
 from geometry_msgs.msg import Twist
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 from std_msgs.msg import Int32MultiArray as HoldingRegister
-
-
+from nav_msgs.msg import Odometry
 
 
 class Checkvel:
