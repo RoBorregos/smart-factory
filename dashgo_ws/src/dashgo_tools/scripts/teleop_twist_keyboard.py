@@ -28,13 +28,12 @@ e/c : increase/decrease only angular speed by 10%
 CTRL-C to quit
 
 ModbusMode(0 OR 1):
-a: Enable until is pressed again
-b: Enable until is pressed again
-d: Enable until is pressed again
-f: Enable until is pressed again
-g: Set mode (1)
-h: Set mode (1)
-v: Stop g and h (0)
+1: Enable until is pressed again
+2: Enable until is pressed again
+3: Enable until is pressed again
+4: Enable until is pressed again
+5: Enable until is pressed again
+6: Enable until is pressed again
 """
 
 moveBindings = {
@@ -98,6 +97,7 @@ def vels(speed,turn):
 if __name__=="__main__":
 	settings = termios.tcgetattr(sys.stdin)
 	pub = rospy.Publisher('cmd_vel', Twist, queue_size = 1)
+	enableletter = rospy.Publisher('enable_letter',String, queue_size=10)
 	rospy.init_node('teleop_twist_keyboard')
 	x = 0
 	y = 0
@@ -198,6 +198,7 @@ if __name__=="__main__":
 			twist.linear.x = x*speed; twist.linear.y = y*speed; twist.linear.z = z*speed;
 			twist.angular.x = 0; twist.angular.y = 0; twist.angular.z = th*turn
 			pub.publish(twist)
+			if key == 'u' or key == 'u' or key == 'u' or
 
 	except Exception as error:
 		print error
