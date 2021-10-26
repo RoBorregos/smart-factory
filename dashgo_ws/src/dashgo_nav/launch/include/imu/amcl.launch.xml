@@ -39,7 +39,7 @@
     </node>
 </launch> 
 
-<!-- <launch>
+<?ignore <launch>
   <arg name="use_map_topic"   default="true"/>
   <arg name="scan_topic"      default="scan"/> 
   <arg name="initial_pose_x"  default="0.591092"/>
@@ -90,4 +90,5 @@
     <param name="initial_pose_a"            value="$(arg initial_pose_a)"/>
     <remap from="scan"                      to="$(arg scan_topic)"/>
   </node>
-</launch> -->
+</launch> 
+?>
