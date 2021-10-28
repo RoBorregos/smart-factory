@@ -10,9 +10,9 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import math
 goal_path = [
-    [14.0147047043,4.15430116653,0.000000,0.000000,0.00000,-0.710403,0.703795],
     [1.832814,1.753299,0.000000,0.000000,0.00000,-0.710403,0.703795],#Ax,Ay,Az,qx,qy,qz,qw
-    [5.425715,4.625706,0.000000,0.000000,0.00000,-0.000100,1.000000]
+    [6.56161832809,2.42692947388,0.000000,0.000000,0.00000,-0.710403,0.703795],
+    [14.0147047043,4.15430116653,0.000000,0.000000,0.00000,-0.710403,0.703795]
 ]
 initial_position = None
 move_base_status = 0
@@ -72,12 +72,41 @@ class StateMachine:
             socket_pub.publish("arrive")
         elif(rr.registers[0]== 2):
             rospy.logwarn("Stop mode ready")
-    def test(self):
+    def test(self, index):
         socket_pub = rospy.Publisher("navBridgeServer/talker", String) 
         rospy.Subscriber("move_base/status", GoalStatusArray, self.setServerFeedback)
-        a = goal_path[0]
+        a = goal_path[index]
         self.sendGoal1(a)
         socket_pub.publish("arrive")
+        if index ==0:
+            rospy.logwarn("Turn on 10-11,12")
+            self.send_infomodbus(10,1)
+            self.send_infomodbus(11,1)
+            self.send_infomodbus(12,1)
+            rospy.sleep(5)
+            rospy.logwarn("Turn off 10-11,12")
+            self.send_infomodbus(10,0)
+            self.send_infomodbus(11,0)
+            self.send_infomodbus(12,0)
+    def send_infomodbus(self,index,value):
+        try:
+            client =  ModbusClient("192.168.31.2",port=502)
+            UNIT = 0x1
+            conexion = client.connect()
+            rospy.logwarn("Modbus connection ready")
+        except Exception as error:
+            rospy.logwarn("Modbus connection error")
+            rospy.logwarn(error)
+        try:
+            rr = client.read_holding_registers(index,value,unit=UNIT)
+            client.close()
+            rospy.logwarn(rr.registers)
+            rospy.logwarn("PLC-DASHGO working")
+            robot.do_mission(rr.registers)
+            rospy.sleep(1)
+        except Exception as error:
+            rospy.logwarn("Reading registers not ready")
+            rospy.logwarn(error)      
 
         
 if __name__ == '__main__':
@@ -104,7 +133,8 @@ if __name__ == '__main__':
             #     rospy.logwarn("Reading registers not ready")
             #     rospy.logwarn(error)   
             try:
-                robot.test()
+                for i in range(len(goal_path)):
+                    robot.test(i)
             except Exception as error:
                 rospy.logwarn(error)
     except rospy.ROSInterruptException:
