@@ -44,7 +44,7 @@ class StateMachine:
         return_to_beginning = False
         listener = tf.TransformListener()
         trans, rot = None, None
-        if(rr.registers[0]== 0):
+        if(plcregisters[0]== 0):
             rospy.logwarn("Manual mode ready")
             angle = rr.registers[3] * math.pi/180
             ax = -float(str(plcregisters[1])[1:])/1000 if int(str(plcregisters[1])[:1]) == 1 and len(str(plcregisters[1])) == 5 else float(plcregisters[1])/1000
@@ -57,7 +57,7 @@ class StateMachine:
             print(a)
             self.sendGoal1(a)
             socket_pub.publish("arrive")
-        elif(rr.registers[0]== 1):
+        elif(plcregisters[0]== 1):
             rospy.logwarn("Auto mode ready")
             angle = rr.registers[6] * math.pi/180
             ax = -float(str(plcregisters[4])[1:])/1000 if int(str(plcregisters[4])[:1]) == 1 and len(str(plcregisters[4])) == 5 else float(plcregisters[4])/1000
@@ -70,7 +70,7 @@ class StateMachine:
             print(a)
             self.sendGoal1(a)
             socket_pub.publish("arrive")
-        elif(rr.registers[0]== 2):
+        elif(plcregisters[0]== 2):
             rospy.logwarn("Stop mode ready")
     def test(self, index):
         socket_pub = rospy.Publisher("navBridgeServer/talker", String) 
@@ -98,11 +98,11 @@ class StateMachine:
             rospy.logwarn("Modbus connection error")
             rospy.logwarn(error)
         try:
+            rq = client.write_registers(index,value, unit=UNIT)
             rr = client.read_holding_registers(index,value,unit=UNIT)
             client.close()
             rospy.logwarn(rr.registers)
             rospy.logwarn("PLC-DASHGO working")
-            robot.do_mission(rr.registers)
             rospy.sleep(1)
         except Exception as error:
             rospy.logwarn("Reading registers not ready")

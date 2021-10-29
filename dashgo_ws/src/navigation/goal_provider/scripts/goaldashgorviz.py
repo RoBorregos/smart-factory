@@ -10,9 +10,9 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import math
 goal_path = [
-    [7.11645317078,6.30571556091,0.000000,0.000000,0.00000,-0.710403,0.703795],
-    [6.56161832809,2.42692947388,0.000000,0.000000,0.00000,-0.710403,0.703795],#Ax,Ay,Az,qx,qy,qz,qw
-    [5.425715,4.625706,0.000000,0.000000,0.00000,-0.710403,0.703795]
+    [1.832814,1.753299,0.000000,0.000000,0.00000,-0.710403,0.703795],#Ax,Ay,Az,qx,qy,qz,qw
+    [6.56161832809,2.42692947388,0.000000,0.000000,0.00000,-0.710403,0.703795],
+    [14.0147047043,4.15430116653,0.000000,0.000000,0.00000,-0.710403,0.703795]
 ]
 initial_position = None
 move_base_status = 0
@@ -38,10 +38,11 @@ class StateMachine:
             rospy.signal_shutdown("Action server not available!")
         else:
             return self.client.get_result()
-    def test(self):
+    def test(self,index):
         socket_pub = rospy.Publisher("navBridgeServer/talker", String) 
         rospy.Subscriber("dashgo_0/move_base/status", GoalStatusArray, self.setServerFeedback)
-        a = goal_path[0]
+        a = goal_path[index]
+        rospy.logwarn(index)
         self.sendGoal1(a)
         socket_pub.publish("arrive")
 
@@ -52,7 +53,8 @@ if __name__ == '__main__':
         robot = StateMachine()
         while not rospy.is_shutdown():
             try:
-                robot.test()
+                for i in range(len(goal_path)):
+                    robot.test(i)
             except Exception as error:
                 rospy.logwarn(error)
     except rospy.ROSInterruptException:
