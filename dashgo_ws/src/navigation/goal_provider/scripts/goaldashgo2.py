@@ -133,6 +133,13 @@ if __name__ == '__main__':
             #     rospy.logwarn("Reading registers not ready")
             #     rospy.logwarn(error)   
             try:
+                rospy.logwarn("Turn on 10-11,12")
+                self.send_infomodbus(10,1)
+                self.send_infomodbus(11,1)
+                rospy.sleep(5)
+                rospy.logwarn("Turn off 10-11,12")
+                self.send_infomodbus(10,0)
+                self.send_infomodbus(11,0)
                 for i in range(len(goal_path)):
                     robot.test(i)
             except Exception as error:
