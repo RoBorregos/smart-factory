@@ -10,7 +10,7 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import math
 goal_path = [
-    [1.832814,1.753299,0.000000,0.000000,0.00000,-0.710403,0.703795],#Ax,Ay,Az,qx,qy,qz,qw
+    [7.18170452118,6.77222156525,0.000000,0.000000,0.00000,-0.710403,0.703795],#Ax,Ay,Az,qx,qy,qz,qw
     [6.56161832809,2.42692947388,0.000000,0.000000,0.00000,-0.710403,0.703795],
     [14.0147047043,4.15430116653,0.000000,0.000000,0.00000,-0.710403,0.703795]
 ]
@@ -47,8 +47,8 @@ class StateMachine:
         if(plcregisters[0]== 0):
             rospy.logwarn("Manual mode ready")
             angle = rr.registers[3] * math.pi/180
-            ax = -float(str(plcregisters[1])[1:])/1000 if int(str(plcregisters[1])[:1]) == 1 and len(str(plcregisters[1])) == 5 else float(plcregisters[1])/1000
-            ay = -float(str(plcregisters[2])[1:])/1000 if int(str(plcregisters[2])[:1]) == 1 and len(str(plcregisters[2])) == 5 else float(plcregisters[2])/1000
+            ax =  float(plcregisters[1])/1000
+            ay =  float(plcregisters[2])/1000
             a = [ ax, ay,0.000,0.000,0.000,0.000,0.000] #Ax,Ay,Az,qx,qy,qz,qw
             a[3] = 0.000
             a[4] = 0.000
@@ -60,8 +60,8 @@ class StateMachine:
         elif(plcregisters[0]== 1):
             rospy.logwarn("Auto mode ready")
             angle = rr.registers[6] * math.pi/180
-            ax = -float(str(plcregisters[4])[1:])/1000 if int(str(plcregisters[4])[:1]) == 1 and len(str(plcregisters[4])) == 5 else float(plcregisters[4])/1000
-            ay = -float(str(plcregisters[5])[1:])/1000 if int(str(plcregisters[5])[:1]) == 1 and len(str(plcregisters[5])) == 5 else float(plcregisters[5])/1000 
+            ax = float(plcregisters[4])/1000
+            ay = float(plcregisters[5])/1000 
             a = [ ax, ay,0.000,0.000,0.000,0.000,0.000] #Ax,Ay,Az,qx,qy,qz,qw
             a[3] = 0.000
             a[4] = 0.000
