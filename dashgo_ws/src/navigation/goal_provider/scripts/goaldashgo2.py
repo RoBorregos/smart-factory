@@ -47,9 +47,13 @@ class StateMachine:
         trans, rot = None, None
         modbusbase = plcregisters[7]
         initregisters = plcregisters[8]
-        initregisters_list = [int(a)+modbusbase for a in str(initregisters)]
         modbusregisters = HoldingRegister()
-        modbusregisters.data = [int(i) for i in initregisters_list]
+        newlist = [0]*10
+        if (modbusbase != 0  and initregisters !=0):
+            initregisters_list = [int(a) for a in str(initregisters)]
+            for i in initregisters_list:
+                newlist[i] = 1
+            modbusregisters.data = newlist
         if(plcregisters[0]== 0):
             rospy.logwarn("Manual mode ready")
             angle = plcregisters[3] * math.pi/180
@@ -60,10 +64,9 @@ class StateMachine:
             a[4] = 0.000
             a[5] = math.sin(angle/2)
             a[6] = math.cos(angle/2)
-            self.send_infomodbus(9,0) #Update Status occupied
+            self.send_infomodbus(9,1) #Update Status occupied
             self.sendGoal1(a)
             socket_pub.publish("arrive")
-            self.send_infomodbus_list(modbusbase,modbusregisters) #Send modbus data
             self.send_infomodbus(9,2) #Update Status success
         elif(plcregisters[0]== 1):
             rospy.logwarn("Auto mode ready")
@@ -75,10 +78,11 @@ class StateMachine:
             a[4] = 0.000
             a[5] = math.sin(angle/2)
             a[6] = math.cos(angle/2)
-            self.send_infomodbus(9,0) #Update Status occupied
+            self.send_infomodbus(9,1) #Update Status occupied
             self.sendGoal1(a)
             socket_pub.publish("arrive")
-            self.send_infomodbus_list(modbusbase,modbusregisters) #Send modbus data
+            if (modbusbase != 0  and initregisters !=0):
+                self.send_infomodbus_list(modbusbase,modbusregisters) #Send modbus data
             self.send_infomodbus(9,2) #Update Status success
         elif(plcregisters[0]== 2):
             rospy.logwarn("Stop mode ready")
