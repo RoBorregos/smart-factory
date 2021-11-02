@@ -3,6 +3,7 @@ import time
 import rospy
 import tf
 from std_msgs.msg import String
+from std_msgs.msg import Int32MultiArray as HoldingRegister
 import actionlib
 from actionlib_msgs.msg import *
 from geometry_msgs.msg import *
@@ -10,9 +11,9 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import math
 goal_path = [
-    [7.18170452118,6.77222156525,0.000000,0.000000,0.00000,-0.710403,0.703795],#Ax,Ay,Az,qx,qy,qz,qw
-    [6.56161832809,2.42692947388,0.000000,0.000000,0.00000,-0.710403,0.703795],
-    [14.0147047043,4.15430116653,0.000000,0.000000,0.00000,-0.710403,0.703795]
+    [7.05444955826,5.83697986603,0.000000,0.000000,0.00000,-0.710403,0.703795],#Ax,Ay,Az,qx,qy,qz,qw
+    [6.5637345314,2.33047652245,0.000000,0.000000,0.00000,-0.710403,0.703795],
+    [13.525844574,3.52647829056,0.000000,0.000000,0.00000,-0.710403,0.703795]
 ]
 initial_position = None
 move_base_status = 0
@@ -44,9 +45,14 @@ class StateMachine:
         return_to_beginning = False
         listener = tf.TransformListener()
         trans, rot = None, None
+        modbusbase = plcregisters[7]
+        initregisters = plcregisters[8]
+        initregisters_list = [int(a)+modbusbase for a in str(initregisters)]
+        modbusregisters = HoldingRegister()
+        modbusregisters.data = [int(i) for i in initregisters_list]
         if(plcregisters[0]== 0):
             rospy.logwarn("Manual mode ready")
-            angle = rr.registers[3] * math.pi/180
+            angle = plcregisters[3] * math.pi/180
             ax =  float(plcregisters[1])/1000
             ay =  float(plcregisters[2])/1000
             a = [ ax, ay,0.000,0.000,0.000,0.000,0.000] #Ax,Ay,Az,qx,qy,qz,qw
@@ -54,12 +60,14 @@ class StateMachine:
             a[4] = 0.000
             a[5] = math.sin(angle/2)
             a[6] = math.cos(angle/2)
-            print(a)
+            self.send_infomodbus(9,0) #Update Status occupied
             self.sendGoal1(a)
             socket_pub.publish("arrive")
+            self.send_infomodbus_list(modbusbase,modbusregisters) #Send modbus data
+            self.send_infomodbus(9,2) #Update Status success
         elif(plcregisters[0]== 1):
             rospy.logwarn("Auto mode ready")
-            angle = rr.registers[6] * math.pi/180
+            angle = plcregisters[6] * math.pi/180
             ax = float(plcregisters[4])/1000
             ay = float(plcregisters[5])/1000 
             a = [ ax, ay,0.000,0.000,0.000,0.000,0.000] #Ax,Ay,Az,qx,qy,qz,qw
@@ -67,9 +75,11 @@ class StateMachine:
             a[4] = 0.000
             a[5] = math.sin(angle/2)
             a[6] = math.cos(angle/2)
-            print(a)
+            self.send_infomodbus(9,0) #Update Status occupied
             self.sendGoal1(a)
             socket_pub.publish("arrive")
+            self.send_infomodbus_list(modbusbase,modbusregisters) #Send modbus data
+            self.send_infomodbus(9,2) #Update Status success
         elif(plcregisters[0]== 2):
             rospy.logwarn("Stop mode ready")
     def test(self, index):
@@ -99,15 +109,29 @@ class StateMachine:
             rospy.logwarn(error)
         try:
             rq = client.write_registers(index,value, unit=UNIT)
-            rr = client.read_holding_registers(index,value,unit=UNIT)
             client.close()
-            rospy.logwarn(rr.registers)
             rospy.logwarn("PLC-DASHGO working")
             rospy.sleep(1)
         except Exception as error:
             rospy.logwarn("Reading registers not ready")
             rospy.logwarn(error)      
-
+    def send_infomodbus_list(self,index,modbusregisters):
+        try:
+            client =  ModbusClient("192.168.31.2",port=502)
+            UNIT = 0x1
+            conexion = client.connect()
+            rospy.logwarn("Modbus connection ready")
+        except Exception as error:
+            rospy.logwarn("Modbus connection error")
+            rospy.logwarn(error)
+        try:
+            rq = client.write_registers(index,modbusregisters.data, unit=UNIT)
+            client.close()
+            rospy.logwarn("PLC-DASHGO working")
+            rospy.sleep(1)
+        except Exception as error:
+            rospy.logwarn("Reading registers not ready")
+            rospy.logwarn(error) 
         
 if __name__ == '__main__':
     try:
