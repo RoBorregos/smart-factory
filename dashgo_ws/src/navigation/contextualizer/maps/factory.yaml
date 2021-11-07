@@ -3,11 +3,11 @@
 # image: manufacturing_lab.png
 # image: mymap3.png
 # image: mymap4.png
-image: newmap.png
+image: newmap2.png
 
 resolution: 0.01
 
-origin: [0.0, 0.0, 0.0]
+origin: [0.0, 0.0, 0.0] 
 
 occupied_thresh: 0.65
 
