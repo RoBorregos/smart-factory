@@ -1,44 +1,45 @@
 {
-  "configurations": [
-    {
-      "browse": {
-        "databaseFilename": "",
-        "limitSymbolsToIncludedHeaders": true
-      },
-      "includePath": [
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/devel/include/**",
-        "/opt/ros/kinetic/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/amcl/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/base_local_planner/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/carrot_planner/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/clear_costmap_recovery/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/costmap_2d/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/dwa_local_planner/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/gazebo_ros_pkgs/gazebo_plugins/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/gazebo_ros_pkgs/gazebo_ros/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/gazebo_ros_pkgs/gazebo_ros_control/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/global_planner/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/map_server/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/move_base/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/move_slow_and_clear/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/nav_core/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/navfn/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/occupancy_grid_utils/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/robot_pose_ekf/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/rotate_recovery/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2_bullet/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2_eigen/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2_geometry_msgs/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2_kdl/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2_msgs/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2_ros/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2_sensor_msgs/include/**",
-        "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/voxel_grid/include/**",
-        "/usr/include/**"
-      ],
-      "name": "ROS"
-    }
-  ],
-  "version": 4
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/devel/include/**",
+                "/opt/ros/kinetic/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/amcl/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/base_local_planner/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/carrot_planner/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/clear_costmap_recovery/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/costmap_2d/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/dwa_local_planner/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/gazebo_ros_pkgs/gazebo_plugins/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/gazebo_ros_pkgs/gazebo_ros/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/gazebo_ros_pkgs/gazebo_ros_control/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/global_planner/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/map_server/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/move_base/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/move_slow_and_clear/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/nav_core/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/navfn/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/occupancy_grid_utils/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/robot_pose_ekf/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/rotate_recovery/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2_bullet/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2_eigen/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2_geometry_msgs/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2_kdl/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2_msgs/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2_ros/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/tools/geometry2/tf2_sensor_msgs/include/**",
+                "/home/aurotb/Desktop/smart-factory/dashgo_ws/src/navigation/navigation/voxel_grid/include/**",
+                "/usr/include/**"
+            ],
+            "name": "ROS",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
 }
