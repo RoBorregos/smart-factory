@@ -2,6 +2,7 @@
     <arg name="ns" default=""/>
     <arg name="initial_pose_x" default="0.0"/>
     <arg name="initial_pose_y" default="0.0"/>
+    <arg name="initial_pose_a" default="0.0"/>
     <remap from="map" to="/map"/>
 
     <!-- <include file="$(find robot_description_robert)/launch/display.launch">
@@ -30,7 +31,7 @@
         <param name="recovery_alpha_fast" value="0.1"/>
         <param name="initial_pose_x" value="$(arg initial_pose_x)"/>
         <param name="initial_pose_y" value="$(arg initial_pose_y)"/>
-        <param name="initial_pose_a" value="0.0"/>
+        <param name="initial_pose_a" value="$(arg initial_pose_a)"/>
         <param name="update_min_a" value="0.3"/>
         <param name="laser_min_range" value="0.3"/>
         <param name="odom_model_type" value="omni"/>

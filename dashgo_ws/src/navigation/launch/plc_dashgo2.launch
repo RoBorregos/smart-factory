@@ -5,9 +5,9 @@
   <arg name="map_file" default="$(find contextualizer)/maps/factory.yaml"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
   <rosparam file="$(arg map_file)" command="load" ns="map" />
-  <arg name="initial_pose_x" default="10.8563394547"/> 
-  <arg name="initial_pose_y" default="9.89995670319"/> 
-  <arg name="initial_pose_a" default="0.0"/>  
+  <arg name="initial_pose_x" value="8.55697631836" />
+  <arg name="initial_pose_y" value="10.1981182098" />
+  <arg name="initial_pose_a" default="1.5708"/>  
     <!-- <include file="nav.launch">
       <arg name="ns" value="" />
       <arg name="initial_pose_x" value="0.591092" />

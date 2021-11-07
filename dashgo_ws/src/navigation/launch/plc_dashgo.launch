@@ -11,14 +11,15 @@
   <group ns="dashgo_0">
     <include file="nav.launch">
       <arg name="ns" value="dashgo_0" />
-      <arg name="initial_pose_x" value="10.8563394547" />
-      <arg name="initial_pose_y" value="9.89995670319" />
+      <arg name="initial_pose_x" value="8.55697631836" />
+      <arg name="initial_pose_y" value="10.1981182098" />
+      <arg name="initial_pose_a" default="1.5708"/>  
     </include>
     <include file="move_base.launch">
       <arg name="ns" value="dashgo_0" />
     </include>
   </group>
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/plc_dashgo.rviz"/>
-  <node pkg="goal_provider" name="dashgogoal" type="goaldashgorviz.py" output="screen"> </node>
+  <!-- <node pkg="goal_provider" name="dashgogoal" type="goaldashgorviz.py" output="screen"> </node> -->
 
 </launch>
