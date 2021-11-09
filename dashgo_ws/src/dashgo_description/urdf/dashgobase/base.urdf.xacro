@@ -3,22 +3,22 @@
 <robot name="base" xmlns:xacro="http://ros.org/wiki/xacro">
  
   <!-- Define a number of dimensions using properties -->
-  <!-- <xacro:property name="base_x" value="0.40" />
+  <xacro:property name="base_x" value="0.40" />
   <xacro:property name="base_y" value="0.40" />
-  <xacro:property name="base_length" value="0.20" /> -->
-  <xacro:property name="base_x" value="0.20" />
+  <xacro:property name="base_length" value="0.20" />
+  <!-- <xacro:property name="base_x" value="0.20" />
   <xacro:property name="base_y" value="0.20" />
-  <xacro:property name="base_length" value="0.10" />
-  <!-- <xacro:property name="wheel_length" value="0.046" />
+  <xacro:property name="base_length" value="0.10" /> -->
+  <xacro:property name="wheel_length" value="0.046" />
   <xacro:property name="wheel_radius" value="0.062" />
   <xacro:property name="wheel_offset_x" value="-0.08" />
   <xacro:property name="wheel_offset_y" value="0.176" />
-  <xacro:property name="wheel_offset_z" value="-0.038" /> -->
-  <xacro:property name="wheel_length" value="0.023" />
+  <xacro:property name="wheel_offset_z" value="-0.038" />
+  <!-- <xacro:property name="wheel_length" value="0.023" />
   <xacro:property name="wheel_radius" value="0.031" />
   <xacro:property name="wheel_offset_x" value="-0.04" />
   <xacro:property name="wheel_offset_y" value="0.088" />
-  <xacro:property name="wheel_offset_z" value="-0.038" /> 
+  <xacro:property name="wheel_offset_z" value="-0.038" />  -->
   
   <xacro:property name="PI" value="3.1415926" />
      
