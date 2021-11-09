@@ -1,5 +1,5 @@
 footprint: [[-0.085, -0.20], [-0.085, 0.2],[0.315, 0.2], [0.315, -0.2]]
-robot_radius: 0.20 # distance a circular robot should be clear of the obstacle (kobuki: 0.18)
+robot_radius: 0.10 # distance a circular robot should be clear of the obstacle (kobuki: 0.18)
 obstacle_layer:
   enabled: true
   #max_obstacle_height: 1.2
