@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<?ignore
 <launch>
   <include file="$(find dashgo_description)/launch/dashgo_description.launch"/>
     <!-- Map server initialization, outside namespaces -->
@@ -12,15 +13,16 @@
       <arg name="ns" value="" />
     <arg name="initial_pose_x" value="8.69504451752" />
     <arg name="initial_pose_y" value="10.4509954453" />
-      <arg name="initial_pose_a" default="1.5708"/> 
+    <arg name="initial_pose_a" default="1.5708"/> 
     </include>
   <include file="move_base.launch">
       <arg name="ns" value="" />
     </include>
   <node name="robot_pose_publisher" pkg="robot_pose_publisher" type="robot_pose_publisher" />
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/plc_dashgo.rviz"/>
+  <node pkg="goal_provider" name="dashgogoal" type="goaldashgorviz.py" output="screen"> </node>
 </launch>
-<?ignore
+?>
   <launch>
     <!--Rviz-->
     <!-- Map server initialization, outside namespaces -->
@@ -34,9 +36,9 @@
     <group ns="dashgo_0">
       <include file="nav.launch">
         <arg name="ns" value="dashgo_0" />
-        <arg name="initial_pose_x" value="14.4984941483" />
-        <arg name="initial_pose_y" value="17.4970207214" />
-        <arg name="initial_pose_a" default="1.5708"/>  
+        <arg name="initial_pose_x" value="8.69504451752" />
+        <arg name="initial_pose_y" value="10.4509954453" />
+        <arg name="initial_pose_a" default="1.5708"/> 
       </include>
       <include file="move_base.launch">
         <arg name="ns" value="dashgo_0" />
@@ -44,7 +46,6 @@
     </group>
     <include file="$(find dashgo_description)/launch/dashgo_description.launch"/>
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/plc_dashgo.rviz"/>
-    <!-- <node pkg="goal_provider" name="dashgogoal" type="goaldashgorviz.py" output="screen"> </node> -->
+    <node pkg="goal_provider" name="dashgogoal" type="goaldashgorviz.py" output="screen"> </node>
 
   </launch>
-?>

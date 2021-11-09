@@ -7,7 +7,7 @@
   <rosparam file="$(arg map_file)" command="load" ns="map" />
     <arg name="initial_pose_x" value="8.69504451752" />
     <arg name="initial_pose_y" value="10.4509954453" />
-    <arg name="initial_pose_a" default="1.5708"/>  
+    <arg name="initial_pose_a" default="0.0"/>  
     <!-- <include file="nav.launch">
       <arg name="ns" value="" />
       <arg name="initial_pose_x" value="0.591092" />
