@@ -4,7 +4,7 @@
 # image: mymap3.png
 # image: mymap4.png
 image: newmap2.png
-
+#image: mynewmap.pgm
 resolution: 0.01
 
 origin: [0.0, 0.0, 0.0] 
