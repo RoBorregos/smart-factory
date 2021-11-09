@@ -8,8 +8,8 @@
     <!-- <arg name="initial_pose_x" value="8.69504451752" />
     <arg name="initial_pose_y" value="10.4509954453" />
     <arg name="initial_pose_a" default="0.0"/>   -->
-    <arg name="initial_pose_x" value="8.61021232605" />
-    <arg name="initial_pose_y" value="9.81155490875" />
+    <arg name="initial_pose_x" value="8.34057044983" />
+    <arg name="initial_pose_y" value="9.7309627533" />
     <arg name="initial_pose_a" default="0.0"/>  
     <!-- <include file="nav.launch">
       <arg name="ns" value="" />
