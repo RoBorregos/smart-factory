@@ -54,7 +54,7 @@ class StateMachine:
             for i in initregisters_list:
                 newlist[i] = 1
             modbusregisters.data = newlist
-        if(plcregisters[0]== 0):
+        if(plcregisters[0]== 0 and plcregisters[1] !=0 and plcregisters[2]!=0):
             rospy.logwarn("Manual mode ready")
             angle = plcregisters[3] * math.pi/180
             ax =  float(plcregisters[1])/1000
@@ -68,7 +68,7 @@ class StateMachine:
             self.sendGoal1(a)
             socket_pub.publish("arrive")
             self.send_infomodbus(9,2) #Update Status success
-        elif(plcregisters[0]== 1):
+        elif(plcregisters[0]== 1 and plcregisters[4] !=0 and plcregisters[5]!=0):
             rospy.logwarn("Auto mode ready")
             angle = plcregisters[6] * math.pi/180
             ax = float(plcregisters[4])/1000
