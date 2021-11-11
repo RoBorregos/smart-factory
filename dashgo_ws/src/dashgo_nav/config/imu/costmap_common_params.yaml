@@ -17,10 +17,10 @@ obstacle_layer:
   track_unknown_space: true
  
   origin_z: 0.0
-  #z_resolution: 0.1
-  z_voxels: 10
-  z_resolution: 0.2
-  # z_voxels: 2
+  z_resolution: 0.1
+  # z_voxels: 10
+  # z_resolution: 0.2
+  z_voxels: 2
   unknown_threshold: 15
   mark_threshold: 0
   publish_voxel_map: true
