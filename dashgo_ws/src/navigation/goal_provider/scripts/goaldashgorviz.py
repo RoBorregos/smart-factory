@@ -53,9 +53,29 @@ if __name__ == '__main__':
         robot = StateMachine()
         while not rospy.is_shutdown():
             try:
-                for i in range(len(goal_path)):
-                    robot.test(i)
+                client =  ModbusClient("192.168.100.23",port=502)
+                UNIT = 0x1
+                conexion = client.connect()
+                rospy.logwarn("Modbus connection ready")
             except Exception as error:
+                rospy.logwarn("Modbus connection error")
                 rospy.logwarn(error)
+            try:
+                rr = client.read_holding_registers(0,15,unit=UNIT)
+                client.close()
+                rospy.loginfo("PLC Registers:")
+                rospy.logwarn("PLC Registers:")
+                rospy.logwarn(rr.registers)
+                rospy.logwarn("PLC-DASHGO working")
+                #robot.do_mission(rr.registers)
+                rospy.sleep(1)
+            except Exception as error:
+                rospy.logwarn("Reading registers not ready")
+                rospy.logwarn(error)   
+            # try:
+            #     for i in range(len(goal_path)):
+            #         robot.test(i)
+            # except Exception as error:
+            #     rospy.logwarn(error)
     except rospy.ROSInterruptException:
         rospy.loginfo("Navigation test finished.")
