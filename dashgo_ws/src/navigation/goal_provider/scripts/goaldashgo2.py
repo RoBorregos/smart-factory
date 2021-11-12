@@ -150,6 +150,7 @@ if __name__ == '__main__':
                 rr = client.read_holding_registers(0,15,unit=UNIT)
                 client.close()
                 rospy.loginfo("PLC Registers:")
+                rospy.logwarn("PLC Registers:")
                 rospy.logwarn(rr.registers)
                 rospy.logwarn("PLC-DASHGO working")
                 robot.do_mission(rr.registers)
