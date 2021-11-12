@@ -39,7 +39,7 @@ class StateMachine:
             rospy.signal_shutdown("Action server not available!")
         else:
             return self.client.get_result()
-    def do_mission(self, plcregisters):
+    def do_mission(self, client,UNIT,plcregisters):
         socket_pub = rospy.Publisher("navBridgeServer/talker", String) 
         rospy.Subscriber("move_base/status", GoalStatusArray, self.setServerFeedback)
         return_to_beginning = False
@@ -64,10 +64,10 @@ class StateMachine:
             a[4] = 0.000
             a[5] = math.sin(angle/2)
             a[6] = math.cos(angle/2)
-            self.send_infomodbus(9,1) #Update Status occupied
+            self.send_infomodbusauto(client,UNIT,9,1) #Update Status occupied
             self.sendGoal1(a)
             socket_pub.publish("arrive")
-            self.send_infomodbus(9,2) #Update Status success
+            self.send_infomodbusauto(client,UNIT,9,2) #Update Status success
         elif(plcregisters[0]== 1 and plcregisters[4] !=0 and plcregisters[5]!=0):
             rospy.logwarn("Auto mode ready")
             angle = plcregisters[6] * math.pi/180
@@ -78,12 +78,12 @@ class StateMachine:
             a[4] = 0.000
             a[5] = math.sin(angle/2)
             a[6] = math.cos(angle/2)
-            self.send_infomodbus(9,1) #Update Status occupied
+            self.send_infomodbusauto(client,UNIT,9,1) #Update Status occupied
             self.sendGoal1(a)
             socket_pub.publish("arrive")
             if (modbusbase != 0  and initregisters !=0):
-                self.send_infomodbus_list(modbusbase,modbusregisters) #Send modbus data
-            self.send_infomodbus(9,2) #Update Status success
+                self.send_infomodbus_list(client,modbusbase,modbusregisters) #Send modbus data
+            self.send_infomodbusauto(client,UNIT,9,2) #Update Status success
         elif(plcregisters[0]== 2):
             rospy.logwarn("Stop mode ready")
     def test(self, index):
@@ -118,23 +118,21 @@ class StateMachine:
             rospy.sleep(1)
         except Exception as error:
             rospy.logwarn("Reading registers not ready")
-            rospy.logwarn(error)      
-    def send_infomodbus_list(self,index,modbusregisters):
+            rospy.logwarn(error)  
+    def send_infomodbusauto(self,client,UNIT,index,value):
         try:
-            client =  ModbusClient("192.168.31.2",port=502)
-            UNIT = 0x1
-            conexion = client.connect()
-            rospy.logwarn("Modbus connection ready")
-        except Exception as error:
-            rospy.logwarn("Modbus connection error")
-            rospy.logwarn(error)
-        try:
-            rq = client.write_registers(index,modbusregisters.data, unit=UNIT)
-            client.close()
-            rospy.logwarn("PLC-DASHGO working")
+            client.write_registers(index,value, unit=UNIT)
+            rospy.logwarn("Infomodbusauto working")
             rospy.sleep(1)
         except Exception as error:
-            rospy.logwarn("Reading registers not ready")
+            rospy.logwarn("Infomodbuslistauto not ready")
+            rospy.logwarn(error)         
+    def send_infomodbus_list(self,client,UNIT,index,modbusregisters):
+            client.write_registers(index,modbusregisters.data, unit=UNIT)
+            rospy.logwarn("Infomodbuslist working")
+            rospy.sleep(1)
+        except Exception as error:
+            rospy.logwarn("Infomodbuslist not ready")
             rospy.logwarn(error) 
         
 if __name__ == '__main__':
@@ -152,10 +150,10 @@ if __name__ == '__main__':
                 rospy.logwarn(error)
             try:
                 rr = client.read_holding_registers(0,15,unit=UNIT)
-                client.close()
                 rospy.logwarn(rr.registers)
                 rospy.logwarn("PLC-DASHGO working")
-                robot.do_mission(rr.registers)
+                robot.do_mission(client,UNIT,rr.registers)
+                client.close()
                 rospy.sleep(1)
             except Exception as error:
                 rospy.logwarn("Reading registers not ready")
