@@ -16,7 +16,7 @@ goal_path = [
     [13.525844574,3.52647829056,0.000000,0.000000,0.00000,-0.710403,0.703795]
 ]
 initial_position = None
-move_base_status = 0
+move_base_status = 0 
 return_to_beginning = False
 class StateMachine:
     def __init__(self):
