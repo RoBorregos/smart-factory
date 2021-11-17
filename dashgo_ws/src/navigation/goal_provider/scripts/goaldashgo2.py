@@ -21,6 +21,9 @@ return_to_beginning = False
 class StateMachine:
     def __init__(self):
         self.client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
+        self.oldcoordinatex = 0.0
+        self.oldcoordinatey = 0.0
+        self.oldcoordinatez = 0.0
     def setServerFeedback(self, data):
         if len(data.status_list):
             move_base_status = data.status_list[0].status
@@ -78,12 +81,20 @@ class StateMachine:
             a[4] = 0.000
             a[5] = math.sin(angle/2)
             a[6] = math.cos(angle/2)
-            self.send_infomodbus(9,1) #Update Status occupied
+            newcoordinatex = plcregisters[4]
+            newcoordinatey =plcregisters[5]
+            newcoordinatez = plcregisters[6]
+            if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey self.oldcoordinatez !=newcoordinatez ):
+                self.send_infomodbus(9,1) #Update Status occupied
             self.sendGoal1(a)
             socket_pub.publish("arrive")
             if (modbusbase != 0  and initregisters !=0):
                 self.send_infomodbus_list(modbusbase,modbusregisters) #Send modbus data
-            self.send_infomodbus(9,2) #Update Status success
+            if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey self.oldcoordinatez !=newcoordinatez ):
+                self.send_infomodbus(9,2) #Update Status success
+            self.oldcoordinatex = newcoordinatex
+            self.oldcoordinatey = newcoordinatey
+            self.oldcoordinatez = newcoordinatez
         elif(plcregisters[0]== 2):
             rospy.logwarn("Stop mode ready")
     def test(self, index):
@@ -152,6 +163,7 @@ if __name__ == '__main__':
                 rospy.loginfo("PLC Registers:")
                 rospy.logwarn(rr.registers)
                 rospy.logwarn("PLC-DASHGO2 working")
+                robot.send_infomodbus(9,0)
                 robot.do_mission(rr.registers)
                 rospy.sleep(1)
             except Exception as error:
