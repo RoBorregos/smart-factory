@@ -180,7 +180,7 @@ if __name__=="__main__":
 					outputregister.data = [int(i) for i in myregisters]
 					rq = client.write_registers(10, outputregister.data, unit=UNIT)
 					client.close()
-					rospy.logwarn("PLC-DASHGO working")
+					rospy.logwarn("Keyboard working")
 					rospy.sleep(1)
 				except Exception as error:
 				    rospy.logwarn("Reading registers not ready")

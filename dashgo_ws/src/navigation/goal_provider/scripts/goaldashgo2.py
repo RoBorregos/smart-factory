@@ -152,7 +152,7 @@ if __name__ == '__main__':
                 rospy.loginfo("PLC Registers:")
                 rospy.logwarn("PLC Registers:")
                 rospy.logwarn(rr.registers)
-                rospy.logwarn("PLC-DASHGO working")
+                rospy.logwarn("PLC-DASHGO2 working")
                 robot.do_mission(rr.registers)
                 rospy.sleep(1)
             except Exception as error:

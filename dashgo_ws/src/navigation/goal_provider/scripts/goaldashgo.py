@@ -92,7 +92,7 @@ if __name__ == '__main__':
                 rr = client.read_holding_registers(0,15,unit=UNIT)
                 client.close()
                 rospy.logwarn(rr.registers)
-                rospy.logwarn("PLC-DASHGO working")
+                rospy.logwarn("Goaldashgov1 working")
                 robot.do_mission(rr.registers)
                 rospy.sleep(1)
             except Exception as error:
