@@ -84,13 +84,13 @@ class StateMachine:
             newcoordinatex = plcregisters[4]
             newcoordinatey =plcregisters[5]
             newcoordinatez = plcregisters[6]
-            if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey self.oldcoordinatez !=newcoordinatez ):
+            if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or  self.oldcoordinatez !=newcoordinatez ):
                 self.send_infomodbus(9,1) #Update Status occupied
             self.sendGoal1(a)
             socket_pub.publish("arrive")
             if (modbusbase != 0  and initregisters !=0):
                 self.send_infomodbus_list(modbusbase,modbusregisters) #Send modbus data
-            if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey self.oldcoordinatez !=newcoordinatez ):
+            if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or self.oldcoordinatez !=newcoordinatez ):
                 self.send_infomodbus(9,2) #Update Status success
             self.oldcoordinatex = newcoordinatex
             self.oldcoordinatey = newcoordinatey
