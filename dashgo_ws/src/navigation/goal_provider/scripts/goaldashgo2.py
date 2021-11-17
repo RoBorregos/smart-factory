@@ -153,7 +153,7 @@ if __name__ == '__main__':
                 rospy.logwarn("PLC Registers:")
                 rospy.logwarn(rr.registers)
                 rospy.logwarn("PLC-DASHGO2 working")
-                robot.do_mission(rr.registers)
+                #robot.do_mission(rr.registers)
                 rospy.sleep(1)
             except Exception as error:
                 rospy.logwarn("Reading registers not ready")
