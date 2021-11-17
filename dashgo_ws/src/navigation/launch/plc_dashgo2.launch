@@ -37,7 +37,7 @@
   </node> 
   <node name="robot_data" pkg="dashgo_tools" type="robot_data.py" respawn="true" /> 
   <node name="get_scan_data" pkg="dashgo_tools" type="get_scan_data.py" respawn="true" />
-  <node name="updateregistervel" pkg="dashgo_tools" type="updateregistervel.py" respawn="true" />
+  <!-- <node name="updateregistervel" pkg="dashgo_tools" type="updateregistervel.py" respawn="true" /> -->
   
  
 </launch>
