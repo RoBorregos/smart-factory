@@ -148,6 +148,7 @@ if __name__ == '__main__':
     try:
         rospy.init_node('statemachine')
         robot = StateMachine()
+        robot.send_infomodbus(9,0)
         while not rospy.is_shutdown():
             try:
                 client =  ModbusClient("192.168.31.2",port=502)
@@ -163,7 +164,6 @@ if __name__ == '__main__':
                 rospy.loginfo("PLC Registers:")
                 rospy.logwarn(rr.registers)
                 rospy.logwarn("PLC-DASHGO2 working")
-                robot.send_infomodbus(9,0)
                 robot.do_mission(rr.registers)
                 rospy.sleep(1)
             except Exception as error:
