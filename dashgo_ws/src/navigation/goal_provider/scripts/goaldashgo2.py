@@ -108,14 +108,16 @@ class StateMachine:
             rospy.loginfo("Llego mision en ")
             rospy.loginfo(status)
             if(status):
+                rospy.loginfo("Coordenadax en: ")
+                rospy.loginfo(self.oldcoordinatex)
                 if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or self.oldcoordinatez !=newcoordinatez ):
                     self.send_infomodbus(9,2) #Update Status success
                     rospy.sleep(2)
                     self.send_infomodbus(9,0) #Update Status success
+                    self.oldcoordinatex = newcoordinatex
+                    self.oldcoordinatey = newcoordinatey
+                    self.oldcoordinatez = newcoordinatez
             socket_pub.publish("arrive")
-            self.oldcoordinatex = newcoordinatex
-            self.oldcoordinatey = newcoordinatey
-            self.oldcoordinatez = newcoordinatez
         elif(plcregisters[0]== 2):
             rospy.logwarn("Stop mode ready")
     def test(self, index):
