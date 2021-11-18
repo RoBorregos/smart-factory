@@ -77,6 +77,7 @@ class StateMachine:
                 if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or self.oldcoordinatez !=newcoordinatez ):
                     if self.cont ==1:
                         self.send_infomodbus(9,2) #Update Status success
+                        rospy.sleep(5)
                         self.cont=2
                     self.send_infomodbus(9,0) #Update Status success
             else:
@@ -106,6 +107,7 @@ class StateMachine:
                 if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or self.oldcoordinatez !=newcoordinatez ):
                     if self.cont ==1:
                         self.send_infomodbus(9,2) #Update Status success
+                        rospy.sleep(5)
                         self.cont=2
                     self.send_infomodbus(9,0) #Update Status success
             else:
