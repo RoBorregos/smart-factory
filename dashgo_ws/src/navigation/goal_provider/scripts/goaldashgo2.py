@@ -102,7 +102,7 @@ class StateMachine:
             newcoordinatey =plcregisters[5]
             newcoordinatez = plcregisters[6]
             if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or  self.oldcoordinatez !=newcoordinatez ):
-                    self.send_infomodbus(9,1) #Update Status occupied
+                self.send_infomodbus(9,1) #Update Status occupied
             self.sendGoal1(a)
             status = self.sendGoal1(a)
             if (status):
