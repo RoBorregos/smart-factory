@@ -101,19 +101,15 @@ class StateMachine:
             newcoordinatex = plcregisters[4]
             newcoordinatey =plcregisters[5]
             newcoordinatez = plcregisters[6]
+            if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or  self.oldcoordinatez !=newcoordinatez ):
+                    self.send_infomodbus(9,1) #Update Status occupied
             self.sendGoal1(a)
             status = self.sendGoal1(a)
             if (status):
                 if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or self.oldcoordinatez !=newcoordinatez ):
-                    if self.cont ==1:
-                        self.send_infomodbus(9,2) #Update Status success
-                        rospy.sleep(5)
-                        self.cont=2
+                    self.send_infomodbus(9,2) #Update Status success
+                    rospy.sleep(5)
                     self.send_infomodbus(9,0) #Update Status success
-            else:
-                if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or  self.oldcoordinatez !=newcoordinatez ):
-                    self.send_infomodbus(9,1) #Update Status occupied
-                    self.cont =1
             socket_pub.publish("arrive")
             self.oldcoordinatex = newcoordinatex
             self.oldcoordinatey = newcoordinatey
