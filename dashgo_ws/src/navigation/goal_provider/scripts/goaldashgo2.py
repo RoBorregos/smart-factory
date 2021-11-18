@@ -24,6 +24,7 @@ class StateMachine:
         self.oldcoordinatex = 0.0
         self.oldcoordinatey = 0.0
         self.oldcoordinatez = 0.0
+        self.cont=0
     def setServerFeedback(self, data):
         if len(data.status_list):
             move_base_status = data.status_list[0].status
@@ -68,9 +69,24 @@ class StateMachine:
             a[5] = math.sin(angle/2)
             a[6] = math.cos(angle/2)
             self.send_infomodbus(9,1) #Update Status occupied
-            self.sendGoal1(a)
+            newcoordinatex = plcregisters[4]
+            newcoordinatey =plcregisters[5]
+            newcoordinatez = plcregisters[6]
+            status = self.sendGoal1(a)
+            if (status):
+                if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or self.oldcoordinatez !=newcoordinatez ):
+                    if self.cont ==1:
+                        self.send_infomodbus(9,2) #Update Status success
+                        self.cont=2
+                    self.send_infomodbus(9,0) #Update Status success
+            else:
+                if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or  self.oldcoordinatez !=newcoordinatez ):
+                    self.send_infomodbus(9,1) #Update Status occupied
+                    self.cont =1
             socket_pub.publish("arrive")
-            self.send_infomodbus(9,2) #Update Status success
+            self.oldcoordinatex = newcoordinatex
+            self.oldcoordinatey = newcoordinatey
+            self.oldcoordinatez = newcoordinatez
         elif(plcregisters[0]== 1 and plcregisters[4] !=0 and plcregisters[5]!=0):
             rospy.logwarn("Auto mode ready")
             angle = plcregisters[6] * math.pi/180
@@ -84,20 +100,19 @@ class StateMachine:
             newcoordinatex = plcregisters[4]
             newcoordinatey =plcregisters[5]
             newcoordinatez = plcregisters[6]
-            
-            if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or  self.oldcoordinatez !=newcoordinatez ):
-                self.send_infomodbus(9,1) #Update Status occupied
-                cont =1
             self.sendGoal1(a)
+            status = self.sendGoal1(a)
+            if (status):
+                if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or self.oldcoordinatez !=newcoordinatez ):
+                    if self.cont ==1:
+                        self.send_infomodbus(9,2) #Update Status success
+                        self.cont=2
+                    self.send_infomodbus(9,0) #Update Status success
+            else:
+                if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or  self.oldcoordinatez !=newcoordinatez ):
+                    self.send_infomodbus(9,1) #Update Status occupied
+                    self.cont =1
             socket_pub.publish("arrive")
-            
-            if (modbusbase != 0  and initregisters !=0):
-                self.send_infomodbus_list(modbusbase,modbusregisters) #Send modbus data
-            if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or self.oldcoordinatez !=newcoordinatez ):
-                if cont ==1:
-                    self.send_infomodbus(9,2) #Update Status success
-                    cont=2
-                self.send_infomodbus(9,0) #Update Status success
             self.oldcoordinatex = newcoordinatex
             self.oldcoordinatey = newcoordinatey
             self.oldcoordinatez = newcoordinatez
