@@ -114,6 +114,7 @@ class StateMachine:
                     self.send_infomodbus(9,2) #Update Status success
                     rospy.sleep(2)
                     self.send_infomodbus(9,0) #Update Status success
+                    rospy.sleep(2)
                     self.oldcoordinatex = newcoordinatex
                     self.oldcoordinatey = newcoordinatey
                     self.oldcoordinatez = newcoordinatez
