@@ -114,9 +114,9 @@ class StateMachine:
                     self.send_infomodbus(9,2) #Update Status success
                     rospy.sleep(2)
                     self.send_infomodbus(9,0) #Update Status success
-                    self.oldcoordinatex = 0.0
-                    self.oldcoordinatey = 0.0
-                    self.oldcoordinatez = 0.0
+                    self.oldcoordinatex = newcoordinatex
+                    self.oldcoordinatey = newcoordinatey
+                    self.oldcoordinatez = newcoordinatez
             socket_pub.publish("arrive")
         elif(plcregisters[0]== 2):
             rospy.logwarn("Stop mode ready")
