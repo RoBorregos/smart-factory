@@ -103,9 +103,10 @@ class StateMachine:
             newcoordinatez = plcregisters[6]
             if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or  self.oldcoordinatez !=newcoordinatez ):
                 self.send_infomodbus(9,1) #Update Status occupied
-            self.sendGoal1(a)
             status = self.sendGoal1(a)
-            if (status):
+            rospy.loginfo("Llego misión en: ")
+            rospy.loginfo(status)
+            if(status):
                 if(self.oldcoordinatex !=newcoordinatex or self.oldcoordinatey !=newcoordinatey or self.oldcoordinatez !=newcoordinatez ):
                     self.send_infomodbus(9,2) #Update Status success
                     rospy.sleep(5)
