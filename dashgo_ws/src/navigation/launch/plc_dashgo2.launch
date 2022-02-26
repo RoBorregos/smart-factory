@@ -29,7 +29,7 @@
   <!-- Start RVIZ simulator -->
   <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/plc_dashgo2.rviz"/> -->
   <!-- <node pkg="goal_provider" name="dashgogoal" type="goaldashgo2.py" output="screen"> -->
-  </node>
+  <!-- </node> -->
   <include file="$(find dashgo_driver)/launch/driver_imu.launch"/>
   <include file="$(find ydlidar)/launch/ydlidar1_up.launch"/>
   <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
