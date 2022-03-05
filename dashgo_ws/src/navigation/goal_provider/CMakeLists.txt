@@ -169,6 +169,8 @@ catkin_install_python(PROGRAMS
   scripts/goaldashgo.py
   scripts/goaldashgo2.py
   scripts/goaldashgorviz.py
+  scripts/battery_ai.py
+  scripts/check_battery.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
