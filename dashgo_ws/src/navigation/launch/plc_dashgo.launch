@@ -33,20 +33,18 @@
           <param name="frame_id" value="/map"/>
     </node> 
     <rosparam file="$(arg map_file)" command="load" ns="map" />
-    <group ns="dashgo_0">
       <include file="nav.launch">
-        <arg name="ns" value="dashgo_0" />
+        <arg name="ns" value="" />
         <arg name="initial_pose_x" value="8.34057044983" />
         <arg name="initial_pose_y" value="9.7309627533" />
         <arg name="initial_pose_a" default="1.5708"/> 
       </include>
       <include file="move_base.launch">
-        <arg name="ns" value="dashgo_0" />
+        <arg name="ns" value="" />
       </include>
-    </group>
     <include file="$(find dashgo_description)/launch/dashgo_description.launch"/>
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/plc_dashgo.rviz"/>
     <!-- <node pkg="goal_provider" name="dashgogoal" type="goaldashgorviz.py" output="screen"> </node> -->
-    <node pkg="goal_provider" name="dashgogoal" type="battery_ai.py" output="screen"> </node>
-    <node pkg="goal_provider" name="batterypercentage" type="check_battery.py" output="screen"> </node>
+    <node pkg="goal_provider" name="battery_ai" type="battery_ai.py" output="screen"> </node>
+    <node pkg="goal_provider" name="batterypercentage" type="check_battery.py" output="screen"> </node> 
   </launch>

@@ -125,11 +125,11 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        dashgo_0/base_link:
+        base_link:
           Value: true
-        dashgo_0/laser_link:
+        laser_link:
           Value: true
-        dashgo_0/odom:
+        odom:
           Value: true
         map:
           Value: true
@@ -140,9 +140,9 @@ Visualization Manager:
       Show Names: true
       Tree:
         map:
-          dashgo_0/odom:
-            dashgo_0/base_link:
-              dashgo_0/laser_link:
+          odom:
+            base_link:
+              laser_link:
                 {}
       Update Interval: 0
       Value: true
@@ -152,7 +152,7 @@ Visualization Manager:
       Draw Behind: false
       Enabled: true
       Name: Map
-      Topic: /dashgo_0/move_base/global_costmap/costmap
+      Topic: /move_base/global_costmap/costmap
       Unreliable: false
       Use Timestamp: false
       Value: true
@@ -169,7 +169,7 @@ Visualization Manager:
       Shaft Length: 0.230000004
       Shaft Radius: 0.00999999978
       Shape: Arrow (Flat)
-      Topic: /dashgo_0/particlecloud
+      Topic: /particlecloud
       Unreliable: false
       Value: true
     - Alpha: 1
@@ -197,7 +197,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.00999999978
       Style: Flat Squares
-      Topic: /dashgo_0/scan
+      Topic: /scan
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
@@ -222,7 +222,7 @@ Visualization Manager:
       Radius: 0.0299999993
       Shaft Diameter: 0.100000001
       Shaft Length: 0.100000001
-      Topic: /dashgo_0/move_base/DWAPlannerROS/global_plan
+      Topic: /move_base/DWAPlannerROS/global_plan
       Unreliable: false
       Value: true
   Enabled: true

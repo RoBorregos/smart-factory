@@ -2,13 +2,12 @@
 import time
 import rospy
 import tf
-from std_msgs.msg import String,Float32
+from std_msgs.msg import String,Int32
 from std_msgs.msg import Int32MultiArray as HoldingRegister
 import actionlib
 from actionlib_msgs.msg import *
 from geometry_msgs.msg import *
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
-from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import math
 goal_path = [
     [7.05444955826,5.83697986603,0.000000,0.000000,0.00000,-0.710403,0.703795],#Ax,Ay,Az,qx,qy,qz,qw
@@ -20,12 +19,12 @@ move_base_status = 0
 class StateMachine:
     def __init__(self):
         self.client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
-        self.battery_status = rospy.Subscriber("batterystatus", Float32, self.batterycallback)
+        self.battery_status = rospy.Subscriber("batterystatus", Int32, self.batterycallback)
         self.oldcoordinatex = 0.0
         self.oldcoordinatey = 0.0
         self.oldcoordinatez = 0.0
         self.cont=0
-        self.batterypercentage=0
+        self.batterypercentage=100
         self.newgoal = 0
     def setServerFeedback(self, data):
         if len(data.status_list):
@@ -36,7 +35,7 @@ class StateMachine:
     def sendGoal1(self,goal_position):
         global move_base_status
         self.client.wait_for_server()
-        print("Client exists")
+        rospy.logwarn("Client exists")
         goal = MoveBaseGoal() 
         goal.target_pose.header.frame_id = "/map"
         goal.target_pose.header.stamp = rospy.Time.now()
@@ -49,13 +48,16 @@ class StateMachine:
         else:
             return self.client.get_result()
     def do_mission(self):
-        socket_pub = rospy.Publisher("navBridgeServer/talker", String) 
+        socket_pub = rospy.Publisher("navBridgeServer/talker", String,queue_size=10) 
         rospy.Subscriber("move_base/status", GoalStatusArray, self.setServerFeedback)
         listener = tf.TransformListener()
         rospy.logwarn("Battery AI ready")
-        angle = 90 * math.pi/180
-        ax = goal_path[self.newgoal]
-        ay = goal_path[self.newgoal]
+        angle = 70 * math.pi/180
+        ax = goal_path[self.newgoal][0]
+        ay = goal_path[self.newgoal][1]
+        rospy.logwarn(ax)
+        rospy.logwarn(self.newgoal)
+        rospy.logwarn(goal_path[0][0])
         a = [ ax, ay,0.000,0.000,0.000,0.000,0.000] #Ax,Ay,Az,qx,qy,qz,qw
         a[3] = 0.000
         a[4] = 0.000
@@ -64,10 +66,12 @@ class StateMachine:
         status = self.sendGoal1(a)
         if (status):
             #Success mobile robot , change coordinate
-            self.newgoal +=1 if self.newgoal<=2 else 0
+            rospy.logwarn("I arrive")
             socket_pub.publish("I arrive")
+            self.newgoal +=1 if self.newgoal<=2 else 0
         else:
             #Couldn't reach objective
+            rospy.logwarn("Next coordinate")
             self.newgoal +=1 if self.newgoal<=2 else 0
         
 if __name__ == '__main__':
@@ -80,4 +84,4 @@ if __name__ == '__main__':
             robot.do_mission()
             r.sleep()
     except rospy.ROSInterruptException:
-        rospy.loginfo("Navigation test finished.")
+        rospy.logerr("Navigation test finished.")
