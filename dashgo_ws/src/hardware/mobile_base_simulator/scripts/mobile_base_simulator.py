@@ -11,7 +11,7 @@ def callback_cmd_vel(msg):
     w  = msg.angular.z
 
 def main():
-    print "INITIALIZING MOBILE BASE ..."
+    print ("INITIALIZING MOBILE BASE ...")
     rospy.init_node("mobile_base")
     rospy.Subscriber("/cmd_vel", Twist, callback_cmd_vel, queue_size=1)
 

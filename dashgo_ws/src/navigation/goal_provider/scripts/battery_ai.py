@@ -2,18 +2,14 @@
 import time
 import rospy
 import tf
-from std_msgs.msg import String,Int32
+from std_msgs.msg import String,Int32, Float32
 from std_msgs.msg import Int32MultiArray as HoldingRegister
 import actionlib
 from actionlib_msgs.msg import *
 from geometry_msgs.msg import *
+from nav_msgs.msg import Path
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 import math
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import db
-cred = credentials.Certificate("google-services.json") 
-firebase_admin.initialize_app(cred)
 goal_path = [
     [6.5637345314,2.33047652245,0.000000,0.000000,0.00000,-0.710403,0.703795],#Ax,Ay,Az,qx,qy,qz,qw
     [13.525844574,3.52647829056,0.000000,0.000000,0.00000,-0.710403,0.703795]
@@ -27,15 +23,23 @@ class StateMachine:
     def __init__(self):
         self.client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
         self.battery_status = rospy.Subscriber("batterystatus", Int32, self.batterycallback)
+        self.distance_result = rospy.Publisher("distanceresult", Float32, queue_size=10) 
         self.mission_status = rospy.Subscriber("missionstatus",String ,self.missioncallback)
+        self.plan_distance = rospy.Subscriber("/move_base/NavfnROS/plan", Path, self.distance_callback)
         self.robot_status = rospy.Publisher("robotstatus",String ,queue_size=10) 
         self.oldcoordinatex = 0.0
         self.oldcoordinatey = 0.0
         self.oldcoordinatez = 0.0
+        self.distancegoal= 0.0
         self.cont=0
         self.batterypercentage=100
         self.newgoal = 0
-        self.mission="Nothing"
+        self.mission="Move" 
+    def distance_callback(self,data):
+        if self.distancegoal==0.0 and self.mission=="Move":
+            for i in range(len(data.poses)-1):
+                self.distancegoal += math.sqrt(pow((data.poses[i+1].pose.position.x - data.poses[i].pose.position.x),2) + pow((data.poses[i+1].pose.position.y - data.poses[i].pose.position.y), 2))
+            self.distance_result.publish(self.distancegoal)
 
     def setServerFeedback(self, data):
         if len(data.status_list):
@@ -54,6 +58,7 @@ class StateMachine:
         goal.target_pose.header.stamp = rospy.Time.now()
         goal.target_pose.pose = Pose(Point(goal_position[0], goal_position[1], goal_position[2]), Quaternion(goal_position[3],goal_position[4], goal_position[5], goal_position[6]))
         self.client.send_goal(goal)
+        
         wait = self.client.wait_for_result()
         if not wait:
             rospy.logerr("Action server not available!")
@@ -74,17 +79,20 @@ class StateMachine:
         a[5] = math.sin(angle/2)
         a[6] = math.cos(angle/2)
         status = self.sendGoal1(a)
+        
         if (status):
             #Success mobile robot , change coordinate
             rospy.logwarn("I arrive")
             socket_pub.publish("I arrive")
             self.robot_status.publish("Success")
             self.newgoal +=1 if self.newgoal<=1 else 0
+            self.distancegoal=0.0
         else:
             #Couldn't reach objective
             rospy.logwarn("Next coordinate")
             self.robot_status.publish("Failure")
             self.newgoal +=1 if self.newgoal<=1 else 0
+            self.distancegoal=0.0
     def go_chargestation(self):
         socket_pub = rospy.Publisher("navBridgeServer/talker", String,queue_size=10) 
         rospy.Subscriber("move_base/status", GoalStatusArray, self.setServerFeedback)
@@ -108,6 +116,7 @@ class StateMachine:
             #Couldn't reach objective
             rospy.logwarn("Next coordinate")
             self.robot_status.publish("Failure")
+        self.distancegoal = 0
 
 if __name__ == '__main__':
     try:
@@ -115,7 +124,6 @@ if __name__ == '__main__':
         robot = StateMachine()
         r = rospy.Rate(10) # 10hz
         while not rospy.is_shutdown() and robot.batterypercentage>=50:
-            rospy.logwarn("PLC-DASHGO Battery AI working")
             if robot.mission=="Charge":
                 robot.robot_status.publish("Charging")
                 #Goto Charge station

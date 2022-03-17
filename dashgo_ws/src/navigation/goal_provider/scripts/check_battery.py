@@ -25,11 +25,10 @@ class Checkvel:
     second = t.to_sec() 
     if self.velxlineal !=0 or self.velzangular !=0:
         newsecond = second - self.oldsecond
-        rospy.loginfo("time:"+str(newsecond))
         if newsecond >=1:
             newsecond = 0
             #Update baterry
-            rospy.logwarn("time:"+str(self.batterypercentage))
+            #rospy.logwarn("time:"+str(self.batterypercentage))
             self.batterypercentage -= self.batterylos
             self.battery_status.publish(self.batterypercentage)
             self.oldsecond=second
@@ -48,7 +47,6 @@ if __name__ == '__main__':
         robot = Checkvel()
         r = rospy.Rate(10) # 10hz
         while not rospy.is_shutdown():
-            rospy.logwarn("PLC-DASHGO Battery AI working")
             robot.main()
             r.sleep()
     except rospy.ROSInterruptException:
