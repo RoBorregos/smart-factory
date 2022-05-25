@@ -24,7 +24,7 @@ class StateMachine:
         self.client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
         self.battery_status = rospy.Subscriber("batterystatus", Int32, self.batterycallback)
         self.distance_result = rospy.Publisher("distanceresult", Float32, queue_size=10) 
-        self.mission_status = rospy.Subscriber("missionstatus",String ,self.missioncallback)
+        self.mission_status = rospy.Subscriber("missionstatus",Int32 ,self.missioncallback)
         self.plan_distance = rospy.Subscriber("/move_base/NavfnROS/plan", Path, self.distance_callback)
         self.robot_status = rospy.Publisher("robotstatus",String ,queue_size=10) 
         self.oldcoordinatex = 0.0
@@ -112,10 +112,12 @@ class StateMachine:
             rospy.logwarn("I arrive")
             socket_pub.publish("I arrive")
             self.robot_status.publish("Success")
+            rospy.sleep(5)
         else:
             #Couldn't reach objective
             rospy.logwarn("Next coordinate")
             self.robot_status.publish("Failure")
+            rospy.sleep(5)
         self.distancegoal = 0
 
 if __name__ == '__main__':
@@ -124,19 +126,19 @@ if __name__ == '__main__':
         robot = StateMachine()
         r = rospy.Rate(10) # 10hz
         while not rospy.is_shutdown() and robot.batterypercentage>=50:
-            if robot.mission=="Charge":
+            if robot.mission==0:
                 robot.robot_status.publish("Charging")
                 #Goto Charge station
-                rospy.logwarn("Charging")
+                rospy.loginfo("Charging")
                 robot.go_chargestation()
-            elif robot.mission=="Move":
+            elif robot.mission==1:
                 robot.robot_status.publish("Moving")
                 #Goto next goal
-                rospy.logwarn("Moving")
+                rospy.loginfo("Moving")
                 robot.do_mission()
             else:
                 #Free Robot 
-                rospy.logwarn("Nothing")
+                rospy.loginfo("Nothing")
                 robot.robot_status.publish("Free")
             r.sleep()
     except rospy.ROSInterruptException:

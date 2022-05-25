@@ -28,14 +28,6 @@ class StateMachine:
             qx = 0.000
             qy = 0.000
             qz = math.sin(angle/2)
-	    rospy.logwarn(a[0])
-	    rospy.logwarn(a[1])
-	    rospy.logwarn(a[2])
-	    rospy.logwarn(angle)
-            rospy.logwarn(qx)
-	    rospy.logwarn(qy)
-	    rospy.logwarn(qz)
-            rospy.logwarn(qw)
             goal.target_pose.pose = Pose(Point(a[0], a[1],  a[2]), Quaternion(qx,qy,qz,qw))
             self.client.send_goal(goal)
             print("Goal to dashgo 0 sent")

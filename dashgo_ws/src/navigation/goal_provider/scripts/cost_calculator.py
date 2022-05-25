@@ -14,12 +14,12 @@ def callback(path):
         prev_x = pose.pose.position.x
         prev_y = pose.pose.position.y
 
-    print("Current cost: ", cost)
+    rospy.logwarn('Current cost: {:.2f}'.format(cost))
     
 def listener():
     rospy.init_node('cost_calculator', anonymous=True)
 
-    rospy.Subscriber("/robot_0/move_base/DWAPlannerROS/global_plan", Path, callback)
+    rospy.Subscriber("/path_test_server", Path, callback)
     rospy.spin()
 
 if __name__ == '__main__':

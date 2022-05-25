@@ -32,7 +32,32 @@
           args="$(find contextualizer)/maps/factory.yaml">
           <param name="frame_id" value="/map"/>
     </node> 
-    <rosparam file="$(arg map_file)" command="load" ns="map" />
+  <!-- <include file="$(find dashgo_description)/launch/dashgo_description.launch">
+                <rosparam file="$(arg map_file)" command="load" ns="map" /> -->
+                
+  <rosparam file="$(arg map_file)" command="load" ns="map" />
+   <include file="nav.launch">
+        <arg name="ns" value="" />
+        <arg name="initial_pose_x" value="8.34057044983" />
+        <arg name="initial_pose_y" value="9.7309627533" />
+        <arg name="initial_pose_a" default="1.5708"/> 
+      </include>
+    <include file="move_base.launch"/>
+    <node name="path_server_global_planner" pkg="path_planning" type="path_server_global_planner" output="screen" >
+      <rosparam file="$(find path_planning)/config/test/costmap_example.yaml" command="load" ns="costmap" />
+    </node>
+    <node pkg="goal_provider" name="batterypercentage" type="check_battery.py" output="screen"> </node> 
+    <node pkg="goal_provider" name="battery_ai" type="battery_ai.py" output="screen"> </node> 
+    <node pkg="goal_provider" name="server" type="server.py" output="screen"> </node> 
+    <node pkg="path_planning" name="path_server_test" type="path_server_test"> </node> 
+    <!-- <node name="rviz" pkg="rviz" type="rviz"></node> -->
+    <!-- <node pkg="goal_provider" name="cost_calculator" type="cost_calculator.py" output="screen"> </node>  -->
+    <?ignore
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/plc_dashgo.rviz"/>
+    <!-- <node pkg="goal_provider" name="dashgogoal" type="goaldashgorviz.py" output="screen"> </node> -->
+    <!-- <node pkg="goal_provider" name="battery_ai" type="battery_ai.py" output="screen"> </node> -->
+    <include file="$(find dashgo_description)/launch/dashgo_description.launch"/>
+                <rosparam file="$(arg map_file)" command="load" ns="map" />
       <include file="nav.launch">
         <arg name="ns" value="" />
         <arg name="initial_pose_x" value="8.34057044983" />
@@ -42,9 +67,21 @@
       <include file="move_base.launch">
         <arg name="ns" value="" />
       </include>
-    <include file="$(find dashgo_description)/launch/dashgo_description.launch"/>
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find config_files)/rviz/plc_dashgo.rviz"/>
-    <!-- <node pkg="goal_provider" name="dashgogoal" type="goaldashgorviz.py" output="screen"> </node> -->
-    <node pkg="goal_provider" name="battery_ai" type="battery_ai.py" output="screen"> </node>
+
+            <rosparam file="$(arg map_file)" command="load" ns="map" />
+      <include file="nav.launch">
+        <arg name="ns" value="" />
+        <arg name="initial_pose_x" value="8.34057044983" />
+        <arg name="initial_pose_y" value="9.7309627533" />
+        <arg name="initial_pose_a" default="1.5708"/> 
+      </include>
+      <include file="move_base.launch">
+        <arg name="ns" value="" />
+      </include>
+                <include file="$(find dashgo_description)/launch/dashgo_description.launch"/>
     <node pkg="goal_provider" name="batterypercentage" type="check_battery.py" output="screen"> </node> 
+    <node name="path_server_global_planner" pkg="path_planning" type="path_server_global_planner" output="screen" >
+      <rosparam file="$(find path_planning)/config/test/costmap_example.yaml" command="load" ns="costmap" />
+    </node>
+    ?>
   </launch>
